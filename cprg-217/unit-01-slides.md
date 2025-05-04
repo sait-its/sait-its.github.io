@@ -65,6 +65,22 @@
 
 ---
 
+### Scripting Languages vs. Programming Languages
+
+- The line between scripting and programming languages is becoming increasingly blurred.
+
+- Many modern languages like Python and JavaScript can be used for both scripting and full-scale application development.
+
+---
+
+### You can compile Python
+
+- Whenever you run a Python program, that program (and anything it imports) will be compiled from Python source code to Python bytecode, and then the bytecode is what’s executed.
+- This all happens automatically for you, and you might not even notice it happening. 
+- You can run an explicit compilation step on a Python application, to compile the source code to bytecode. It’s just relatively rare to do so.
+
+---
+
 ### Real-world uses for scripting language
 
 - Real-life systems are made up of multiple programs all working together. Scripts can be used to help each separate program work together.
@@ -99,7 +115,84 @@
 
 ---
 
+### What is Python?
+
+
+- Python is a **high-level**, **interpreted**, and **general-purpose** programming language.
+- Created by Guido van Rossum and first released in 1991.
+- Known for its **simple syntax**, **readability**, and **versatility**.
+---
+
+### Why Use Python as a Scripting Language?
+
+- **Cross-Platform Compatibility**:
+  - Runs on Windows, macOS, Linux, and more.
+  - Write once, run anywhere (with minimal changes).
+- **Easy to Learn and Read**
+  - Clean and minimal syntax.
+  - Great for beginners and rapid development.
+  - Uses indentation to define code blocks.
+
+---
+
+### Why Use Python as a Scripting Language?
+
+- **Very Extensive Standard Library**
+  - Comes with "batteries included".
+  - Built-in modules for:
+    - File I/O
+    - Networking
+    - System administration
+    - Data parsing (JSON, XML, CSV)
+
+---
+
+### Why Use Python as a Scripting Language?
+
+- **Extensive Third-Party Libraries**
+
+  - Thousands of packages available via **PyPI** (Python Package Index).
+
+  - Libraries for:
+    - Web development (Flask, Django, FastAPI)
+    - Data science (Pandas, NumPy)
+    - Automation (Requests, Selenium)
+    - DevOps (Ansible, Fabric)
+    - AI (OpenAI API)
+
+---
+
+### Why Use Python as a Scripting Language?
+
+- **Great for Automation**
+  - Ideal for writing scripts to automate:
+    - File and directory operations
+    - Text processing
+    - System monitoring
+    - Web scraping
+
+---
+
+### Why Use Python as a Scripting Language?
+
+- **Active Community and Support**
+
+  - Large, active community.
+
+  - Abundant tutorials, forums, and documentation.
+
+  - Great for troubleshooting and learning.
+
+---
+
+### Python vs. Other Scripting Languages
+
+![py-other-scripting](./unit-01-slides.assets/py-other-scripting.webp)
+
+---
+
 #### Sources:
 
 - https://www.coursera.org/ca/articles/scripting-language
 - https://algodaily.com/lessons/scripting-vs-programming/differences-between-scripting-languages-and-programming-languages
+- https://www.b-list.org/weblog/2023/dec/06/compile-python-bytecode/
