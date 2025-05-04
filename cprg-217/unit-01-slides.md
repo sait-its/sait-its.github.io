@@ -232,7 +232,27 @@
 print("Hello World!")
 ```
 
+---
 
+### Command-Line Interfaces in Python
+
+- **Online tutorials:**
+
+  - [Argparse Tutorial](https://docs.python.org/3/howto/argparse.html)
+
+  - [Build Command-Line Interfaces With Python's argparse](https://realpython.com/command-line-interfaces-python-argparse/)
+
+  - [Master Python's argparse Module: Build Better CLIs](https://www.datacamp.com/tutorial/python-argparse)
+
+---
+
+### Working With Files in Python
+
+- **Online tutorials:**
+  - [Reading and Writing Files in Python (Guide)](https://realpython.com/read-write-files-python/)
+  - [Working with files in Python](https://realpython.com/working-with-files-in-python/)
+  - [Reading binary files in Python](https://www.pythonmorsels.com/reading-binary-files-in-python/)
+  - [Python's pathlib Module: Taming the File System](https://realpython.com/python-pathlib/)
 
 ---
 
