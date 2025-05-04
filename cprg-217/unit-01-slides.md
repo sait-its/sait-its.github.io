@@ -119,8 +119,9 @@
 
 
 - Python is a **high-level**, **interpreted**, and **general-purpose** programming language.
-- Created by Guido van Rossum and first released in 1991.
+- Created by [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum) and first released in 1991.
 - Known for its **simple syntax**, **readability**, and **versatility**.
+- [Python (programming language) on Wikipedia](https://en.wikipedia.org/wiki/Python_(programming_language))
 ---
 
 ### Why Use Python as a Scripting Language?
@@ -195,10 +196,10 @@
 
 ---
 
-### Set Up Python Development Environment
+### Set Up Python Dev Env
 
 - *Environment setup* is the process of organizing your computer so you can write code. This involves:
-  - Installing any necessary tools
+  - Installing necessary tools
   - Configuring them
   - Handling any hiccups during the setup
 - There is no single setup process because everyone has a different computer with a different operating system, version of the operating system, and version of the Python interpreter.
@@ -246,6 +247,8 @@ print("Hello World!")
 
   - [Master Python's argparse Module: Build Better CLIs](https://www.datacamp.com/tutorial/python-argparse)
 
+- [argparse_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/argparse_example.py)
+
 ---
 
 ### Working With Files in Python
@@ -255,6 +258,8 @@ print("Hello World!")
   - [Working with files in Python](https://realpython.com/working-with-files-in-python/)
   - [Reading binary files in Python](https://www.pythonmorsels.com/reading-binary-files-in-python/)
   - [Python's pathlib Module: Taming the File System](https://realpython.com/python-pathlib/)
+- [file_rw.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/file_rw.py)
+- [file_rw_err.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/file_rw_err.py)
 
 ---
 
@@ -264,6 +269,7 @@ print("Hello World!")
   - [What Is Hashing, and How Does It Work?](https://www.codecademy.com/resources/blog/what-is-hashing/)
   - [`hashlib` — Secure hashes and message digests](https://docs.python.org/3/library/hashlib.html)
   - [How to Use Hashing Algorithms in Python using hashlib](https://thepythoncode.com/article/hashing-functions-in-python-using-hashlib)
+- [md5_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/md5_example.py)
 
 ---
 
@@ -273,6 +279,8 @@ print("Hello World!")
   - [An Introduction to Python Subprocess](https://www.datacamp.com/tutorial/python-subprocess)
   - [The Right Way to Run Shell Commands From Python](https://martinheinz.dev/blog/98)
   - [`sh` module](https://github.com/amoffat/sh)
+- [subprocess_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/subprocess_example.py)
+- [sh_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/sh_example.py)
 
 ---
 
