@@ -149,16 +149,12 @@
 
 ### Why Use Python as a Scripting Language?
 
-- **Extensive Third-Party Libraries**
-
-  - Thousands of packages available via **PyPI** (Python Package Index).
-
+- **Extensive Third-Party Libraries via PyPI**
   - Libraries for:
     - Web development (Flask, Django, FastAPI)
-    - Data science (Pandas, NumPy)
-    - Automation (Requests, Selenium)
+    - Automation (Requests, Playwright)
     - DevOps (Ansible, Fabric)
-    - AI (OpenAI API)
+    - Data science (Pandas, NumPy)
 
 ---
 
@@ -182,6 +178,14 @@
   - Abundant tutorials, forums, and documentation.
 
   - Great for troubleshooting and learning.
+
+---
+
+### Python is the Lingua Franca of ML/AI
+
+- Python gets rid of as much of the ML/AI developmental complexity as possible.
+- Python is the dominant language in the AI/ML field. Most research, development, and job opportunities in AI heavily involve Python.
+- Rich Ecosystem of AI/ML Libraries: TensorFlow, PyTorch, Keras, Scikit-learn, Pandas, NumPy.
 
 ---
 
