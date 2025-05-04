@@ -232,6 +232,8 @@
 print("Hello World!")
 ```
 
+[How to Run Your Python Scripts and Code](https://realpython.com/run-python-scripts/)
+
 ---
 
 ### Command-Line Interfaces in Python
@@ -253,6 +255,24 @@ print("Hello World!")
   - [Working with files in Python](https://realpython.com/working-with-files-in-python/)
   - [Reading binary files in Python](https://www.pythonmorsels.com/reading-binary-files-in-python/)
   - [Python's pathlib Module: Taming the File System](https://realpython.com/python-pathlib/)
+
+---
+
+### Hashing Algorithms in Python
+
+- **Online tutorials:**
+  - [What Is Hashing, and How Does It Work?](https://www.codecademy.com/resources/blog/what-is-hashing/)
+  - [`hashlib` — Secure hashes and message digests](https://docs.python.org/3/library/hashlib.html)
+  - [How to Use Hashing Algorithms in Python using hashlib](https://thepythoncode.com/article/hashing-functions-in-python-using-hashlib)
+
+---
+
+### Run Shell Commands From Python
+
+- **Online tutorials:**
+  - [An Introduction to Python Subprocess](https://www.datacamp.com/tutorial/python-subprocess)
+  - [The Right Way to Run Shell Commands From Python](https://martinheinz.dev/blog/98)
+  - [`sh` module](https://github.com/amoffat/sh)
 
 ---
 
