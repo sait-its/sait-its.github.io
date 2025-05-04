@@ -284,6 +284,20 @@ print("Hello World!")
 
 ---
 
+### Key Takeaways
+
+- Scripting Languages: Interpreted, high-level languages used for automation, system integration, and rapid prototyping (e.g., Python, JavaScript, Ruby, PHP).
+- Python's Strengths: Easy-to-read syntax, cross-platform compatibility, extensive standard and third-party libraries, and dominance in AI/ML with tools like TensorFlow and Pandas.
+
+---
+
+### Key Takeaways
+
+- Development Environment: Setting up a Python environment involves installing Python, configuring tools, and using virtual environments for project isolation.
+- Python Scripting: Supports automation (file operations, web scraping), command-line interfaces (`argparse`), path handling(pathlib), hashing (`hashlib`), and shell command execution (`subprocess` and `sh`).
+
+---
+
 #### Sources:
 
 - https://www.coursera.org/ca/articles/scripting-language
