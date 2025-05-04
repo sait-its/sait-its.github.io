@@ -195,6 +195,47 @@
 
 ---
 
+### Set Up Python Development Environment
+
+- *Environment setup* is the process of organizing your computer so you can write code. This involves:
+  - Installing any necessary tools
+  - Configuring them
+  - Handling any hiccups during the setup
+- There is no single setup process because everyone has a different computer with a different operating system, version of the operating system, and version of the Python interpreter.
+
+---
+
+### Set Up Python Development Environment
+
+1. [How to Install Python on Your System: A Guide](https://realpython.com/installing-python/)
+2. [Set Up Your Python Development Environment](https://learn.microsoft.com/en-us/windows/python/beginners#manually-set-up-your-python-development-environment)
+3. [Python Virtual Environments](https://realpython.com/python-virtual-environments-a-primer/)
+4. [uv - Python package and project manager](https://docs.astral.sh/uv/)
+
+---
+
+### Your First Python Script
+
+```python
+# This is a simple Python script that demonstrates the basic print function
+# by outputting "Hello World!" to the console/terminal.
+
+# How to run this script:
+# 1. Open a terminal/command prompt
+# 2. Navigate to the directory containing this file using: cd path/to/directory
+# 3. Run the script using one of these commands:
+#    - On Windows: python hello.py
+#    - On Linux/Mac: python3 hello.py
+
+# The print() function below displays text to the console
+# The text "Hello World!" is passed as a string argument (enclosed in quotes)
+print("Hello World!")
+```
+
+
+
+---
+
 #### Sources:
 
 - https://www.coursera.org/ca/articles/scripting-language
