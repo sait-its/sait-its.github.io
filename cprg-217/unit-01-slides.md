@@ -53,6 +53,18 @@
 
 ---
 
+### Scripting Languages vs. Programming Languages
+
+![script.vs.prog-1](./unit-01-slides.assets/script-prog-1.webp)
+
+---
+
+### Scripting Languages vs. Programming Languages
+
+![script.vs.prog-2](./unit-01-slides.assets/script-prog-2.webp)
+
+---
+
 ### Real-world uses for scripting language
 
 - Real-life systems are made up of multiple programs all working together. Scripts can be used to help each separate program work together.
@@ -87,6 +99,7 @@
 
 ---
 
-##### Sources:
+#### Sources:
 
-https://www.coursera.org/ca/articles/scripting-language
+- https://www.coursera.org/ca/articles/scripting-language
+- https://algodaily.com/lessons/scripting-vs-programming/differences-between-scripting-languages-and-programming-languages
