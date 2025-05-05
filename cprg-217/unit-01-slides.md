@@ -124,7 +124,7 @@
 - [Python (programming language) on Wikipedia](https://en.wikipedia.org/wiki/Python_(programming_language))
 ---
 
-### Why Use Python as a Scripting Language?
+#### Why Use Python as a Scripting Language?
 
 - **Cross-Platform Compatibility**:
   - Runs on Windows, macOS, Linux, and more.
@@ -136,7 +136,7 @@
 
 ---
 
-### Why Use Python as a Scripting Language?
+#### Why Use Python as a Scripting Language?
 
 - **Very Extensive Standard Library**
   - Comes with "batteries included".
@@ -148,29 +148,27 @@
 
 ---
 
-### Why Use Python as a Scripting Language?
+#### Why Use Python as a Scripting Language?
 
 - **Extensive Third-Party Libraries via PyPI**
-  - Libraries for:
-    - Web development (Flask, Django, FastAPI)
-    - Automation (Requests, Playwright)
-    - DevOps (Ansible, Fabric)
-    - Data science (Pandas, NumPy)
+  - Web development (Flask, Django, FastAPI)
+  - Automation (Requests, Playwright)
+  - DevOps (Ansible, Fabric)
+  - Data science (Pandas, NumPy)
 
 ---
 
-### Why Use Python as a Scripting Language?
+#### Why Use Python as a Scripting Language?
 
 - **Great for Automation**
-  - Ideal for writing scripts to automate:
-    - File and directory operations
-    - Text processing
-    - System monitoring
-    - Web scraping
+  - File and directory operations
+  - Text processing
+  - System monitoring
+  - Web scraping
 
 ---
 
-### Why Use Python as a Scripting Language?
+#### Why Use Python as a Scripting Language?
 
 - **Active Community and Support**
 
@@ -182,7 +180,7 @@
 
 ---
 
-### Python is the Lingua Franca of ML/AI
+#### Python is the Lingua Franca of ML/AI
 
 - Python gets rid of as much of the ML/AI developmental complexity as possible.
 - Python is the dominant language in the AI/ML field. Most research, development, and job opportunities in AI heavily involve Python.
@@ -193,6 +191,25 @@
 ### Python vs. Other Scripting Languages
 
 ![py-other-scripting](./unit-01-slides.assets/py-other-scripting.webp)
+
+---
+
+#### Which Python Version Should I Use
+
+- **Recommend: Python 3.10, 3.11, or 3.12**
+  - These versions are widely adopted and offer the latest features and performance improvements.
+  - Support for modern syntax (e.g., pattern matching in 3.10+, improved error messages in 3.11+).
+  - Most automation tools and libraries are fully compatible.
+  - Good balance between stability, security, and new features.
+
+---
+
+#### Avoid These Python Versions
+
+- **Python 2.x**: End-of-Life (EOL) since January 1, 2020 — no more updates or security patches.
+- **Bleeding-edge versions (e.g., pre-releases like 3.14 alpha)**: May have instability or breaking changes. Some third-party libraries may not yet support the latest pre-release versions.
+
+[Status of Python versions](https://devguide.python.org/versions/)
 
 ---
 
