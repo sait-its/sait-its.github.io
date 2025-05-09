@@ -368,7 +368,6 @@ print(a ^ b)		# {'z', 'b', 'm', 'r', 'l', 'd'}
 ### JSON Syntax Pitfalls
 
 - The [JSON standard](https://ecma-international.org/publications-and-standards/standards/ecma-404/) doesn’t allow any comments, trailing commas, or single quotes for strings.
-- This can be confusing to developers who are used to Python dictionaries or JavaScript [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object).
 
 ```json
 {
@@ -438,7 +437,7 @@ json.dumps(food_ratings)
 
 - The `json.dump()` function has two required arguments: the object you want to write, and the file you want to write into.
 
-```json
+```python
 import json
 
 # Data to be written
