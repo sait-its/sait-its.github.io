@@ -177,14 +177,12 @@ print(colors[1])  # green
 
 - In Python, a dictionary is wrapped in braces (`{}`) with a series of key-value pairs inside the braces.
 
-  ```python
-  alien_0 = {'color': 'green', 'points': 5}
-  ```
+```python
+alien_0 = {'color': 'green', 'points': 5}
+```
 
 - A key-value pair is a set of values associated with each other.
-
 - When you provide a key, Python returns the value associated with that key.
-
 - Every key is connected to its value by a colon, and individual key-value pairs are separated by commas.
 
 ---
