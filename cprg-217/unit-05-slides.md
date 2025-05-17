@@ -9,8 +9,8 @@
 
 ### What is pywin32?
 
-- **PyWin32** is a Python library that lets you access the low-level features of the Windows operating system, its specific functions and its APIs via bindings.
-- The aim of **PyWin32**  is to provide bindings for Win32 APIs, enabling developers to create Python scripts that can control and manipulate Windows elements. This includes processes, threads, windows, files, registries and services.
+- **pywin32** is a Python library that lets you access the low-level features of the Windows operating system, its specific functions and its APIs via bindings.
+- The aim of **pywin32**  is to provide bindings for **Win32** APIs, enabling developers to create Python scripts that can control and manipulate Windows elements. This includes processes, threads, windows, files, registries and services.
 
 ---
 
@@ -24,7 +24,8 @@
 
 ### Win32 API Example - Beep function
 
-- Generates simple tones on the speaker. The function is synchronous; it performs an alertable wait and does not return control to its caller until the sound finishes.
+- Usage: `Beep(dwFreq, dwDuration)`
+- Generates simple tones on the speaker. The function is synchronous.
 - `dwFreq`: The frequency of the sound, in hertz.
 - `dwDuration`: The duration of the sound, in milliseconds.
 
@@ -59,6 +60,7 @@ if __name__ == "__main__":
 
 ### Win32 API Example - FindFiles function
 
+- Usage: `list = FindFiles(fileSpec)`
 - Retrieves a list of matching filenames. An interface to the API FindFirstFile/FindNextFile/Find close functions.
 - `fileSpec`: A string that specifies a valid directory or path and filename, which can contain wildcard characters (`*` and `?`).
 
@@ -84,10 +86,12 @@ for file_info in files:
 
 ### Win32 API Example - win32net.NetServerGetInfo
 
-- `dict = NetServerGetInfo(server, level)`
+- Usage: `dict = NetServerGetInfo(server, level)`
 - Retrieves information about a particular server.
 - `server`: The name of the server to execute on.
 - `level`: The information level contained in the data.
+
+[win32net.NetServerGetInfo](https://mhammond.github.io/pywin32/win32net__NetServerGetInfo_meth.html)
 
 ---
 
