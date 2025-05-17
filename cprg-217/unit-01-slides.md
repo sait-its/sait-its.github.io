@@ -290,17 +290,6 @@ print("Hello World!")
 
 ---
 
-### Run Shell Commands From Python
-
-- **Online tutorials:**
-  - [An Introduction to Python Subprocess](https://www.datacamp.com/tutorial/python-subprocess)
-  - [The Right Way to Run Shell Commands From Python](https://martinheinz.dev/blog/98)
-  - [`sh` module](https://github.com/amoffat/sh)
-- [subprocess_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/subprocess_example.py)
-- [sh_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/sh_example.py)
-
----
-
 ### Key Takeaways
 
 - Scripting Languages: Interpreted, high-level languages used for automation, system integration, and rapid prototyping (e.g., Python, JavaScript, Ruby, PHP).
