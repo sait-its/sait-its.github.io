@@ -110,6 +110,8 @@ ansible myhosts -m ping -i inventory.ini
 
 [YAML Syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 
+[YAML Tutorial](https://spacelift.io/blog/yaml)
+
 ---
 
 ### What Can Ansible Playbooks Do?
@@ -143,7 +145,8 @@ ansible myhosts -m ping -i inventory.ini
        msg: Hello world
 ```
 
-- Run the playbook
+- Note: This playbook has two tasks and uses Ansible builtin modules `ping` and `debug`.
+- Run the playbook.
 
 ```shell
 ansible-playbook -i inventory.ini playbook.yaml
@@ -238,4 +241,5 @@ ansible-playbook -i inventory.ini playbook.yaml
 
 ### Sources:
 
-- https://docs.ansible.com/ansible/latest/getting_started/index.html
+- https://docs.ansible.com/ansible
+- https://spacelift.io/blog/yaml
