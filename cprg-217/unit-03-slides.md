@@ -273,6 +273,47 @@ print(a ^ b)		# {'z', 'b', 'm', 'r', 'l', 'd'}
 
 ---
 
+### Set - Union
+
+- The **union** of two sets returns a new set that contains all unique elements from both sets. You can perform a union using the `|` operator or the [`.union()`](https://docs.python.org/3/library/stdtypes.html#frozenset.union) method.
+
+![Set Union Operation](./unit-03-slides.assets/set-union.69c7d74dd09f.png)
+
+---
+
+### Set - Intersection
+
+- The **intersection** of two sets is a new set containing only the elements common to both sets. You can use the `&` operator or the [`.intersection()`](https://docs.python.org/3/library/stdtypes.html#frozenset.intersection) method to perform an intersection.
+
+![Set Intersection Operation](./unit-03-slides.assets/set-intersection.787a3db7e6b6.png)
+
+---
+
+### Set - Difference
+
+- The **difference** between two sets is a new set containing elements that are in the first set but not in the second. You can perform a difference using the `-` operator or the [`.difference()`](https://docs.python.org/3/library/stdtypes.html#frozenset.difference) method.
+
+![Set Difference Operation](./unit-03-slides.assets/set-difference.c25b4e25419a.png)
+
+---
+
+### Set - Symmetric Difference
+
+- The **symmetric difference** between two sets is a new set containing all the elements that appear in either set but not both. You can perform a symmetric difference using the `^` operator or the [`.symmetric_difference()`](https://docs.python.org/3/library/stdtypes.html#frozenset.symmetric_difference) method.
+
+![set-symmetric-difference.cf0de76c1c6c](./unit-03-slides.assets/set-symmetric-difference.cf0de76c1c6c.png)
+
+---
+
+### Membership Tests on Sets
+
+- **membership tests**: Use Python `in` and `not in` operators to check whether an element belongs to a collection or container.
+- Python sets are implemented as hash tables, very efficient for membership tests, especially compared to `list` objects. When performing frequent membership tests on a collection, use a set.
+
+[Running Membership Tests on Sets](https://realpython.com/python-sets/#running-membership-tests-on-sets)
+
+---
+
 ### JSON
 
 - JSON stands for **JavaScript Object Notation**.
@@ -467,4 +508,5 @@ with open('output.json', 'w') as f:
 - https://docs.python.org/3/library/stdtypes.html
 - https://www.geeksforgeeks.org/python-data-types/
 - https://www.geeksforgeeks.org/python-type-function/
+- https://realpython.com/python-sets/
 - https://realpython.com/python-json/
