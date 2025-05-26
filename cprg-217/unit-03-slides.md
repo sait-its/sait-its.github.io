@@ -236,7 +236,7 @@ print(alien_0)
 
 ```python
 num_lst = [1, 2, 2, 2, 3, 4, 5, 5]
-numbers = set(numbers)
+numbers = set(num_lst)
 print(numbers)				# {1, 2, 3, 4, 5}
 
 # Remove an element from the set
