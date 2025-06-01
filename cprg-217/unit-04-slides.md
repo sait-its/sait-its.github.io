@@ -4,8 +4,8 @@
   - [An Introduction to Python Subprocess](https://www.datacamp.com/tutorial/python-subprocess)
   - [The Right Way to Run Shell Commands From Python](https://martinheinz.dev/blog/98)
   - [`sh` module](https://github.com/amoffat/sh)
-- [subprocess_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/subprocess_example.py)
-- [sh_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/sh_example.py)
+- [subprocess_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-04/subprocess_example.py)
+- [sh_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-04/sh_example.py)
 
 ---
 
@@ -156,12 +156,88 @@ SwapFree:              0 kB
 
 ---
 
+### systemd
+
+- **systemd** is a suite of basic building blocks for a Linux system. It provides a system and service manager that runs as PID 1 and starts the rest of the system.
+- It is responsible for initializing the system, managing system processes, and controlling services (also known as "**units**") during boot, runtime, and shutdown.
+- **systemd** has become the default init system for many major Linux distributions.
+
+---
+
+### systemd - Key Concepts
+
+- **Unit:** The basic object that systemd manages. Units can represent services, sockets, devices, mount points, and more. Common unit types:
+    - `.service` — a system service
+    - `.socket` — a socket for inter-process communication
+    - `.target` — a group of units
+    - `.mount` — a file system mount point
+
+---
+
+### systemd - Key Concepts
+
+- Once the kernel loads `systemd`, `systemd` takes over and starts the other system services that are required to bring the system up and running.
+- This includes services such as networking service, the login manager, etc.
+- Once all the services are started, your system is ready to use and the login manager displays. You can now log in and start using the system.
+
+---
+
+### systemd unit Files Locations
+
+- `/usr/lib/systemd/system/` - unit files distributed with installed packages.
+- `/run/systemd/system/` - unit files created at run time.
+- `/etc/systemd/system/` - unit files created by using the systemctl enable command as well as unit files added for extending a service.
+
+---
+
+### Viewing `systemd` information
+
+- The `systemctl` command is used to examine and control the state of `systemd` and service manager.
+- `systemctl list-units` lists the `systemd` units. Optional arguments:
+  - `--state=running` to show the active units 
+  - `--type=service` to show the exited and active units.
+
+---
+
+###  Managing `systemd` Services
+
+- `systemctl status SERVICE` - Checks the status of the specific service.
+- `systemctl show SERVICE` - Displays the service information.
+- `systemctl start SERVICE` - Start system service in the current session. Root access required.
+- `systemctl stop SERVICE` - Stop a system service in the current session. Root access required.
+
+---
+
+###  Managing `systemd` Services
+
+- `systemctl restart SERVICE` - Restart system service in the current session.
+  - Stop the selected service unit in the current session and immediately start it again.
+  - Restart a service unit only if the corresponding service is already running.
+  - Reload configuration of a system service without interrupting its execution.
+
+---
+
+###  Managing `systemd` Services
+
+- `systemctl enable SERVICE` - Enable a service to start automatically at boot.
+- Optionally, pass the `--now` option to the command to also start the unit right now.
+
+---
+
 ### Key Takeaways
 
 - `/etc/passwd` stores basic user account information.
 - `/etc/group` contains information about system groups and their members.
 - `/proc/cpuinfo` provides real-time details about the system’s CPU(s).
 - `/proc/meminfo` displays current memory usage statistics.
+
+---
+
+### Key Takeaways
+
+- **systemd** is the standard service and system manager for many Linux distributions, enabling reliable and parallelized service management.
+- Services are defined as unit files (typically with a `.service` extension), specifying how and when they run.
+- The `systemctl` command is the main tool for starting, stopping, enabling, and checking the status of services.
 
 ---
 
@@ -172,6 +248,15 @@ SwapFree:              0 kB
 - https://en.wikipedia.org/wiki/Unix_filesystem#Conventional_directory_layout
 - https://www.linuxfoundation.org/blog/blog/classic-sysadmin-absolute-path-vs-relative-path-in-linux-unix
 - https://docs.kernel.org/filesystems/proc.html
+
+---
+
+### Sources:
+
+- https://realpython.com/python-subprocess/
+- https://sh.readthedocs.io/en/latest/
+- https://systemd.io/
+- https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_basic_system_settings/managing-systemd_configuring-basic-system-settings
 
 ---
 
