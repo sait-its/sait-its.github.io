@@ -1,3 +1,68 @@
+### Scripting Linux
+
+- On Linux, Python can be used just like traditional shell scripting languages such as Bash.
+- Shell scripting isn’t intended to be a feature-rich language. It doesn't make sense to implement complex programs using it.
+- Python offers more advanced data structures, error handling, and third-party libraries, making it easier to handle complex tasks and maintain scripts.
+
+---
+
+### Python Scripting on Linux
+
+- Automating repetitive command-line tasks.
+- Processing and transforming text files or logs.
+- Managing system resources and processes.
+- Performing network operations.
+- Integrating with other command-line tools.
+
+---
+
+### Processes and the OS
+
+- Whenever you use a computer, you’ll always be interacting with programs.
+- A **process** is the operating system’s abstraction of a running program.
+- Every application comprises one or more processes.
+
+---
+
+### Process Lifetime
+
+- An instance of your command-line *process* starting a Python *process*:
+
+  ![parent-child-process](./unit-04-slides.assets/parent-child-process.gif) 
+
+---
+
+### Process Lifetime
+
+- The process that starts another process is referred to as the **parent**, and the new process is referred to as the **child**.
+- The parent and child processes run mostly independently.
+- Sometimes the child inherits specific resources or contexts from the parent.
+
+---
+
+### Process Exit Codes
+
+- When a process has finished running, it’ll usually end. Every process, on exit, should return an integer.
+- This integer is referred to as the **return code** or [exit status](https://en.wikipedia.org/wiki/Exit_status).
+- Zero is synonymous with success, while any other value is considered a failure. Different integers can be used to indicate the reason why a process has failed.
+
+---
+
+### Communication With Processes
+
+- When processes are initialized, there are three special [streams](https://en.wikipedia.org/wiki/Stream_(computing)) that a process makes use of. A process does the following: Reads `stdin` for input; Writes to `stdout` for general output; Writes to `stderr` for error reporting.
+- **stdin** is all the input normally via keyboard, but can be via a file or an output redirection. **stdout** is the expected output of the process. **stderr** is the unexpected output of the process, the errors.
+
+---
+
+### stdin, stdout and stderr
+
+- These are the [standard streams](https://en.wikipedia.org/wiki/Standard_streams)—a cross-platform pattern for process communication.
+
+  ![stdin-stdout-stderr](./unit-04-slides.assets/stdin-stdout-stderr.webp) 
+
+---
+
 ### Run Shell Commands From Python
 
 - **Online tutorials:**
@@ -263,3 +328,4 @@ SwapFree:              0 kB
 ### Credit:
 
 - The image of Hierarchical structure of Unix file system is kindly supplied under a CC By-SA license by Paul Gardner.
+- The image of stdio: https://imreyesjorge.hashnode.dev/g101-whats-stdin-stdout-and-stderr
