@@ -115,6 +115,53 @@ Min(0-59)
 
 ---
 
+### Run Cron Job at Boot Time
+
+- Use special directive called `@reboot`. It will run once, at startup after [Linux reboot command](https://www.cyberciti.biz/faq/linux-reboot-command/).
+- First, run crontab command `sudo crontab -e`. Add the jobs to be started at startup to crontab.
+
+```
+@reboot  /path/to/job
+@reboot  /path/to/shell.script
+@reboot  /path/to/command arg1 arg2
+
+# Add 300 seconds deplay before the job executes.
+@reboot sleep 300 && /home/wwwjobs/clean-static-cache.sh
+```
+
+---
+
+### Use Cases for `@reboot`
+
+- Data backup scripts. In addition to running these scripts on reboot, you can use crontab to schedule them at other times of the day as well.
+- Log File Maintenance. Linux has tons of log files, some will continue to grow and can end up strangling your server for space. It’s a good idea to get ahead of this and regularly compress your log files, initiate new ones, and perhaps even delete a few that are no longer required.
+
+---
+
+### Use Cases for `@reboot`
+
+- System information collection
+  - Linux kernel version. Use `uname -r` to verify the system is running the expected release, especially after updates.
+  - Root directory usage. Use `df -h /` to confirm sufficient disk space.
+  - Service status. Use `systemctl` to ensure critical daemons are running.
+  - Network connectivity. Use `ip a` or `ping` to confirm network interfaces are operational.
+
+---
+
+### Common Cron Job Errors
+
+- Scheduling Errors. It’s not difficult to make a mistake with the cron syntax. Use the [crontab.guru](https://crontab.guru/) website to verify that your syntax is correct.
+- Disk Space. Your script can be incredibly resilient, yet when system resources are depleted, no amount of resilience is going to help your cron job run successfully. To prevent this, stay on top of monitoring your servers for metrics like available disk space, available memory, and sufficient open files.
+
+---
+
+### Common Cron Job Errors
+
+- Environment Variables. Your shell script runs fine from the command line but fails in cron. Cron doesn't load variables from files like .bashrc or .bash_profile, so variables like $USER are undefined. Hard-code variable values or manually source files like `.bashrc` in your script.
+- Job Overlap. A cron script running every minute may fail to finish on time due to external variables, spawning multiple instances and draining resources. Use lock files to ensure only one instance runs.
+
+---
+
 ### Key Takeaways
 
 - Windows Task Scheduler and Linux Cron Job are used to automate the execution of tasks (programs, scripts, or commands) at scheduled times or intervals.
