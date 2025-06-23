@@ -1,3 +1,19 @@
+### Python Network Programming
+
+- Python is a powerful language for network programming, enabling developers to build robust applications that communicate over networks.
+- Two key approaches: **socket programming** and **REST API programming**.
+- Socket programming allows direct communication between devices using low-level protocols (like TCP/UDP), operating primarily at the **Transport Layer (Layer 4)** of the OSI model.
+
+---
+
+### Python Network Programming
+
+- REST API programming leverages HTTP protocols to exchange data between clients and servers, functioning at the **Application Layer (Layer 7)**.
+- REST APIs provide simplicity, scalability, and interoperability for web-based services.
+- REST APIs are ideal for building modern web and mobile applications that require seamless data exchange.
+
+---
+
 ### Introduction to Sockets
 
 - **What is a Socket?**
@@ -225,10 +241,308 @@ s.close()
 
 ---
 
-### Activity
+### Socket Programming Activities
 
 - A simple client and server implementation. The server will echo whatever it receives back to the client. [Echo Client and Server](https://realpython.com/python-sockets/#echo-client-and-server)
 - File transfer is the process of copying or moving a file from one computer to another over a network or Internet connection. [How to Transfer Files in the Network using Sockets in Python](https://thepythoncode.com/article/send-receive-files-using-sockets-python)
+
+---
+
+### REST Architecture
+
+- **REST** stands for [**re**presentational **s**tate **t**ransfer](https://en.wikipedia.org/wiki/Representational_state_transfer) and is a software architecture style that defines a pattern for [client and server](https://en.wikipedia.org/wiki/Client–server_model) communications over a network.
+- REST provides a set of constraints for software architecture to promote performance, scalability, simplicity, and reliability in the system.
+- REST is *not* a specification but a set of guidelines on how to architect a network-connected software system.
+
+---
+
+### REST APIs and Web Services
+
+- A **REST web service** is any web service that adheres to REST architecture constraints. These web services expose their data to the outside world through an API. REST APIs provide access to web service data through public web URLs.
+- You access data from a REST API by sending an [HTTP request](https://realpython.com/python-https/#what-is-http) to a specific URL and processing the response.
+
+---
+
+### REST APIs and Web Services
+
+- The following [GitHub’s REST API](https://docs.github.com/en/free-pro-team@latest/rest) allows you to access information about a specific GitHub user. 
+
+```sh
+https://api.github.com/users/<username>
+```
+
+```shell
+curl https://api.github.com/users/hong-sait
+
+{
+  "login": "hong-sait",
+  "id": 81775267,
+  "node_id": "MDQ6VXNlcjgxNzc1MjY3",
+  "avatar_url": "https://avatars.githubusercontent.com/u/81775267?v=4",
+  "gravatar_id": "",
+  "url": "https://api.github.com/users/hong-sait",
+  "html_url": "https://github.com/hong-sait",
+  ...
+}
+```
+
+---
+
+### HTTP Methods
+
+- REST APIs listen for [HTTP methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) like `GET`, `POST`, and `DELETE` to know which operations to perform on the web service’s resources.
+- A **resource** is any data available in the web service that can be accessed and manipulated with **HTTP requests** to the REST API.
+- The HTTP method tells the API which action to perform on the resource.
+
+---
+
+### HTTP Methods
+
+- The five [HTTP methods](https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api#http-method) listed below are the most commonly used with REST APIs:
+  - `GET`: Used for retrieving resources.
+  - `POST`: Used for creating resources.
+  - `PATCH`: Used for updating properties of resources.
+  - `PUT`: Used for replacing resources or collections of resources.
+  - `DELETE`: Used for deleting resources.
+
+---
+
+### HTTP Status Codes
+
+- Once a REST API receives and processes an HTTP request, it returns an **HTTP response** with an **HTTP status code**. This code provides information about the results of the request.
+
+![http-status-codes](./unit-07-slides.assets/http-status-codes.png)
+
+---
+
+### API Endpoints
+
+- A REST API exposes a set of public URLs (**endpoints**) that client applications use to access the resources of a web service.
+
+ ![rest-api-endpoint](./unit-07-slides.assets/rest-api-endpoint.webp) 
+
+---
+
+### Consuming APIs with Python
+
+- To write code that interacts with REST APIs, most Python developers turn to [`requests`](https://realpython.com/python-requests/) to send HTTP requests.
+- This library abstracts away the complexities of making HTTP requests.
+- It’s one of the few projects worth treating as if it’s part of the standard library.
+
+---
+
+### GET
+
+- `GET` is one of the most common HTTP methods. This method allows you to retrieve resources from a given API.
+- `GET` is a **read-only** operation, so you shouldn’t use it to modify an existing resource.
+
+```python
+import requests
+
+api_url = "https://api.github.com/users/hong-sait"
+response = requests.get(api_url)
+print(response.json())
+# {'login': 'hong-sait', 'id': 81775267, ...}
+print(response.status_code) # 200
+```
+
+---
+
+### GET
+
+- The response data of `GET` is formatted as [JSON](https://www.json.org/json-en.html), a key-value store similar to a [Python dictionary](https://realpython.com/python-dicts/). It’s a very popular data format and the de facto interchange format for most REST APIs.
+- Beyond viewing the JSON data from the API, you can also view other things about the `response`
+  - `response.status_code`
+  - `response.headers["Content-Type"]`
+
+---
+
+### POST
+
+- To test out the other methods in this section, let's use a service called [JSONPlaceholder](https://jsonplaceholder.typicode.com/). This free service provides fake API endpoints that send back responses that `requests` can process.
+- To create a new resource, include JSON data in the `POST` request.
+
+```json
+{
+    "userId": 1,
+    "title": "Buy milk",
+    "completed": false
+}
+```
+
+---
+
+### POST - The Standard Way
+
+- Save the request body to a dictionary, covert it to json, and set `Content-Type` to `application/json`
+
+```python
+import json
+import requests
+
+api_url = "https://jsonplaceholder.typicode.com/todos"
+todo = {"userId": 1, "title": "Buy milk", "completed": False}
+headers = {"Content-Type":"application/json"}
+response = requests.post(api_url,
+                         data=json.dumps(todo),
+                         headers=headers)
+print(response.json())
+# {'userId': 1, 'title': 'Buy milk',
+#  'completed': False, 'id': 201}
+print(response.status_code) # 201
+```
+
+---
+
+### POST - The Easy Way
+
+- Pass the dictionary to the `json` keyword argument of `requests.post()`, which automatically sets the request’s HTTP header `Content-Type` to `application/json`. It also serializes `todo` into a JSON string.
+
+```python
+import requests
+
+api_url = "https://jsonplaceholder.typicode.com/todos"
+todo = {"userId": 1, "title": "Buy milk", "completed": False}
+response = requests.post(api_url, json=todo)
+print(response.json())
+# {'userId': 1, 'title': 'Buy milk', 'completed': False, 'id': 201}
+print(response.status_code) # 201
+```
+
+---
+
+### PUT
+
+- Any data sent with a `PUT` request will **completely replace** the existing resources.
+
+```python
+import requests
+
+api_url = "https://jsonplaceholder.typicode.com/todos/10"
+print(requests.get(api_url).json())
+# {'userId': 1, 'id': 10, 'title': 'illo ... aut',
+#  'completed': True}
+
+todo = {"userId": 1, "title": "Wash car", "completed": True}
+response = requests.put(api_url, json=todo)
+# {'userId': 1, 'title': 'Wash car',
+#  'completed': True, 'id': 10}
+print(response.json(), response.status_code)
+```
+
+---
+
+### PATCH
+
+- `PATCH` differs from `PUT` in that it doesn’t completely replace the existing resource. It **only modifies the values set in the JSON** sent with the request.
+
+```python
+import requests
+
+api_url = "https://jsonplaceholder.typicode.com/todos/10"
+todo = {"title": "Mow lawn"}
+response = requests.patch(api_url, json=todo)
+print(response.json())
+# {'userId': 1, 'id': 10, 'title': 'Mow lawn', 
+# 'completed': True}
+print(response.status_code) # 200
+```
+
+---
+
+### DELETE
+
+- Use `DELETE` to completely remove a resource.
+- Call `requests.delete()` with an API URL. This sends a `DELETE` request to the REST API, which then removes the matching resource. An empty JSON object indicates that the resource has been deleted.
+
+```python
+import requests
+
+api_url = "https://jsonplaceholder.typicode.com/todos/10"
+response = requests.delete(api_url)
+print(response.json())      # {}
+print(response.status_code) # 200
+```
+
+---
+
+### Build REST APIs
+
+- REST API design is a huge topic with many layers.
+- Recommended steps: identify resources, define endpoints, pick data interchange format (XML and/or JSON), design success responses, design error responses.
+- Responding to requests, both successful and erroneous, is one of the most important jobs of a REST API.
+
+[Best practices for RESTful web API design](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design)
+
+---
+
+### Flask
+
+- [Flask](https://github.com/pallets/flask) is a Python microframework used to build web applications and REST APIs.
+- Flask provides a solid backbone for your applications while leaving many design choices up to you.
+- Flask’s main job is to handle HTTP requests and route them to the appropriate function in the application.
+
+---
+
+### Flask - `GET` Endpoint
+
+```python
+from flask import Flask, request, jsonify
+import json, datetime
+
+app = Flask(__name__) # Initialize the Flask application
+
+# Simple GET endpoint for testing
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"status": "online",
+            "message": "Server is running. POST to /api/data"})
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=False)
+    print("Starting server on port 5000...")
+```
+
+---
+
+### Flask - `POST` Endpoint
+
+```python
+@app.route("/api/data", methods=["POST"])
+def receive_data():
+    try:
+        timestamp = datetime.datetime.now()
+            .strftime("%Y-%m-%d_%H-%M-%S")
+        collected_info = {"data": request.get_json(),
+                          "time": timestamp}
+        filename = f"{timestamp}.json"
+        # Add logging before return
+        with open(filename, "w") as f:
+            json.dump(collected_info, f, indent=4)
+        return {"status": "success"}, 200
+    except Exception as e:  # Add more specific Exceptions
+        return {"status": "error", "message": str(e)}, 500
+```
+
+---
+
+### Use `curl` to Test API Endpoints
+
+- [`curl`](https://curl.se/) is a *command-line tool* for getting or sending data including files using URL syntax.
+
+```shell
+# Test the GET endpoint
+curl http://127.0.0.1:5000
+{"message":"Server is running. Send POST requests to /api/data","status":"online"}
+
+# Test the POST /api/data endpoint
+# `-X POST` sends a POST request. `-H` sets an HTTP header.
+# `-d` sends the specified data in the request body.
+curl -X POST http://localhost:5000/api/data \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Mario", "age": 30, "occupation": "plumber"}'
+{"status":"success"}
+```
 
 ---
 
@@ -243,6 +557,16 @@ s.close()
 
 ---
 
+### Key Takeaways
+
+- Understand the principles of REST architecture style.
+- Use HTTP methods and interpret status codes correctly.
+- Get and consume data from external APIs with requests.
+- Design clear endpoints, data structures, and responses.
+- Build REST APIs efficiently using Flask framework.
+
+---
+
 ### Sources:
 
 - https://docs.python.org/3/howto/sockets.html
@@ -250,3 +574,12 @@ s.close()
 - https://thepythoncode.com/article/send-receive-files-using-sockets-python
 - https://www.datacamp.com/tutorial/a-complete-guide-to-socket-programming-in-python
 - https://docs.python.org/3/library/socket.html
+
+---
+
+### Sources:
+
+- https://www.redhat.com/en/topics/api/what-is-a-rest-api
+- https://medium.com/@liberatoreanita/understanding-rest-restful-apis-and-apis-naming-conventions-and-best-practices-fb5c4c7f3bc2
+- https://realpython.com/api-integration-in-python/
+- https://flask.palletsprojects.com/en/stable/
