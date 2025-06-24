@@ -127,7 +127,7 @@ print(f"Message: {message}")
 
 ---
 
-#### Go Backwards Using `rsplit()`
+### Go Backwards Using `rsplit()`
 
 - Python’s string method `.rsplit()` allows you to split a string like `.split()` does, but instead of starting from the left, it starts splitting from the right.
 - Without specifying `maxsplit`, `.split()` and `.rsplit()` produce identical results.
