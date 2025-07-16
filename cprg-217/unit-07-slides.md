@@ -77,7 +77,7 @@ s.connect(("www.sait.ca", 80))
 
 #### Creating a Socket - Server
 
-- First, the web server creates a "server socket":
+- First, the web server creates a "server socket" using the given address family, socket type:
 
 ```python
 # create an INET, STREAMing socket
@@ -97,7 +97,7 @@ serversocket.listen(5)
 
 ### Creating a Socket - Server
 
-- `bind()`: Binds the socket to a specific IP and port.
+- `bind()`: Binds the socket to a specific IP and port. The socket must not already be bound.
 
 ```python
 serversocket.bind((socket.gethostname(), 80))
@@ -387,8 +387,7 @@ response = requests.post(api_url,
                          data=json.dumps(todo),
                          headers=headers)
 print(response.json())
-# {'userId': 1, 'title': 'Buy milk',
-#  'completed': False, 'id': 201}
+# {'userId': 1, 'title': 'Buy milk', 'completed': False, 'id': 201}
 print(response.status_code) # 201
 ```
 
@@ -425,8 +424,7 @@ print(requests.get(api_url).json())
 
 todo = {"userId": 1, "title": "Wash car", "completed": True}
 response = requests.put(api_url, json=todo)
-# {'userId': 1, 'title': 'Wash car',
-#  'completed': True, 'id': 10}
+# {'userId': 1, 'title': 'Wash car', 'completed': True, 'id': 10}
 print(response.json(), response.status_code)
 ```
 
@@ -443,8 +441,7 @@ api_url = "https://jsonplaceholder.typicode.com/todos/10"
 todo = {"title": "Mow lawn"}
 response = requests.patch(api_url, json=todo)
 print(response.json())
-# {'userId': 1, 'id': 10, 'title': 'Mow lawn', 
-# 'completed': True}
+# {'userId': 1, 'id': 10, 'title': 'Mow lawn', 'completed': True}
 print(response.status_code) # 200
 ```
 
