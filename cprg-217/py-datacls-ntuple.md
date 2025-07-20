@@ -304,6 +304,118 @@ print(Employee("Elon", "musk@x.com", 1_000_000, "Bossing"))
 
 ---
 
+### Pydantic Validation
+
+- Pydantic Data validation for Python:
+
+  - Most widely used data validation library for Python
+
+  - Enforces standard type annotation
+
+  - Plays nicely with type checkers, IDEs and your brain
+
+  - Fast and extensible
+
+[Pydantic GitHub Repo](https://github.com/pydantic/pydantic), [Pydantic Doc](https://docs.pydantic.dev/)
+
+---
+
+### Pydantic Examples
+
+```python
+from datetime import datetime
+from pydantic import BaseModel, PositiveInt
+
+class User(BaseModel):
+    id: int  
+    name: str = 'John Doe'  
+    signup_ts: datetime | None  
+    tastes: dict[str, PositiveInt]  
+
+external_data = {
+    'id': 123, 'signup_ts': '2019-06-01 12:22',  
+    'tastes': { 'wine': 9, b'cheese': 7, 'cabbage': '1', },
+}
+
+user = User(**external_data)
+```
+
+---
+
+### Pydantic Models
+
+- One of the primary ways of defining schema in Pydantic is via models. Models are simply classes which inherit from [`BaseModel`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel) and define fields as annotated attributes.
+- Models share many similarities with Python's [dataclasses](https://docs.python.org/3/library/dataclasses.html#module-dataclasses), but have been designed with some subtle-yet-important differences that streamline certain workflows related to validation, serialization, and JSON schema generation.
+
+---
+
+### Pydantic Models
+
+- Untrusted data can be passed to a model and, after parsing and validation, Pydantic guarantees that the fields of the resultant model instance will conform to the field types defined on the model.
+
+```python
+from pydantic import BaseModel, ConfigDict
+
+class User(BaseModel):     # `User` is a model with two fields
+    # `id` is an integer and is required
+    id: int
+    # `name` is a string and is not required
+    name: str = 'Jane Doe' # `name` has a default value
+    
+    model_config = ConfigDict(str_max_length=10) 
+```
+
+---
+
+### Pydantic Validation
+
+- `user` is an instance of `User`. Initialization of the object will perform all parsing and validation. If no [`ValidationError`](https://docs.pydantic.dev/latest/api/pydantic_core/#pydantic_core.ValidationError) exception is raised, you know the resulting model instance is valid.
+
+```python
+from pydantic import BaseModel, ConfigDict
+
+class User(BaseModel):
+    id: int
+    name: str = 'Jane Doe'
+    
+    model_config = ConfigDict(str_max_length=10)
+
+user = User(id="one-two-three", name="Jane Doe")
+print(user.model_dump())
+# ValidationError: 1 validation error for User id
+# Input should be a valid integer, unable to parse it as an integer
+# [type=int_parsing, input_value='one-two-three', input_type=str]
+```
+
+---
+
+### Pydantic Data Conversion
+
+- Pydantic may cast input data to force it to conform to model field types, and in some cases this may result in a loss of information.
+
+```python
+from pydantic import BaseModel
+
+class Model(BaseModel):
+    a: int
+    b: float
+    c: str
+
+print(Model(a=3.000, b='2.72', c=b'binary data').model_dump())
+#> {'a': 3, 'b': 2.72, 'c': 'binary data'}
+```
+
+---
+
+### Pydantic vs. Dataclasses
+
+- Pydantic is a mighty workhorse, offering robust validation, data sanitization, type coercion nearly implicitly. The drawbacks here are a little bit increased memory consumption and learning curve.
+- Python Dataclass is a neat, quick, and affordable approach for model build patterns, validation, and maintaining the source of truth as it should. The drawbacks here are the necessity of tweaking its structures to your needs, creating your own validators, or validation methods.
+
+[Validators approach in Python - Pydantic vs. Dataclasses](https://codetain.com/blog/validators-approach-in-python-pydantic-vs-dataclasses/)
+
+---
+
 ### Tuple Recap
 
 - In Python, a **`tuple`** is a built-in data type that allows you to create **immutable sequences** of values.
@@ -443,3 +555,4 @@ print(student._asdict())
 - https://realpython.com/python-repr-vs-str/
 - https://realpython.com/python-namedtuple/
 - https://www.python.org/dev/peps/pep-0557/#abstract
+- https://docs.pydantic.dev/latest/
