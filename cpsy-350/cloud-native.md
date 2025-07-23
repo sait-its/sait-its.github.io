@@ -1,8 +1,8 @@
 ### What is Cloud-native
 
-- Cloud-native refers to a specific approach to building, deploying, and managing applications in cloud environments, leveraging the inherent capabilities of cloud computing platforms.
+- **Cloud-native** refers to a specific approach to building, deploying, and managing applications in cloud environments, leveraging the inherent capabilities of cloud computing platforms.
 - It uses technologies such as *containers*, *Kubernetes*, *immutable infrastructure*, and *microservices* to develop scalable applications that are built to run in the cloud.
-- Cloud-native definitions from [Wikipedia](https://en.wikipedia.org/wiki/Cloud-native_computing), [CNCF](https://github.com/cncf/toc/blob/main/DEFINITION.md), [AWS](https://aws.amazon.com/what-is/cloud-native/), [Azure](https://cloud.google.com/learn/what-is-cloud-native), and [Google Cloud](https://cloud.google.com/learn/what-is-cloud-native).
+- Cloud-native definitions from [Wikipedia](https://en.wikipedia.org/wiki/Cloud-native_computing), [CNCF](https://github.com/cncf/toc/blob/main/DEFINITION.md), [AWS](https://aws.amazon.com/what-is/cloud-native/), [Azure](https://cloud.google.com/learn/what-is-cloud-native), and [Google Cloud](https://cloud.google.com/learn/what-is-cloud-native). Read them.
 
 ---
 
