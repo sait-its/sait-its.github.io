@@ -21,7 +21,7 @@
 		<div class="reveal">
 			<div class="slides">
 				<section
-					data-markdown="./unit-08-slides.md"
+					id="markdown-section"
 					data-background-color="ivory"
 					data-background-image="../assets/sait-logo.png"
 					data-background-size="2em"
@@ -37,6 +37,17 @@
 		<script src="../plugin/markdown/markdown.js"></script>
 		<script src="../plugin/highlight/highlight.js"></script>
 		<script>
+			// Get the file parameter from the URL
+			const urlParams = new URLSearchParams(window.location.search);
+			const file = urlParams.get('file');
+
+			if (file) {
+				document.getElementById('markdown-section').setAttribute('data-markdown', file);
+			} else {
+				// Fallback or error handling
+				document.getElementById('markdown-section').innerHTML = "<h1>Error</h1><p>No slide file specified.</p>";
+			}
+
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
