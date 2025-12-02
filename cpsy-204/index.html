@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>CPRG 217 Scripting</title>
+		<title>CPSY 204 - Server Fundamentals</title>
 
 		<link rel="icon" href="../assets/script-favicon.ico" type="image/x-icon">
 		<link rel="icon" href="../assets/script-favicon-16x16.png" sizes="16x16" type="image/png">
@@ -21,13 +21,19 @@
 		<div class="reveal">
 			<div class="slides">
 				<section
-					id="markdown-section"
 					data-background-color="ivory"
 					data-background-image="../assets/sait-logo.png"
-					data-background-size="2em"
+					data-background-size="3em"
 					data-background-position="top right"
 					data-separator="---"
 				>
+					<a href="../viewer.html?file=cpsy-204/unit-01-slides.md">1 - Introduction to Linux</a></br>
+					<a href="../viewer.html?file=cpsy-204/unit-02-slides.md">2 - Introduction to Linux Server Administration</a></br>
+					<a href="../viewer.html?file=cpsy-204/unit-03-slides.md">3 - Client-Server Model</a></br>
+					<a href="../viewer.html?file=cpsy-204/unit-04-slides.md">4 - systemd and Firewall</a></br>
+					<a href="../viewer.html?file=cpsy-204/unit-05-slides.md">5 - DHCP</a></br>
+					<a href="../viewer.html?file=cpsy-204/unit-06-slides.md">6 - File Services</a></br>
+					<a href="../viewer.html?file=cpsy-204/unit-07-slides.md">7 - DNS</a></br>
 				</section>
 			</div>
 		</div>
@@ -37,17 +43,6 @@
 		<script src="../plugin/markdown/markdown.js"></script>
 		<script src="../plugin/highlight/highlight.js"></script>
 		<script>
-			// Get the file parameter from the URL
-			const urlParams = new URLSearchParams(window.location.search);
-			const file = urlParams.get('file');
-
-			if (file) {
-				document.getElementById('markdown-section').setAttribute('data-markdown', file);
-			} else {
-				// Fallback or error handling
-				document.getElementById('markdown-section').innerHTML = "<h1>Error</h1><p>No slide file specified.</p>";
-			}
-
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/

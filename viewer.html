@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CPRG 217 Scripting</title>
+
+		<link rel="icon" href="./assets/script-favicon.ico" type="image/x-icon">
+		<link rel="icon" href="./assets/script-favicon-16x16.png" sizes="16x16" type="image/png">
+		<link rel="icon" href="./assets/script-favicon-32x32.png" sizes="32x32" type="image/png">
+
+		<link rel="stylesheet" href="./dist/reset.css">
+		<link rel="stylesheet" href="./dist/reveal.css">
+		<link rel="stylesheet" href="./dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="./plugin/highlight/github.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section
+					id="markdown-section"
+					data-background-color="ivory"
+					data-background-image="./assets/sait-logo.png"
+					data-background-size="2em"
+					data-background-position="top right"
+					data-separator="---"
+				>
+				</section>
+			</div>
+		</div>
+
+		<script src="./dist/reveal.js"></script>
+		<script src="./plugin/notes/notes.js"></script>
+		<script src="./plugin/markdown/markdown.js"></script>
+		<script src="./plugin/highlight/highlight.js"></script>
+		<script>
+			// Get the file parameter from the URL
+			const urlParams = new URLSearchParams(window.location.search);
+			const file = urlParams.get('file');
+
+			function initializeReveal() {
+				// More info about initialization & config:
+				// - https://revealjs.com/initialization/
+				// - https://revealjs.com/config/
+				Reveal.initialize({
+					hash: true,
+					disableLayout: false,
+					slideNumber: 'c/t',
+					width: 1100,
+					height: 800,
+					margin: 0.05,
+					minScale: 0.2,
+					maxScale: 2.0,
+					// Learn about plugins: https://revealjs.com/plugins/
+					plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				});
+			}
+
+			if (file) {
+				const lastSlashIndex = file.lastIndexOf('/');
+				const baseDir = lastSlashIndex !== -1 ? file.substring(0, lastSlashIndex + 1) : '';
+
+				fetch(file)
+					.then(response => {
+						if (!response.ok) throw new Error("Failed to load file: " + response.statusText);
+						return response.text();
+					})
+					.then(markdown => {
+						// Fix relative paths for images in markdown: ![alt](path)
+						// We look for paths that do NOT start with http, https, /, or #
+						let fixedMarkdown = markdown.replace(/!\[(.*?)\]\((?!http|https|\/|#)(.*?)\)/g, (match, alt, path) => {
+							return `![${alt}](${baseDir}${path})`;
+						});
+
+						// Fix HTML img tags: <img src="path">
+						fixedMarkdown = fixedMarkdown.replace(/<img\s+src=["'](?!http|https|\/|#)(.*?)["']/g, (match, path) => {
+							return match.replace(path, baseDir + path);
+						});
+
+						const section = document.getElementById('markdown-section');
+						section.setAttribute('data-markdown', ''); // Set empty to trigger plugin processing of internal content
+						
+						const script = document.createElement('script');
+						script.type = 'text/template';
+						script.textContent = fixedMarkdown;
+						section.appendChild(script);
+
+						initializeReveal();
+					})
+					.catch(err => {
+						console.error(err);
+						document.getElementById('markdown-section').innerHTML = "<h1>Error</h1><p>" + err.message + "</p>";
+						initializeReveal();
+					});
+			} else {
+				// Fallback or error handling
+				document.getElementById('markdown-section').innerHTML = "<h1>Error</h1><p>No slide file specified.</p>";
+				initializeReveal();
+			}
+		</script>
+	</body>
+</html>

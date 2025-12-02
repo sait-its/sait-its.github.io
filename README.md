@@ -25,7 +25,7 @@ This repository contains slide presentations for various courses:
 ### Key Dependencies
 - **marked**: Markdown parser for converting `.md` files to slides
 - **highlight.js**: Syntax highlighting for code blocks
-- **Node.js**: Build tooling (requires Node.js >= 18.0.0)
+- **Node.js**: Build tooling (requires Node.js >= 22.0.0)
 
 ## Project Structure
 
@@ -142,5 +142,5 @@ This site is automatically deployed via GitHub Pages from the `main` branch. Any
 
 ## License
 
-MIT licensed | Copyright © 2024-2025
+MIT licensed | Copyright © 2024-2026
 
