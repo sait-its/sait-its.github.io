@@ -6,9 +6,9 @@
 
 		<title>SADT Slides</title>
 
-		<link rel="icon" href="./assets/script-favicon.ico" type="image/x-icon">
-		<link rel="icon" href="./assets/script-favicon-16x16.png" sizes="16x16" type="image/png">
-		<link rel="icon" href="./assets/script-favicon-32x32.png" sizes="32x32" type="image/png">
+		<link rel="icon" href="./assets/slide-favicon.ico" type="image/x-icon">
+		<link rel="icon" href="./assets/slide-favicon-16x16.png" sizes="16x16" type="image/png">
+		<link rel="icon" href="./assets/slide-favicon-32x32.png" sizes="32x32" type="image/png">
 
 		<link rel="stylesheet" href="./dist/reset.css">
 		<link rel="stylesheet" href="./dist/reveal.css">
@@ -37,11 +37,28 @@
 		<script src="./plugin/markdown/markdown.js"></script>
 		<script src="./plugin/highlight/highlight.js"></script>
 		<script>
+			// Dictionary mapping course codes to full names
+			const courseTitles = {
+				"cprg-217": "CPRG 217 Scripting",
+				"cpsy-204": "CPSY 204 Server Fundamentals",
+			};
+
+			// Dictionary mapping course codes to dimensions
+			const courseDimensions = {
+				"cprg-217": { width: 1100, height: 800 },
+				"cpsy-204": { width: 1200, height: 900 },
+			};
+
 			// Get the file parameter from the URL
 			const urlParams = new URLSearchParams(window.location.search);
 			const file = urlParams.get('file');
 
-			function initializeReveal() {
+			function initializeReveal(courseCode) {
+				// Get dimensions for the course, default to 1100x800
+				const dimensions = (courseCode && courseDimensions[courseCode])
+					? courseDimensions[courseCode]
+					: { width: 1100, height: 800 };
+
 				// More info about initialization & config:
 				// - https://revealjs.com/initialization/
 				// - https://revealjs.com/config/
@@ -49,8 +66,8 @@
 					hash: true,
 					disableLayout: false,
 					slideNumber: 'c/t',
-					width: 1100,
-					height: 800,
+					width: dimensions.width,
+					height: dimensions.height,
 					margin: 0.05,
 					minScale: 0.2,
 					maxScale: 2.0,
@@ -62,6 +79,13 @@
 			if (file) {
 				const lastSlashIndex = file.lastIndexOf('/');
 				const baseDir = lastSlashIndex !== -1 ? file.substring(0, lastSlashIndex + 1) : '';
+
+				// Extract course code from file path and update title
+				const firstSlashIndex = file.indexOf('/');
+				const courseCode = firstSlashIndex !== -1 ? file.substring(0, firstSlashIndex) : '';
+				if (courseCode && courseTitles[courseCode]) {
+					document.title = courseTitles[courseCode];
+				}
 
 				fetch(file)
 					.then(response => {
@@ -82,23 +106,23 @@
 
 						const section = document.getElementById('markdown-section');
 						section.setAttribute('data-markdown', ''); // Set empty to trigger plugin processing of internal content
-						
+
 						const script = document.createElement('script');
 						script.type = 'text/template';
 						script.textContent = fixedMarkdown;
 						section.appendChild(script);
 
-						initializeReveal();
+						initializeReveal(courseCode);
 					})
 					.catch(err => {
 						console.error(err);
 						document.getElementById('markdown-section').innerHTML = "<h1>Error</h1><p>" + err.message + "</p>";
-						initializeReveal();
+						initializeReveal(courseCode);
 					});
 			} else {
 				// Fallback or error handling
 				document.getElementById('markdown-section').innerHTML = "<h1>Error</h1><p>No slide file specified.</p>";
-				initializeReveal();
+				initializeReveal(null);
 			}
 		</script>
 	</body>
