@@ -4,18 +4,18 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>SADT Slides</title>
+		<title>CPSY 204 - Server Fundamentals</title>
 
-		<link rel="icon" href="./assets/script-favicon.ico" type="image/x-icon">
-		<link rel="icon" href="./assets/script-favicon-16x16.png" sizes="16x16" type="image/png">
-		<link rel="icon" href="./assets/script-favicon-32x32.png" sizes="32x32" type="image/png">
+		<link rel="icon" href="../assets/script-favicon.ico" type="image/x-icon">
+		<link rel="icon" href="../assets/script-favicon-16x16.png" sizes="16x16" type="image/png">
+		<link rel="icon" href="../assets/script-favicon-32x32.png" sizes="32x32" type="image/png">
 
-		<link rel="stylesheet" href="./dist/reset.css">
-		<link rel="stylesheet" href="./dist/reveal.css">
-		<link rel="stylesheet" href="./dist/theme/white.css">
+		<link rel="stylesheet" href="../dist/reset.css">
+		<link rel="stylesheet" href="../dist/reveal.css">
+		<link rel="stylesheet" href="../dist/theme/white.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="./plugin/highlight/github.css">
+		<link rel="stylesheet" href="../plugin/highlight/github.css">
 	</head>
 	<body>
 		<div class="reveal">
@@ -23,7 +23,7 @@
 				<section
 					id="markdown-section"
 					data-background-color="ivory"
-					data-background-image="./assets/sait-logo.png"
+					data-background-image="../assets/sait-logo.png"
 					data-background-size="2em"
 					data-background-position="top right"
 					data-separator="---"
@@ -32,10 +32,10 @@
 			</div>
 		</div>
 
-		<script src="./dist/reveal.js"></script>
-		<script src="./plugin/notes/notes.js"></script>
-		<script src="./plugin/markdown/markdown.js"></script>
-		<script src="./plugin/highlight/highlight.js"></script>
+		<script src="../dist/reveal.js"></script>
+		<script src="../plugin/notes/notes.js"></script>
+		<script src="../plugin/markdown/markdown.js"></script>
+		<script src="../plugin/highlight/highlight.js"></script>
 		<script>
 			// Get the file parameter from the URL
 			const urlParams = new URLSearchParams(window.location.search);
@@ -49,8 +49,8 @@
 					hash: true,
 					disableLayout: false,
 					slideNumber: 'c/t',
-					width: 1100,
-					height: 800,
+					width: 1200,
+					height: 900,
 					margin: 0.05,
 					minScale: 0.2,
 					maxScale: 2.0,
@@ -82,7 +82,7 @@
 
 						const section = document.getElementById('markdown-section');
 						section.setAttribute('data-markdown', ''); // Set empty to trigger plugin processing of internal content
-						
+
 						const script = document.createElement('script');
 						script.type = 'text/template';
 						script.textContent = fixedMarkdown;
