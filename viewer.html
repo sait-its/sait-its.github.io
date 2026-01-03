@@ -49,9 +49,16 @@
 				"cpsy-204": { width: 1200, height: 900 },
 			};
 
-			// Get the file parameter from the URL
+			// Get the file and page parameters from the URL
 			const urlParams = new URLSearchParams(window.location.search);
 			const file = urlParams.get('file');
+			const initialPage = parseInt(urlParams.get('page'), 10) || 1;
+
+			function updateUrlWithPage(pageNumber) {
+				const url = new URL(window.location);
+				url.searchParams.set('page', pageNumber);
+				window.history.replaceState({}, '', url);
+			}
 
 			function initializeReveal(courseCode) {
 				// Get dimensions for the course, default to 1100x800
@@ -73,6 +80,17 @@
 					maxScale: 2.0,
 					// Learn about plugins: https://revealjs.com/plugins/
 					plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				}).then(() => {
+					// Navigate to initial page from URL (convert 1-based to 0-based index)
+					if (initialPage > 1) {
+						Reveal.slide(initialPage - 1);
+					}
+					// Update URL when slide changes
+					Reveal.on('slidechanged', event => {
+						updateUrlWithPage(event.indexh + 1);
+					});
+					// Set initial page in URL if not already set
+					updateUrlWithPage(Reveal.getIndices().h + 1);
 				});
 			}
 

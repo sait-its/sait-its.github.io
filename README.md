@@ -7,6 +7,7 @@ This is a GitHub Pages site hosting educational slides for SAIT (Southern Albert
 ## Overview
 
 This repository contains slide presentations for various courses:
+- **CPSY-204**: Server Fundamentals covering Linux intro
 - **CPRG-217**: Scripting course covering Python, Linux/Windows scripting, network programming, and Ansible
 - **CPSY-350**: Additional course materials
 
@@ -31,17 +32,30 @@ This repository contains slide presentations for various courses:
 
 ```
 .
-├── cprg-217/               # CPRG-217 course slides
-│   ├── viewer.html         # Universal slide viewer (loads markdown dynamically)
+├── index.html              # Main site navigation page
+├── viewer.html             # Universal slide viewer (loads markdown dynamically)
+├── cprg-217/               # CPRG-217 Scripting course slides
 │   ├── index.html          # Course navigation page
 │   ├── cprg-217-extras.html # Extra topics navigation
 │   ├── unit-XX-slides.md   # Markdown slide content for each unit
 │   ├── py-*.md             # Python topic slides
 │   └── *.assets/           # Images and assets for slides
+├── cpsy-204/               # CPSY-204 Server Fundamentals course slides
+│   ├── index.html          # Course navigation page
+│   ├── cpsy-204-unit-XX.md # Markdown slide content for each unit
+│   └── *.assets/           # Images and assets for slides
 ├── cpsy-350/               # CPSY-350 course slides
+│   ├── index.html          # Course navigation page
+│   ├── cloud-native.html   # Cloud native topic viewer
+│   ├── cloud-native.md     # Cloud native slide content
+│   └── *.assets/           # Images and assets for slides
+├── assets/                 # Shared assets (favicons, logos)
+├── css/                    # Custom CSS styles
 ├── dist/                   # Reveal.js distribution files
-├── plugin/                 # Reveal.js plugins
-└── assets/                 # Shared assets (favicons, logos)
+├── js/                     # Reveal.js JavaScript source
+├── plugin/                 # Reveal.js plugins (highlight, markdown, math, notes, search, zoom)
+├── examples/               # Reveal.js example files
+└── test/                   # Reveal.js test files
 ```
 
 ## Adding New Slides

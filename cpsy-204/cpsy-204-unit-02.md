@@ -7,9 +7,9 @@
 ### Text Editors: Nano & Vim
 
 - We have learned about how to create and view text files (and other types of files) by using `touch`, `cat`, `more`, and `less`.
-- We use **Nano** and **Vim** (Vi-iMproved) to edit text files.
-- **Vim** (or at least a minimal version of Vi) is pre-installed on virtually all Linux distributions to comply with POSIX standards, making it the most reliably available command-line text editor.
-- **Nano**, while user-friendly and often the default for certain tools (like crontab -e or visudo on many systems), is also pre-installed on most modern distributions but may need to be manually installed on minimal or server setups.
+- We use **Nano** and **Vim** (**V**i-**IM**proved) to edit text files.
+- **Vim** (or at least a minimal version of **vi**) is pre-installed on virtually all Linux distributions to comply with [POSIX](https://en.wikipedia.org/wiki/POSIX) standards, making it the most reliably available command-line text editor.
+- **Nano**, while user-friendly and often the default for certain tools (like `crontab -e` or `visudo` on many systems), is also pre-installed on most modern distributions but may need to be manually installed on minimal or server setups.
 
 ---
 
@@ -97,10 +97,12 @@
 
 ### Accessing Root Privilege Commands
 
-Standard users can access root-level commands in two ways:
+- Standard users can access root-level commands in two ways:
 
-- **`sudo`:** This command, accompanied by the appropriate password and membership in the `wheel` group (RHEL) or `sudo` group (Ubuntu/Debian) will allow a standard user to execute a root-level command once.
-- **`su`:** This command, by default, will switch you to the superuser account, so that you can execute multiple commands as the superuser. It can also be used with a username to switch into that account. The `exit` command will bring you back to your regular account. Or use **`sudo -i`** to switch to superuser account.
+  - **`sudo`:** This command, accompanied by the appropriate password and membership in the `wheel` group (RHEL) or `sudo` group (Ubuntu/Debian) will allow a standard user to execute a root-level command once.
+
+  - **`su`:** This command, by default, will switch you to the superuser account, so that you can execute multiple commands as the superuser. It can also be used with a username to switch into that account. The `exit` command will bring you back to your regular account. Or use **`sudo -i`** to switch to superuser account.
+
 
 ---
 
@@ -131,7 +133,7 @@ Standard users can access root-level commands in two ways:
 
 - Each line entry contains seven fields separated by colons:![etc-passwd-fields](./cpsy-204-unit-02.assets/etc-passwd-fields.webp)
 
-Credit: https://infosecwriteups.com/what-is-etc-passwd-group-shadow-file-in-linux-bd7b28f353f3
+Credit: [`/etc/passwd` group shadow file](https://infosecwriteups.com/what-is-etc-passwd-group-shadow-file-in-linux-bd7b28f353f3)
 
 ---
 
@@ -206,7 +208,7 @@ Credit: https://linuxize.com/post/etc-shadow-file/
 
 - The chage command allows an administrator to make changes to a user’s password properties, such as setting or changing expiration dates, how many days a password can be used before changing, etc.
 
-```
+```text
 # Add a user studneta that expires on 2026-01-05
 $ sudo useradd -e 2026-01-05 studenta -p SuperSecret!
 
@@ -227,7 +229,7 @@ Number of days of warning before password expires	: 7
 - When you execute the command ``ls -l`` in your Linux terminal, it returns a list of files and directories with their respective permissions, among other details.
 - The first column represents the file permissions, which we will focus on in this section. The rest of the columns provide additional information such as the number of links, owner, group, size, timestamp, and filename.
 
-```
+```text
 $ ls -l
 
 drwxr-xr-x. 4 root root    68 Jun 13 20:25 work
@@ -356,7 +358,7 @@ Read [Using the ps aux Command in Linux](https://hostman.com/tutorials/using-the
 
 ### Monitoring Processes - top
 
-- **`top`** is used to view the most CPU-intensive processes running on Linux at any given moment, along with related process information for those processes.
+- **`top`** provides a dynamic real-time view of a running system.
 
   - **`PID`:** Process ID.
 
