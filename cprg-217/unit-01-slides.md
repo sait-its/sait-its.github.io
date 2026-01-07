@@ -196,9 +196,9 @@
 
 #### Which Python Version Should I Use
 
-- **Recommend: Python 3.10, 3.11, or 3.12**
+- **Recommend: Python 3.12, 3.13 or 3.14**
   - These versions are widely adopted and offer the latest features and performance improvements.
-  - Support for modern syntax (e.g., pattern matching in 3.10+, improved error messages in 3.11+).
+  - Support for modern syntax (e.g., pattern matching in 3.10+, improved error messages in 3.11+, [free threading in 3.14+](https://docs.python.org/3/howto/free-threading-python.html)).
   - Most automation tools and libraries are fully compatible.
   - Good balance between stability, security, and new features.
 
@@ -207,7 +207,8 @@
 #### Avoid These Python Versions
 
 - **Python 2.x**: End-of-Life (EOL) since January 1, 2020 — no more updates or security patches.
-- **Bleeding-edge versions (e.g., pre-releases like 3.14 alpha)**: May have instability or breaking changes. Some third-party libraries may not yet support the latest pre-release versions.
+- **Bleeding-edge versions (e.g., pre-releases like 3.15 alpha)**: May have instability or breaking changes. Some third-party libraries may not yet support the latest pre-release versions.
+- Wait if you rely on complex data science libraries: While major libraries (NumPy, Pandas, PyTorch, TensorFlow) usually release "wheels" (pre-compiled binaries) quickly, some smaller or niche scientific packages might still be stuck on 3.13. Check your critical dependencies first.
 
 [Status of Python versions](https://devguide.python.org/versions/)
 
