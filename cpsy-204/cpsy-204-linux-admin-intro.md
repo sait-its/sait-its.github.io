@@ -18,15 +18,15 @@
 - **Nano** is a simple text editor with an easy-to-use interface.
 - Notice the list of keyboard shortcuts across the bottom of the screen, including the Exit command.
 
-![bashrc-nano](./cpsy-204-unit-02.assets/bashrc-nano.webp) 
+![bashrc-nano](./cpsy-204-linux-admin-intro.assets/bashrc-nano.webp) 
 
 ---
 
 ### Vim
 
-![vim-learning-curve](./cpsy-204-unit-02.assets/vim-learning-curve.webp) 
+![vim-learning-curve](./cpsy-204-linux-admin-intro.assets/vim-learning-curve.webp) 
 
-![vim-exit-meme](./cpsy-204-unit-02.assets/vim-exit-meme.webp) 
+![vim-exit-meme](./cpsy-204-linux-admin-intro.assets/vim-exit-meme.webp) 
 
 ---
 
@@ -37,7 +37,7 @@
 - To exit: use `:`, then `q`, then press **Enter**.
 - [neovim: Vim-fork focused on extensibility and usability](https://neovim.io/)
 
-![vim-startup-screen](./cpsy-204-unit-02.assets/vim-startup-screen.webp)
+![vim-startup-screen](./cpsy-204-linux-admin-intro.assets/vim-startup-screen.webp)
 
 ---
 
@@ -111,7 +111,7 @@
 - A group is a collection of users used to define privileges for multiple people at once.
 - Users can belong to multiple groups, inheriting permissions from each based on their role.
 
-![linux-groups](./cpsy-204-unit-02.assets/linux-groups.webp)
+![linux-groups](./cpsy-204-linux-admin-intro.assets/linux-groups.webp)
 
 ---
 
@@ -125,13 +125,13 @@
 
 ### Local User Account Databases
 
-![etc-passwd-content](./cpsy-204-unit-02.assets/etc-passwd-content.webp)
+![etc-passwd-content](./cpsy-204-linux-admin-intro.assets/etc-passwd-content.webp)
 
 ---
 
 ### `/etc/passwd` Field Breakdown
 
-- Each line entry contains seven fields separated by colons:![etc-passwd-fields](./cpsy-204-unit-02.assets/etc-passwd-fields.webp)
+- Each line entry contains seven fields separated by colons:![etc-passwd-fields](./cpsy-204-linux-admin-intro.assets/etc-passwd-fields.webp)
 
 Credit: [`/etc/passwd` group shadow file](https://infosecwriteups.com/what-is-etc-passwd-group-shadow-file-in-linux-bd7b28f353f3)
 
@@ -139,13 +139,13 @@ Credit: [`/etc/passwd` group shadow file](https://infosecwriteups.com/what-is-et
 
 ### `/etc/group` Field Breakdown
 
-![etc-group-view](./cpsy-204-unit-02.assets/etc-group-view.webp)
+![etc-group-view](./cpsy-204-linux-admin-intro.assets/etc-group-view.webp)
 
 ---
 
 ### `/etc/shadow` Field Breakdown
 
-![etc-shadow-fields](./cpsy-204-unit-02.assets/etc-shadow-fields.webp) 
+![etc-shadow-fields](./cpsy-204-linux-admin-intro.assets/etc-shadow-fields.webp) 
 
 Credit: https://linuxize.com/post/etc-shadow-file/
 
@@ -240,7 +240,7 @@ drwxr-xr-x. 4 root root    68 Jun 13 20:25 work
 
 ### Permission Settings
 
-![ls-l-outputs](./cpsy-204-unit-02.assets/ls-l-outputs.webp) 
+![ls-l-outputs](./cpsy-204-linux-admin-intro.assets/ls-l-outputs.webp) 
 
 Credit: https://blog.coderco.io/p/linux-series-ep1-understanding-and
 
@@ -264,7 +264,7 @@ Credit: https://blog.coderco.io/p/linux-series-ep1-understanding-and
 
 ### Octal Representation
 
-![octal-representation](./cpsy-204-unit-02.assets/octal-representation.webp) 
+![octal-representation](./cpsy-204-linux-admin-intro.assets/octal-representation.webp) 
 
 Credit: https://blog.coderco.io/p/linux-series-ep1-understanding-and
 
@@ -272,7 +272,7 @@ Credit: https://blog.coderco.io/p/linux-series-ep1-understanding-and
 
 ### File Permissions Overview
 
-![linux-file-permissions](./cpsy-204-unit-02.assets/linux-file-permissions.webp) 
+![linux-file-permissions](./cpsy-204-linux-admin-intro.assets/linux-file-permissions.webp) 
 
 Credit: https://study-notes.org/linux-file-permissions.html
 
@@ -282,7 +282,7 @@ Credit: https://study-notes.org/linux-file-permissions.html
 
 - **`chmod`** stands for 'change mode'. It is used to alter the access permissions of file system objects. It supports both octal and symbolic modes. Octal mode: `chmod 640 sample.txt`
 
-![chmod-1](./cpsy-204-unit-02.assets/chmod-1.webp) 
+![chmod-1](./cpsy-204-linux-admin-intro.assets/chmod-1.webp) 
 
 ---
 
@@ -292,13 +292,13 @@ Credit: https://study-notes.org/linux-file-permissions.html
 
   `chmod u=rw,g=r,o= sample.txt`
 
-  ![chmod-2](./cpsy-204-unit-02.assets/chmod-2.webp) 
+  ![chmod-2](./cpsy-204-linux-admin-intro.assets/chmod-2.webp) 
 
 - **`chmod`** symbolic mode. Use `+` and `-` to change permissions:
 
   `chmod g+w,o-r sample.txt`
 
-  ![chmod-3](./cpsy-204-unit-02.assets/chmod-3.webp) 
+  ![chmod-3](./cpsy-204-linux-admin-intro.assets/chmod-3.webp) 
 
 ---
 
@@ -313,7 +313,7 @@ Credit: https://study-notes.org/linux-file-permissions.html
 
 ### `chmod` vs. `chown`
 
-![chmod-vs-chown](./cpsy-204-unit-02.assets/chmod-vs-chown.webp) 
+![chmod-vs-chown](./cpsy-204-linux-admin-intro.assets/chmod-vs-chown.webp) 
 
 Credit: https://blog.coderco.io/p/linux-series-ep1-understanding-and
 
@@ -352,7 +352,7 @@ Read [Using the ps aux Command in Linux](https://hostman.com/tutorials/using-the
 
 - **`top`** is a command-line utility included with most versions of Linux.
 
-![top-cmd](./cpsy-204-unit-02.assets/top-cmd.webp) 
+![top-cmd](./cpsy-204-linux-admin-intro.assets/top-cmd.webp) 
 
 ---
 
@@ -384,7 +384,7 @@ Read [Using the ps aux Command in Linux](https://hostman.com/tutorials/using-the
 
 - [btop](https://github.com/aristocratos/btop): a modern, feature-rich **command-line system resource monitor** for Linux and other operating systems.
 
-![btop](./cpsy-204-unit-02.assets/btop.webp) 
+![btop](./cpsy-204-linux-admin-intro.assets/btop.webp) 
 
 ---
 
@@ -393,7 +393,7 @@ Read [Using the ps aux Command in Linux](https://hostman.com/tutorials/using-the
 - Obtain the process ID of the process that you want to terminate using `ps aux`.
 - Use `kill [signal-number] <PID>` to terminate the process.
 
-![kill-signal](./cpsy-204-unit-02.assets/kill-signal.webp) 
+![kill-signal](./cpsy-204-linux-admin-intro.assets/kill-signal.webp) 
 
 ---
 
@@ -424,7 +424,7 @@ Read [Using the ps aux Command in Linux](https://hostman.com/tutorials/using-the
 
 - **`systemctl status firewalld.service`** shows the status of `firewalld`
 
-![firewalld-status](./cpsy-204-unit-02.assets/firewalld-status.webp) 
+![firewalld-status](./cpsy-204-linux-admin-intro.assets/firewalld-status.webp) 
 
 ---
 
@@ -432,7 +432,7 @@ Read [Using the ps aux Command in Linux](https://hostman.com/tutorials/using-the
 
 - **`systemctl list-units --type=service`** lists all active services.:
 
-![systemd-list-units-services](./cpsy-204-unit-02.assets/systemd-list-units-services.webp) 
+![systemd-list-units-services](./cpsy-204-linux-admin-intro.assets/systemd-list-units-services.webp) 
 
 ---
 
@@ -447,7 +447,7 @@ Two vital sources for system information and troubleshooting:
 
 ### System Log Files
 
-![var-log-msg](./cpsy-204-unit-02.assets/var-log-msg.webp) 
+![var-log-msg](./cpsy-204-linux-admin-intro.assets/var-log-msg.webp) 
 
 ---
 
@@ -455,7 +455,7 @@ Two vital sources for system information and troubleshooting:
 
 - Linux **`/proc`** is a virtual filesystem (**procfs**) existing only in memory, offering dynamic access to kernel data and processes. It bridges kernel and user space, enabling tools like **`ps`** and **`top`** to fetch real-time system info.
 
-![proc-dir](./cpsy-204-unit-02.assets/proc-dir.webp) 
+![proc-dir](./cpsy-204-linux-admin-intro.assets/proc-dir.webp) 
 
 ---
 
@@ -463,7 +463,7 @@ Two vital sources for system information and troubleshooting:
 
 - **`/proc/cpuinfo`** is a virtual file that contains CPU information.
 
-![proc-cpuinfo](./cpsy-204-unit-02.assets/proc-cpuinfo.webp) 
+![proc-cpuinfo](./cpsy-204-linux-admin-intro.assets/proc-cpuinfo.webp) 
 
 ---
 
@@ -473,7 +473,7 @@ Two vital sources for system information and troubleshooting:
 - https://linuxize.com/post/etc-shadow-file/
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
 - https://www.tecmint.com/understanding-shell-initialization-files-and-user-profiles-linux/
-- File permissions: https://blog.coderco.io/p/linux-series-ep1-understanding-and
+- [File permissions](https://blog.coderco.io/p/linux-series-ep1-understanding-and)
 - https://study-notes.org/linux-file-permissions.html
 - https://linuxize.com/post/linux-chown-command/
 
