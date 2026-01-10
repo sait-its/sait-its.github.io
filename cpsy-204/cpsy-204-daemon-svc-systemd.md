@@ -1,4 +1,6 @@
-## Linux Daemon, Service and `systemd`
+## Linux Daemon, Service
+
+## and `systemd`
 
 ---
 
@@ -22,13 +24,13 @@
 
 ### Daemon vs. Service
 
-![daemon-vs-service](./cpsy-204-unit-04.assets/daemon-vs-service.webp)
+![daemon-vs-service](./cpsy-204-daemon-svc-systemd.assets/daemon-vs-service.webp)
 
 ---
 
 ### Linux Boot Process
 
-![linux-boot-process](./cpsy-204-unit-04.assets/linux-boot-process.webp)
+![linux-boot-process](./cpsy-204-daemon-svc-systemd.assets/linux-boot-process.webp)
 
 ---
 
@@ -61,7 +63,7 @@
 
 ### Available `systemd` Unit Types
 
-![systemd-unit-types](./cpsy-204-unit-04.assets/systemd-unit-types.webp)
+![systemd-unit-types](./cpsy-204-daemon-svc-systemd.assets/systemd-unit-types.webp)
 
 - There are more: Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit and Timer unit.
 
@@ -69,7 +71,7 @@
 
 ### `systemd` Unit Files Locations
 
-![system-unit-file-loc](./cpsy-204-unit-04.assets/system-unit-file-loc.webp) 
+![system-unit-file-loc](./cpsy-204-daemon-svc-systemd.assets/system-unit-file-loc.webp) 
 
 ---
 
