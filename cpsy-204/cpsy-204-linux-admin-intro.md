@@ -428,14 +428,9 @@ Read [Using the ps aux Command in Linux](https://hostman.com/tutorials/using-the
 - Moving processes between the foreground and background allows you to manage long-running tasks without losing access to your terminal prompt.
 
   - **Suspend (`Ctrl+Z`):** Pauses a running foreground process and moves it to a "stopped" state in the background.
-
-  - **Background (`bg`):** Resumes a suspended process in the background.
-
+- **Background (`bg`):** Resumes a suspended process in the background.
   - **Foreground (`fg`):** Brings a background or suspended process back to the foreground to regain interactive control.
-
-  - **Immediate Background (`&`):** Appending an ampersand to a command starts it in the background immediately (e.g., `sleep 100 &`).
-
-  - **View Status (`jobs`):** Lists all current background and suspended tasks with their associated job IDs.
+- **Immediate Background (`&`):** Appending an ampersand to a command starts it in the background immediately (e.g., `sleep 100 &`).
 
 ---
 
@@ -535,8 +530,6 @@ Two vital sources for system information and troubleshooting:
   - **Show all network connections:** `nmcli con show`
 
   - **Check status of network devices:** `nmcli dev status`
-
-  - **Connect to a Wi-Fi network:** `nmcli dev wifi connect "NetworkName" password "YourPassword"`
 
   - **Bring a connection up or down:** `nmcli con up id "MyHomeEthernet"`
 

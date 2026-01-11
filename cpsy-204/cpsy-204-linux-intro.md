@@ -86,13 +86,7 @@ Credit: https://www.youtube.com/watch?v=jYUZAF3ePFE
 
 - **Cost-Effectiveness:** Most distributions (distros) are free.
 
-- **Customizability:**
-
-  - Users can modify system behavior.
-
-  - Users can [create their own distro](https://www.linuxfromscratch.org/) if they wish.
-
-  - Even using an established distro, a user can still configure options in a wide variety of combinations.
+- **Customizability:** Users can modify system behavior. Users can [create their own distro](https://www.linuxfromscratch.org/) if they wish. Even using an established distro, a user can still configure options in a wide variety of combinations.
 
 - **Flexibility:** Install with or without a graphical interface. Suitable for client machines or servers.
 
@@ -173,6 +167,7 @@ Credit: [https://www.reddit.com/r/DistroHopping](https://www.reddit.com/r/Distro
 ### Red Hat Enterprise Linux (RHEL)
 
 - **Stability:** Designed for critical environments.
+- **Long Lifecycle**: Offers 10+ years of support for major releases, ensuring application stability and predictable upgrades, crucial for core business systems.
 - **Support:** Includes enterprise-grade support services.
 - **Security:** Advanced tools like SELinux and patch management.
 - **Scalability:** Handles high workloads efficiently.
@@ -240,6 +235,7 @@ Credit: https://unstop.com/blog/linux-shell
   1. The shell takes user commands and interprets them.
   2. It interacts with the kernel to execute them.
   3. It displays the results.
+  4. Go back to 1
 
 
 - You can write your own shell. https://brennan.io/2015/01/16/write-a-shell-in-c/
@@ -369,9 +365,7 @@ Mon 05 Jan 2026 08:10:21 PM MST
 
 - The `passwd` command changes passwords for user accounts.
 - A normal user may only change the password for their own account, while the superuser may change the password for any account.
-- `passwd` also changes the account or associated password validity period. 
-
-[Managing Linux users with the passwd command](https://www.redhat.com/en/blog/managing-users-passwd)
+- `passwd` also changes the account or associated password validity period. [Managing Linux users with the passwd command](https://www.redhat.com/en/blog/managing-users-passwd)
 
 ```text
 [hong@rhel10 ~]$ passwd
@@ -451,10 +445,8 @@ bin:x:1:1:bin:/bin:/sbin/nologin
 daemon:x:2:2:daemon:/sbin:/sbin/nologin
 adm:x:3:4:adm:/var/adm:/sbin/nologin
 ......
-chrony:x:995:992:chrony system user:/var/lib/chrony:/sbin/nologin
 sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
 hong:x:1000:1000:Hong Yan:/home/hong:/usr/bin/zsh
-breakglass:x:1001:1001::/home/breakglass:/bin/bash
 ```
 
 - [`bat` is a modern version of `cat` with syntax highlighting, Git integration, and more.](https://www.redhat.com/en/blog/linux-bat-command)
@@ -642,7 +634,6 @@ bin  games  include  lib  lib64  libexec  local  sbin  share  src  tmp
 [hong@rhel10 usr]$ ls -l
 total 132
 dr-xr-xr-x.   2 root root 28672 Jan  5 21:01 bin
-drwxr-xr-x.   2 root root     6 Jun 25  2024 games
 drwxr-xr-x.  33 root root  4096 Jan  3 22:26 include
 dr-xr-xr-x.  34 root root  4096 Jan  3 22:26 lib
 dr-xr-xr-x.  53 root root 32768 Jan  3 22:28 lib64
@@ -657,7 +648,6 @@ drwxr-xr-x.   4 root root    34 Jan  3 21:18 src
 [hong@rhel10 usr]$ ls -lh
 total 132K
 dr-xr-xr-x.   2 root root  28K Jan  5 21:01 bin
-drwxr-xr-x.   2 root root    6 Jun 25  2024 games
 drwxr-xr-x.  33 root root 4.0K Jan  3 22:26 include
 dr-xr-xr-x.  34 root root 4.0K Jan  3 22:26 lib
 dr-xr-xr-x.  53 root root  32K Jan  3 22:28 lib64
@@ -984,9 +974,7 @@ drwxr-xr-x. 8 hong hong     78 Jan  5 21:43 cpsy204
 [hong@rhel10 ~]$ tree cpsy204
 cpsy204
 ├── lab1
-├── lab2
-├── lab3
-├── lab4
+......
 ├── lab5
 └── lab6
     └── components
@@ -1000,9 +988,7 @@ cpsy204
 cpsy204/
 ├── hello-world.txt
 ├── lab1
-├── lab2
-├── lab3
-├── lab4
+......
 ├── lab5
 └── lab6
     └── components
@@ -1045,9 +1031,7 @@ cpsy204  cpsy204.backup  hello.txt  scripts  world.txt
 [hong@rhel10 ~]$ tree cpsy204.backup/
 cpsy204.backup/
 ├── lab1
-├── lab2
-├── lab3
-├── lab4
+......
 ├── lab5
 └── lab6
     └── components
@@ -1072,16 +1056,10 @@ rmdir: failed to remove 'cpsy204.backup/': Directory not empty
 - The `find` command searches for files and directories in a directory hierarchy based on user-defined criteria.
 
   - **Basic Syntax:** `find [path] [expression] [action]`
-
   - **Search by Name:** `find . -name "results.csv"` (Case-insensitive: `-iname`).
-
   - **Search by Type:** `find /var/log -type d` (Use `f` for files, `d` for directories).
-
   - **Search by Size:** `find /home -size +100M` (Finds files larger than 100MB).
-
   - **Search by Time:** `find /tmp -mmin -10` (Modified in the last 10 minutes).
-
-  - **Execute Actions:** `find . -name "*.log" -delete` (Finds and removes log files).
 
 ---
 
