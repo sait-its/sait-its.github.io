@@ -1,4 +1,6 @@
-## Introduction to 
+## Server Fundamentals
+
+## Introduction to
 
 ## Linux Server Administration
 
@@ -397,6 +399,46 @@ Read [Using the ps aux Command in Linux](https://hostman.com/tutorials/using-the
 
 ---
 
+### Foreground Process
+
+- A foreground process is any command or program that occupies the terminal's input and output until it completes or is interrupted. When a process runs in the foreground, it prevents the user from entering further commands into that specific shell instance.
+
+  - **Terminal Control:** The process takes control of the keyboard (standard input) and displays its output directly to the screen.
+
+  - **Execution Limit:** Only one foreground process can run per terminal session at a time.
+
+  - **User Interaction:** The user can interact with the process directly while it is active.
+
+  - **Termination/Suspension:** Can typically be interrupted using `Ctrl+C` or suspended (moved to background) using `Ctrl+Z`.
+
+---
+
+### Background Process
+
+- A background process runs independently of the shell's main thread, allowing the terminal to remain available for other commands while the task executes.
+  - **Asynchronous:** Does not block the shell; the user retains immediate control of the command line.
+  - **Decoupled Input:** Does not read from the keyboard, preventing interference with foreground tasks.
+  - **Job Management:** Identified by a unique Job ID and can be monitored using the `jobs` command.
+  - **State Control:** Started by adding `&` to a command or moved from a suspended state using `bg`.
+
+---
+
+### Process Switching
+
+- Moving processes between the foreground and background allows you to manage long-running tasks without losing access to your terminal prompt.
+
+  - **Suspend (`Ctrl+Z`):** Pauses a running foreground process and moves it to a "stopped" state in the background.
+
+  - **Background (`bg`):** Resumes a suspended process in the background.
+
+  - **Foreground (`fg`):** Brings a background or suspended process back to the foreground to regain interactive control.
+
+  - **Immediate Background (`&`):** Appending an ampersand to a command starts it in the background immediately (e.g., `sleep 100 &`).
+
+  - **View Status (`jobs`):** Lists all current background and suspended tasks with their associated job IDs.
+
+---
+
 ### systemd
 
 - **systemd** is a Linux initialization system and service manager that includes features like on-demand starting of daemons, mount and automount point maintenance, snapshot support, and processes tracking using Linux control groups. 
@@ -467,6 +509,201 @@ Two vital sources for system information and troubleshooting:
 
 ---
 
+### Network Management - `ip`
+
+- `ifconfig` and `route` are traditional tools for managing IPs in Linux, but are deprecated now.
+- The `ip` utility is the modern replacement for `ifconfig`, used to manage network interfaces, IP addresses, and routing tables. It is part of the **iproute2** package and interacts directly with the Linux kernel's networking stack.
+
+- Examples
+
+  - **Show all IP addresses:** `ip addr show` (or `ip a`)
+
+  - **Bring an interface up/down:** `ip link set eth0 up`
+
+  - **Add a temporary IP address:** `ip addr add 192.168.1.50/24 dev eth0`
+
+  - **View the routing table:** `ip route show`
+
+---
+
+### Network Management - `nmcli`
+
+- The `nmcli` (NetworkManager Command-Line Interface) utility is used to control NetworkManager and report network status. It is designed to manage "connections" (logical configurations) and "devices" (physical interfaces).
+
+- Examples
+
+  - **Show all network connections:** `nmcli con show`
+
+  - **Check status of network devices:** `nmcli dev status`
+
+  - **Connect to a Wi-Fi network:** `nmcli dev wifi connect "NetworkName" password "YourPassword"`
+
+  - **Bring a connection up or down:** `nmcli con up id "MyHomeEthernet"`
+
+  - **Modify a connection to static IP:** `nmcli con mod "eth0" ipv4.addresses 192.168.1.10/24 ipv4.method manual`
+
+---
+
+### Network Management - `nmtui`
+
+- **`nmtui`** (NetworkManager Text User Interface) is a terminal-based tool for configuring networking via a simple, menu-driven interface.
+
+- Key Features
+  - **Visual Navigation:** Use arrow keys and menus instead of complex commands.
+  - **Connection Management:** Easily add, edit, or delete Ethernet and Wi-Fi profiles.
+  - **Hostname Setup:** Quickly set or change the system’s static hostname.
+  - **Toggle Connections:** Activate or deactivate network interfaces from an interactive list.
+
+
+---
+
+### `df` - Disk Filesystem
+
+- `df` can tell you what filesystem a file is part of, used and unused space, and where to find the file systems.
+- The `df` command primarily checks disk usage on a mounted filesystem. If you don't include a file name, the output shows the space available on all currently mounted filesystems.
+- Disk space is shown in 1K blocks by default. Lists of long numbers (as shown above) can be difficult to parse. If you want to run `df` in its human-readable format, use the `--human-readable` (`-h` for short) option.
+
+```text
+# Use `df` against a file
+[hong@rhel10 ~]$ df hello.txt
+Filesystem            1K-blocks   Used Available Use% Mounted on
+/dev/mapper/rhel-home  42442752 684876  41757876   2% /home
+```
+
+---
+
+### `df` - Disk Filesystem
+
+```text
+# Use `df` to check disk usage on a mounted filesystem
+[hong@rhel10 ~]$ df
+Filesystem            1K-blocks    Used Available Use% Mounted on
+devtmpfs                   4096       0      4096   0% /dev
+tmpfs                   8056084       0   8056084   0% /dev/shm
+tmpfs                   3222436    8796   3213640   1% /run
+efivarfs                    256      56       196  23% /sys/firmware/efi/efivars
+/dev/mapper/rhel-root  73334784 3201848  70132936   5% /
+/dev/sda2                983040  228652    754388  24% /boot
+/dev/sda1                613160    7200    605960   2% /boot/efi
+/dev/mapper/rhel-home  42442752  684876  41757876   2% /home
+tmpfs                   1611216       0   1611216   0% /run/user/1000
+```
+
+```text
+# Make the output `--human-readable`
+[hong@rhel10 ~]$ df -h
+Filesystem             Size  Used Avail Use% Mounted on
+devtmpfs               4.0M     0  4.0M   0% /dev
+tmpfs                  7.7G     0  7.7G   0% /dev/shm
+tmpfs                  3.1G  8.6M  3.1G   1% /run
+efivarfs               256K   56K  196K  23% /sys/firmware/efi/efivars
+/dev/mapper/rhel-root   70G  3.1G   67G   5% /
+/dev/sda2              960M  224M  737M  24% /boot
+/dev/sda1              599M  7.1M  592M   2% /boot/efi
+/dev/mapper/rhel-home   41G  669M   40G   2% /home
+tmpfs                  1.6G     0  1.6G   0% /run/user/1000
+```
+
+---
+
+### inodes
+
+- By definition, an inode is an index node. It serves as a unique identifier for a specific piece of metadata on a given filesystem, **except for the name of the file**.
+- Each piece of metadata describes what we think of as a file. Size, permissions, owners and groups, date and timestamps, and paths to where the data is stored.
+- The name of the file is stored in the File Allocation table, which tracks the names and inodes of files.
+
+```text
+[hong@rhel10 ~]$ ls -l -i  # The 1st column is inode number
+total 4
+50337026 drwxr-xr-x. 2 alma alma    6 Jan 10 16:37 cpsy204
+    4976 drwxr-xr-x. 2 alma alma    6 Jan 10 16:37 cpsy204.backup
+   14381 -rw-r--r--. 1 alma alma    0 Jan 10 16:37 hello.txt
+34457142 drwxr-xr-x. 2 alma alma 4096 Nov 24 19:11 scripts
+  401718 -rw-r--r--. 1 alma alma    0 Jan 10 16:38 world.txt
+```
+
+---
+
+### inodes
+
+- When Linux runs out of inodes, it can't create new files or directories, even with free disk space, leading to application crashes, failed processes, data loss, and errors like "No space left on device" for actions needing new files (logs, emails, temporary files).
+- Every file and directory uses one inode, so a filesystem can become full of inodes from many small files (logs, sessions) before running out of actual data space.
+- You can use `df -i` to see number of inodes on a disk or a partition.
+
+```text
+[hong@rhel10 ~]$ df -h -i /dev/sda2
+Filesystem     Inodes IUsed IFree IUse% Mounted on
+/dev/sda2        512K    22  512K    1% /boot
+```
+
+---
+
+### Links - Hard Link
+
+- inodes has everything about a file except for the name. Every file on the Linux filesystem starts with a single hard link. The *link* is between the filename and the actual data stored on the filesystem.
+- Use `ln {filename1} {filename2}` to create a hard link between a file (filename 1) and a linked file (filename2).
+
+- A hard link is an additional directory entry (filename) pointing to the same **inode** (physical data) on a disk.
+
+  - **Synchronized:** Changes to content, permissions, or timestamps affect all links simultaneously.
+
+  - **Redundancy:** Deleting one link doesn't lose the data; the file persists until the last link is removed.
+
+  - **Constraints:** Works on **files only** (no directories). Must stay within the **same filesystem/partition**.
+
+---
+
+### Links - Hard Link
+
+```text
+[hong@rhel10 ~]$ ls
+cpsy204  cpsy204.backup  hello.txt  scripts  world.txt
+
+# Create another hard link to hello.txt file
+[hong@rhel10 ~]$ ln hello.txt hello2.txt && ls
+cpsy204  cpsy204.backup  hello.txt  hello2.txt	scripts  world.txt
+
+# Use `ls -i` to verify that they share the same inode
+[hong@rhel10 ~]$ ls -i hello.txt hello2.txt
+14381 hello.txt  14381 hello2.txt
+```
+
+```text
+# When changes are made to `hello.txt`,
+# `hello2.txt` reflects those changes.
+[hong@rhel10 ~]$ echo 'world' > hello.txt
+
+[hong@rhel10 ~]$ cat hello.txt
+world
+
+[hong@rhel10 ~]$ cat hello2.txt
+world
+
+# `rm hello2.txt` will not remove `hello.txt`.
+# Because there is still one link.
+[hong@rhel10 ~]$ rm hello2.txt && ls
+cpsy204  cpsy204.backup  hello.txt  scripts  world.txt
+```
+
+---
+
+### Links - Soft/Symbolic Link
+
+- By definition, a soft link is not a standard file, but a special file that points to an existing file.
+- Commonly referred to as *symbolic links*, soft links link together non-regular and regular files.
+- A Soft/Symbolic link uses almost no HDD space, and it uses it’s own unique inode number. If the original file/directory is deleted, you can have a broken link, or a link that points to a non-existent resource.
+- Use `ln -s (file path you want to point to) (new file path)` to create a soft link between the original file and a linked file.
+
+![symlink](./cpsy-204-linux-admin-intro.assets/symlink.webp) 
+
+---
+
+### Links - Soft/Symbolic Link
+
+![symlink-6140842](./cpsy-204-linux-admin-intro.assets/symlink-6140842.webp) 
+
+---
+
 ### Sources
 
 - https://infosecwriteups.com/what-is-etc-passwd-group-shadow-file-in-linux-bd7b28f353f3
@@ -487,3 +724,4 @@ Two vital sources for system information and troubleshooting:
 - https://docs.oracle.com/cd/E19253-01/817-0403/eoizf/index.html
 - https://en.wikipedia.org/wiki/Systemd
 - https://docs.kernel.org/filesystems/proc.html
+- [RHEL Configuring and managing networking](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html-single/configuring_and_managing_networking/index)

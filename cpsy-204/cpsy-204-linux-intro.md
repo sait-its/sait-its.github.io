@@ -751,6 +751,45 @@ drwxr-xr-x.   4 root root   34 Jan  3 21:18 src
 
 ---
 
+### Wildcards
+
+- A wildcard is a special character that can stand for any other character, or, in some cases, a group of characters.
+
+- Wildcards are useful when you work with several files whose names are similar or a file whose name you cannot remember.
+
+- UNIX/Linux supports several wildcard characters to match patterns in filenames or paths.
+
+  - **`\*` (Asterisk):** Matches **zero or more** characters.
+    - *Example:* `ls *.txt` lists every file ending in `.txt`.
+
+  - **`?` (Question Mark):** Matches exactly **one** character.
+    - *Example:* `ls file?.log` matches `file1.log` or `fileA.log`, but not `file10.log`
+
+---
+
+### Linux File Naming Rules
+
+- Linux gives you a lot of freedom, but following these conventions makes working in the terminal much easier and prevents system errors.
+
+  - **Case Sensitivity:** `File.txt`, `file.txt`, and `FILE.txt` are **three different files**.
+
+  - **Forbidden Characters:** The only strictly forbidden character is the forward slash (`/`), as it is used for directory paths.
+
+  - **Hidden Files:** Any file or directory starting with a dot (`.`) is hidden by default (e.g., `.bashrc`).
+
+- By default, macOS uses **APFS (Case-insensitive)**. This means that while the system remembers exactly how you capitalized a name (Case-preserving), it won't let you have two files with the same name but different casing in the same folder.
+
+---
+
+### Linux File Naming Best Practices
+
+- **Avoid Spaces:** Use underscores (`_`) or hyphens (`-`) instead. Spaces require "escaping" in the terminal (e.g., `cd My\ Folder` vs `cd My_Folder`).
+- **Stick to Lowercase:** Prevents confusion and "file not found" errors when moving files between different systems.
+- **Avoid Special Characters:** Stay away from symbols like `*`, `?`, `!`, `$`, `&`, and `|`. These have special meanings to the shell and can cause unexpected behavior.
+- **ISO Dates:** Use `YYYY-MM-DD` for dates so files sort chronologically by name.
+
+---
+
 ### Linux File Types
 
 - The file extension (`.txt`) is not necessarily the file type. Linux has 7 basic file types, but we typically only see 3.
@@ -797,3 +836,432 @@ drwxr-xr-x. 2 hong hong    170 Jan  3 22:28 scripts
 
 ---
 
+### Make Directory with `mkdir`
+
+- The `mkdir` command is used to create a new directory in your current directory.
+- It can also be used with an absolute path to create a new directory inside a different directory.
+- To create a directory with a directory inside of it, use the `-p` option.
+- You can run a single `mkdir dir1 dir2` command and list the directory names separated by a space.
+- You can also use `mkdir` with curly brackets `{}` to create multiple directories. 
+- You can even create a batch of directories starting with the same pattern. Prepend the curly brackets with the pattern and use the brackets to specify the number of directories.
+
+---
+
+### Make Directory with `mkdir`
+
+```text
+# Use `mkdir` to make a directory
+[hong@rhel10 ~]$ mkdir cpsy204
+[hong@rhel10 ~]$ ls -l
+total 144
+drwxr-xr-x. 2 hong hong      6 Jan  5 21:38 cpsy204
+-rw-r--r--. 1 hong hong      0 Jan  5 21:35 hello.txt
+-rw-r--r--. 1 hong hong 144037 Jan  5 20:19 rhcsa9.jpg
+drwxr-xr-x. 2 hong hong    170 Jan  3 22:28 scripts
+```
+
+```
+# Make multiple directories
+[hong@rhel10 ~]$ mkdir cpsy204/lab1 cpsy204/lab2
+[hong@rhel10 ~]$ ls -l cpsy204
+total 0
+drwxr-xr-x. 2 hong hong 6 Jan  5 21:38 lab1
+drwxr-xr-x. 2 hong hong 6 Jan  5 21:38 lab2
+
+[hong@rhel10 ~]$ cd cpsy204/
+[hong@rhel10 cpsy204]$ ls -l
+total 0
+drwxr-xr-x. 2 hong hong 6 Jan  5 21:38 lab1
+drwxr-xr-x. 2 hong hong 6 Jan  5 21:38 lab2
+```
+
+---
+
+### Make Directory with `mkdir`
+
+```text
+# Use `mkdir` with curly brackets `{}` to create multiple directories. 
+[hong@rhel10 cpsy204]$ mkdir lab{3..5}
+[hong@rhel10 cpsy204]$ ls -l
+total 0
+drwxr-xr-x. 2 hong hong 6 Jan  5 21:38 lab1
+drwxr-xr-x. 2 hong hong 6 Jan  5 21:38 lab2
+drwxr-xr-x. 2 hong hong 6 Jan  5 21:40 lab3
+drwxr-xr-x. 2 hong hong 6 Jan  5 21:40 lab4
+drwxr-xr-x. 2 hong hong 6 Jan  5 21:40 lab5
+```
+
+```text
+# To create a directory with a directory inside of it,
+# use the `-p` option.
+[hong@rhel10 cpsy204]$ mkdir -p lab6/components/part1
+[hong@rhel10 cpsy204]$ tree .
+.
+├── lab1
+├── lab2
+├── lab3
+├── lab4
+├── lab5
+└── lab6
+    └── components
+        └── part1
+```
+
+---
+
+### Copy File or Directory with `cp`
+
+- The `cp` command copies both files and directories.
+- This command has many options, but the basic syntax is simple.
+- Run `cp {source} {destination}` to copy from one place (source) to another (destination).
+
+```text
+[hong@rhel10 ~]$ ls -l
+total 144
+drwxr-xr-x. 8 hong hong     78 Jan  5 21:49 cpsy204
+-rw-r--r--. 1 hong hong      0 Jan  5 21:35 hello.txt
+
+# Use `cp` command to copy files
+[hong@rhel10 ~]$ cp hello.txt world.txt
+[hong@rhel10 ~]$ ls -l
+total 144
+drwxr-xr-x. 8 hong hong     78 Jan  5 21:49 cpsy204
+-rw-r--r--. 1 hong hong      0 Jan  5 21:35 hello.txt
+-rw-r--r--. 1 hong hong      0 Jan  5 21:49 world.txt
+```
+
+---
+
+### Copy File or Directory with `cp`
+
+- To copy an entire directory with its contents, use the `-R` option.
+
+```text
+# Use `cp -R` or `cp -r` command to copy directories
+# If source_file designates a directory, cp copies the directory
+# and the entire subtree connected at that point.
+
+# Option:  -R, -r, --recursive
+#              copy directories recursively
+
+[hong@rhel10 ~]$ cp -R cpsy204 cpsy204.backup
+[hong@rhel10 ~]$ ls -l
+total 144
+drwxr-xr-x. 8 hong hong     78 Jan  5 21:49 cpsy204
+drwxr-xr-x. 8 hong hong     78 Jan  5 21:49 cpsy204.backup
+-rw-r--r--. 1 hong hong      0 Jan  5 21:35 hello.txt
+-rw-r--r--. 1 hong hong      0 Jan  5 21:49 world.txt
+```
+
+---
+
+### Move File or Directory with `mv`
+
+- The `mv {source} {destination}` command moves both directories and files. 
+- You also use the `mv` command to rename directories and files if the destination doesn't already exist.
+
+```text
+[hong@rhel10 ~]$ ls -l
+total 144
+drwxr-xr-x. 8 hong hong     78 Jan  5 21:43 cpsy204
+-rw-r--r--. 1 hong hong      0 Jan  5 21:35 hello.txt
+
+# Use `mv` commmand to rename a file.
+[hong@rhel10 ~]$ mv hello.txt hello-world.txt
+[hong@rhel10 ~]$ ls -l
+total 144
+drwxr-xr-x. 8 hong hong     78 Jan  5 21:43 cpsy204
+-rw-r--r--. 1 hong hong      0 Jan  5 21:35 hello-world.txt
+```
+
+---
+
+### Move File or Directory with `mv`
+
+- If the destination is already existing directory, then the source will be moved inside the destination directory.
+
+```text
+[hong@rhel10 ~]$ tree cpsy204
+cpsy204
+├── lab1
+├── lab2
+├── lab3
+├── lab4
+├── lab5
+└── lab6
+    └── components
+        └── part1
+```
+
+```text
+# Use `mv` command to move `hello-world.txt` under `cpsy204`
+[hong@rhel10 ~]$ mv hello-world.txt cpsy204/
+[hong@rhel10 ~]$ tree cpsy204/
+cpsy204/
+├── hello-world.txt
+├── lab1
+├── lab2
+├── lab3
+├── lab4
+├── lab5
+└── lab6
+    └── components
+        └── part1
+```
+
+---
+
+### Remove/Delete File and Directory with `rm`
+
+- Use the `rm` command when you're sure you're ready to erase data permanently.
+- To delete a file, use `rm {file}`.
+- When a directory is empty, it can be removed using the `rmdir` command. When there are files and folders inside a directory, `rmdir` does not work.
+
+```text
+[hong@rhel10 ~]$ ls
+cpsy204  cpsy204.backup  hello.txt  scripts  world.txt
+
+# Remove a file
+[hong@rhel10 ~]$ rm world.txt
+[hong@rhel10 ~]$ ls
+cpsy204  cpsy204.backup  hello.txt  scripts
+
+[hong@rhel10 ~]$ mkdir empty-folder && ls
+cpsy204  cpsy204.backup  empty-folder  hello.txt  scripts  world.txt
+
+# Remove an empty directory
+[hong@rhel10 ~]$ rmdir empty-folder && ls
+cpsy204  cpsy204.backup  hello.txt  scripts  world.txt
+```
+
+---
+
+### Remove/Delete File and Directory with `rm`
+
+- We must use the `rm –r` command to recursively remove each file and folder at each level of the directory until the top-level directory is empty and can be removed.
+
+```text
+# Remove a directory with files and folders in it
+[hong@rhel10 ~]$ tree cpsy204.backup/
+cpsy204.backup/
+├── lab1
+├── lab2
+├── lab3
+├── lab4
+├── lab5
+└── lab6
+    └── components
+        └── part1
+```
+
+```text
+# `cpsy204.backup` has files and directories in it.
+# `rmdir` won't work.
+[hong@rhel10 ~]$ rmdir cpsy204.backup/
+rmdir: failed to remove 'cpsy204.backup/': Directory not empty
+
+# Use `rm -r` to recursively delete all files and directories
+# in `cpsy204.backup`, then delete the empty `cpsy204.backup` directory
+[hong@rhel10 ~]$ rm -r cpsy204.backup/
+```
+
+---
+
+### Find Files with `find`
+
+- The `find` command searches for files and directories in a directory hierarchy based on user-defined criteria.
+
+  - **Basic Syntax:** `find [path] [expression] [action]`
+
+  - **Search by Name:** `find . -name "results.csv"` (Case-insensitive: `-iname`).
+
+  - **Search by Type:** `find /var/log -type d` (Use `f` for files, `d` for directories).
+
+  - **Search by Size:** `find /home -size +100M` (Finds files larger than 100MB).
+
+  - **Search by Time:** `find /tmp -mmin -10` (Modified in the last 10 minutes).
+
+  - **Execute Actions:** `find . -name "*.log" -delete` (Finds and removes log files).
+
+---
+
+### Standard Streams
+
+- Standard Streams - Every command has three default "channels":
+
+  - **Standard Input (stdin):** Data going into the command (File Descriptor 0).
+
+  - **Standard Output (stdout):** Normal output (File Descriptor 1).
+
+  - **Standard Error (stderr):** Error messages (File Descriptor 2).
+
+---
+
+### Redirection & Piping
+
+- Redirection and piping control the flow of data between commands, files, and the terminal.
+
+- **Redirection (Command ↔ File)**. It's used to send a command's output to a file or read input from a file.
+
+  - **`>`**: Redirects stdout to a file (**overwrites**).
+
+  - **`>>`**: Redirects stdout to a file (**appends**).
+
+  - **`<`**: Reads stdin from a file.
+
+  - **`2>`**: Redirects only the error messages (stderr) to a file.
+
+- **Piping (Command ↔ Command)**. The **`|`** symbol takes the **stdout** of one command and feeds it directly into the **stdin** of the next.
+  - *Example:* `ls -l | grep ".txt"` (List files, then filter for ".txt"). More on `grep` later.
+
+---
+
+### Extract Text with `cut`
+
+- The `cut` command extracts specific sections from each line of a file or piped output, usually by "cutting" columns out of structured text.
+- You must specify **one** of these to tell `cut` what to extract:
+  - **`-f` (Fields):** Extracts columns based on a delimiter (most common).
+  - **`-c` (Characters):** Extracts by specific character position.
+  - **`-b` (Bytes):** Extracts by byte position (useful for fixed-width non-text files).
+- When using fields (`-f`), `cut` needs to know how the columns are separated.
+  - **Default:** If no delimiter is specified, `cut` assumes a **Tab**.
+  - **Custom:** Use `-d` followed by the separator (e.g., `cut -d ','` for CSV files).
+
+---
+
+### Extract Text with `cut`
+
+```text
+# Extracting User Information from /etc/passwd
+# The /etc/passwd file uses a colon (:) as a delimiter.
+# To get a list of all usernames (the 1st field):
+$ cut -d ':' -f 1 /etc/passwd
+root
+bin
+daemon
+adm
+......
+alma
+dhcpcd
+cloud-user
+almalinux
+```
+
+```text
+# To get the username (1st field) and their home directory (6th field)
+$ cut -d ':' -f 1,6 /etc/passwd
+root:/root
+bin:/bin
+daemon:/sbin
+......
+alma:/home/alma
+dhcpcd:/var/lib/dhcpcd
+cloud-user:/home/cloud-user
+almalinux:/home/almalinux
+```
+
+---
+
+### Search for Specific Text Patterns with `grep`
+
+- **Core Syntax**: `grep [options] "pattern" [file_name]`
+- **Common Use Cases**:
+  - **Search a single file:** `grep "error" server.log`
+  - **Search through multiple files:** `grep "TODO" *.py`
+  - **Pipe from another command:** `ps aux | grep "python"`
+  - **Search recursively for a string:** `grep -r "API_KEY" ./src`
+- `grep` becomes significantly more powerful when using symbols:
+  - `^` : Matches the start of a line (e.g., `^Start`).
+  - `$` : Matches the end of a line (e.g., `End$`).
+  - `.` : Matches any single character.
+
+[A beginner’s guide to regular expressions with grep](https://developers.redhat.com/articles/2022/09/14/beginners-guide-regular-expressions-grep#)
+
+---
+
+### `sort`
+
+- The `sort` command is a powerful utility used to reorder the lines of a text file or command output. By default, it sorts lines **alphabetically** and writes the results to standard output.
+  - **Basic Syntax:** `sort [options] [file]`
+  - **Reverse Order (`-r`):** Reverses the result to descending order (Z-A or high-to-low).
+  - **Unique Results (`-u`):** Outputs only the first of an identical run of lines (removes duplicates).
+  - **Human-Readable (`-h`):** Properly sorts file sizes like 2K, 1G, and 5M.
+- Examples
+  - Sort numbers in descending order: `sort -nr data.txt`
+  - Sort and remove duplicates in one step: `sort -u list.txt`
+  - Find the largest files in a directory: `du -h | sort -hr`
+
+---
+
+### `uniq`
+
+- The `uniq` utility is used to filter out or report repeated lines in a file. It is most effective when paired with the `sort` command, as `uniq` **only detects duplicate lines that are adjacent**.
+  - **Basic Syntax:** `uniq [options] [input] [output]`
+  - **Remove Duplicates (Default):** Deletes consecutive identical lines, leaving only one instance of each.
+  - **Show Only Duplicates (`-d`):** Only prints the lines that were repeated; ignores unique lines.
+  - **Show Only Unique (`-u`):** Only prints lines that occurred exactly once in the file.
+- Examples
+  - **The Standard Workflow:** `sort file.txt | uniq` *(Sorts the file first so duplicates are adjacent, then removes them.)*
+  - **Generate a Frequency List:** `sort words.txt | uniq -c | sort -nr` *(Counts occurrences and then sorts them from highest to lowest frequency.)*
+
+---
+
+### `comm`
+
+- The `comm` utility compares two **sorted** files line by line and identifies unique and common lines. It outputs three columns: (1) lines unique to file1, (2) lines unique to file2, and (3) lines common to both.
+- Examples
+  - **Find common lines:** `comm -12 sorted_list1.txt sorted_list2.txt`
+  - **Find lines in A that aren't in B:** `comm -23 fileA.txt fileB.txt`
+  - **Compare command outputs:** `comm -12 <(ls dir1 | sort) <(ls dir2 | sort)`
+
+---
+
+### `diff`
+
+- The `diff` utility compares two files or directories line by line to find differences. Unlike `comm`, it does not require files to be sorted and provides detailed instructions on how to change the first file to match the second.
+
+- Examples
+
+  - **Standard comparison:** `diff file1.txt file2.txt`
+
+  - **Unified format (common for patches):** `diff -u file1.txt file2.txt`
+
+  - **Compare directories:** `diff -r dir1/ dir2/`
+
+  - **Ignore whitespace changes:** `diff -w file1.txt file2.txt`
+
+---
+
+### `cmp`
+
+- The `cmp` utility performs a byte-by-byte comparison of two files. It is faster than `diff` because it stops at the first difference found, making it the ideal tool for checking if binary files (like images or executables) are identical.
+
+- Examples
+
+  - **Check if files are identical:** `cmp file1.bin file2.bin`
+
+  - **Show decimal byte and line number of first difference:** `cmp file1.txt file2.txt`
+
+  - **Show all differing bytes (long format):** `cmp -l file1.bin file2.bin`
+
+  - **Silent mode (check exit status only):** `cmp -s file1.zip file2.zip`
+
+---
+
+### Don't Panic! 🤯
+
+- Your brain currently feels like a terminal flooded with `stderr` messages, and you’re convinced your "head disk" is at 99% capacity. Don't worry—this is a standard part of the Linux kernel installation in your mind!
+  - **Syntax Overload:** It’s okay to mix up `ip addr` and `ifconfig` or forget `tar` flags (nobody remembers those anyway).
+  - **Be Patient:** Learning isn't a sprint; it's a long-running background process. Your brain is just indexing.
+  - **Keep Practicing:** Every "command not found" error you fix is a level-up for your sysadmin skills.
+  - **The Secret:** Even pros use `man`, `tldr`, or AI daily. Don't memorize everything—just know it exists.
+
+---
+
+### Time for "Operation Overlord"
+
+- Go to D2L, look at the overlord.
+- Can work with a partner if you like – you’ll need to make your own submission if the hall of victory.
+- The instruction list is quite long – may want to copy the list of instructions out onto your windows machine ([notepad++](https://notepad-plus-plus.org/) maybe?) Plus keep a list of the last user/password combination you used so if you need to come back to it, you don’t have to start at beginning.
+- You’re first challenge will be to figure out how to ssh into overlord.grimshay.ca
+- Your next challenge will be to figure out some login credentials that work…. bwahahahaha! 
