@@ -276,6 +276,7 @@ print("Hello World!")
   - [Working with files in Python](https://realpython.com/working-with-files-in-python/)
   - [Reading binary files in Python](https://www.pythonmorsels.com/reading-binary-files-in-python/)
   - [Python's pathlib Module: Taming the File System](https://realpython.com/python-pathlib/)
+  - [How to Get a List of All Files in a Directory With Python](https://realpython.com/get-all-files-in-directory-python/)
 - [file_rw.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/file_rw.py)
 - [file_rw_err.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-01/file_rw_err.py)
 
