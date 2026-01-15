@@ -434,9 +434,9 @@ components 3
 
 - The `cat` command is important as a basic command because it serves two very important functions:
 
-  - concatenating (merging) files (as the name suggests) 
+  - Concatenating (merging) files (as the name suggests) 
 
-  - and printing the contents of a file to the screen. Printing the contents of files is by far the more frequent use of this command.
+  - Printing the contents of a file to the screen, by far the more frequent use of this command.
 
 ```text
 [hong@rhel10 ~]$ cat /etc/passwd
@@ -759,7 +759,7 @@ drwxr-xr-x.   4 root root   34 Jan  3 21:18 src
 
 ### Linux File Naming Rules
 
-- Linux gives you a lot of freedom, but following these conventions makes working in the terminal much easier and prevents system errors.
+- Following file naming conventions makes working in the terminal much easier and prevents system errors.
 
   - **Case Sensitivity:** `File.txt`, `file.txt`, and `FILE.txt` are **three different files**.
 
@@ -1078,17 +1078,11 @@ rmdir: failed to remove 'cpsy204.backup/': Directory not empty
 ### Redirection & Piping
 
 - Redirection and piping control the flow of data between commands, files, and the terminal.
-
 - **Redirection (Command ↔ File)**. It's used to send a command's output to a file or read input from a file.
 
-  - **`>`**: Redirects stdout to a file (**overwrites**).
-
+  - **`>`**: Redirects stdout to a file (**overwrites**). **`2>`**: Redirects only the error messages (stderr) to a file.
   - **`>>`**: Redirects stdout to a file (**appends**).
-
   - **`<`**: Reads stdin from a file.
-
-  - **`2>`**: Redirects only the error messages (stderr) to a file.
-
 - **Piping (Command ↔ Command)**. The **`|`** symbol takes the **stdout** of one command and feeds it directly into the **stdin** of the next.
   - *Example:* `ls -l | grep ".txt"` (List files, then filter for ".txt"). More on `grep` later.
 
@@ -1176,11 +1170,11 @@ almalinux:/home/almalinux
 - The `uniq` utility is used to filter out or report repeated lines in a file. It is most effective when paired with the `sort` command, as `uniq` **only detects duplicate lines that are adjacent**.
   - **Basic Syntax:** `uniq [options] [input] [output]`
   - **Remove Duplicates (Default):** Deletes consecutive identical lines, leaving only one instance of each.
-  - **Show Only Duplicates (`-d`):** Only prints the lines that were repeated; ignores unique lines.
+  - **Show Only Duplicates (`-d`):** Repeated lines only.
   - **Show Only Unique (`-u`):** Only prints lines that occurred exactly once in the file.
 - Examples
   - **The Standard Workflow:** `sort file.txt | uniq` *(Sorts the file first so duplicates are adjacent, then removes them.)*
-  - **Generate a Frequency List:** `sort words.txt | uniq -c | sort -nr` *(Counts occurrences and then sorts them from highest to lowest frequency.)*
+  - **Print lines occurred exactly once:** `sort words.txt | uniq -u`
 
 ---
 
@@ -1238,8 +1232,8 @@ almalinux:/home/almalinux
 
 ### Time for "Operation Overlord"
 
-- Go to D2L, look at the overlord.
-- Can work with a partner if you like – you’ll need to make your own submission if the hall of victory.
-- The instruction list is quite long – may want to copy the list of instructions out onto your windows machine ([notepad++](https://notepad-plus-plus.org/) maybe?) Plus keep a list of the last user/password combination you used so if you need to come back to it, you don’t have to start at beginning.
-- You’re first challenge will be to figure out how to ssh into overlord.grimshay.ca
+- Go to D2L, look at the overlord. Or access https://overlord.sadt.ca
+- The instruction list is quite long – may want to copy the list of instructions out onto your windows machine ([notepad++](https://notepad-plus-plus.org/) maybe?) If you are accessing the web terminal, click on the "Instructions" button.
+- Keep a list of the last user/password combination you used so if you need to come back to it, you don’t have to start at beginning.
+- You’re first challenge will be to figure out how to ssh into `overlord.grimshay.ca`
 - Your next challenge will be to figure out some login credentials that work…. bwahahahaha! 
