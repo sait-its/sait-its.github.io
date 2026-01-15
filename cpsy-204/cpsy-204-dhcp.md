@@ -411,3 +411,122 @@
   - Auto State Switchover Interval determines when a failover partner is considered to be down
   - Message authentication can validate the failover messages
   - Firewall rules are auto-configured during DHCP installation
+
+---
+
+### KEA DHCP on Linux
+
+- ISC distributes TWO full-featured, open source, standards-based DHCP server distributions: Kea DHCP and ISC DHCP.
+- Kea includes all the most-requested features, is far newer, and is designed for a more modern network environment.
+- ISC announced the [End of Life](https://www.isc.org/blogs/isc-dhcp-eol/) for the older ISC DHCP system in 2022.
+- RHEL 10 ships with Kea DHCP.
+- More on Kea:
+  - https://www.isc.org/kea/
+  - https://kea.readthedocs.io/en/stable/
+
+---
+
+### Install `isc-kea`
+
+- RHEL and Ubuntu Linux has different package names for `isc-kea`:
+
+```shell
+# RHEL/AlmaLinux/Rocky Linux 10+
+sudo dnf install kea-dhcp4-server
+sudo firewall-cmd --add-service=dhcp
+sudo firewall-cmd --runtime-to-permanent
+```
+
+```shell
+# Ubuntu Linux LTS 24.04+
+sudo apt install kea
+sudo ufw allow 67/udp
+sudo ufw allow 68/udp
+```
+
+---
+
+### `/etc/kea/kea-dhcp4.conf`
+
+- The `kea-dhcp4` service can be configured by editing `/etc/kea/kea-dhcp4.conf`.
+- Most commonly, what you want to do is let Kea assign an IP address from a pre-configured IP address pool.
+- Verify: `kea-dhcp4 -t /etc/kea/kea-dhcp4.conf`
+
+```text
+{
+  "Dhcp4": {
+    // Global settings that apply to all subnets unless overridden.
+    "valid-lifetime": 86400,
+    "option-data": [
+      {
+        "name": "domain-name",
+        "data": "lab.internal"
+      },
+      {
+        "name": "domain-name-servers",
+        "data": "1.1.1.1"
+      }
+    ],
+    ......
+```
+
+---
+
+### `/etc/kea/kea-dhcp4.conf`
+
+```
+{
+  "Dhcp4": {
+    // Global settings that apply to all subnets unless overridden.
+    ......  
+    // The network interfaces on which Kea will listen for DHCP traffic.
+    "interfaces-config": {
+      "interfaces": [ "ens224" ]
+    },
+    ......
+```
+
+```
+{
+  "Dhcp4": {
+    ......
+    "subnet4": [
+      // A definition of a subnet that is directly connected to the server
+      {
+        "id": 1,
+        "subnet": "10.7.1.0/24",
+        "pools": [
+          { "pool": "10.7.1.20  - 10.7.1.100" },
+          { "pool": "10.7.1.150 - 10.7.1.200" }
+        ],
+        "option-data": [
+          { "name": "routers", "data": "10.7.1.11" }
+        ]
+     ......
+```
+
+---
+
+### Start and Enable `isc-kea`
+
+- Enable(survive the reboot) and start(run the kea-dhcp4 process) the kea-dhcp4 service, check the service status:
+
+```shell
+sudo systemctl enable --now kea-dhcp4
+sudo systemctl status kea-dhcp4
+journalctl -u kea-dhcp4.service
+```
+
+- Kea supports `memfile` (default) and `myql`/`pgsql` as lease backends. Observe the lease database file on the DHCP server:
+
+```shell
+sudo cat /var/lib/kea/kea-leases4.csv
+```
+
+---
+
+### Resources
+
+- [Red Hat Document: Providing DHCP services](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_networking_infrastructure_services/providing-dhcp-services)
+- [Kea Administrator Reference Manual](https://kea.readthedocs.io/en/stable/)
+- [How to install and configure isc-kea](https://documentation.ubuntu.com/server/how-to/networking/install-isc-kea/)
