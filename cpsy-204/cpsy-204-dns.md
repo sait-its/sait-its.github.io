@@ -26,7 +26,7 @@
 - **DNS** provides a mapping from names to resources of several types.
 - **DNS** is one of the most important systems in the Internet infrastructure. Application like web, email, etc., depends heavily on this crucial service. 
 
-![always-dns-meme](./cpsy-204-dns-linux.assets/always-dns-meme.jpg) 
+![always-dns-meme](./cpsy-204-dns.assets/always-dns-meme.jpg) 
 
 ---
 
@@ -76,7 +76,7 @@ Source: https://en.wikipedia.org/wiki/ARPANET
 - DNS can use either UDP or TCP both are based on standard port # 53
 - Uses two different packet types: Query and Response 
 
-![dns-in-osi](./cpsy-204-dns-linux.assets/dns-in-osi.webp) 
+![dns-in-osi](./cpsy-204-dns.assets/dns-in-osi.webp) 
 
 ---
 
@@ -98,7 +98,7 @@ Source: https://en.wikipedia.org/wiki/ARPANET
 
 - A distributed database holding the alphanumeric names and IP addresses
 
-![domain-name-space](./cpsy-204-dns-linux.assets/domain-name-space.gif) 
+![domain-name-space](./cpsy-204-dns.assets/domain-name-space.gif) 
 
 ---
 
@@ -121,7 +121,7 @@ Source: https://en.wikipedia.org/wiki/ARPANET
 
 ---
 
-![domain-name-space](./cpsy-204-dns-linux.assets/domain-name-space.webp)
+![domain-name-space](./cpsy-204-dns.assets/domain-name-space.webp)
 
 Credit: https://en.wikipedia.org/wiki/Domain_Name_System
 
@@ -143,7 +143,7 @@ Source: [What is a DNS zone?](https://www.cloudflare.com/en-ca/learning/dns/glos
   - A node in the domain name space and all of the nodes below it.
   - Contain both hosts and other domains
 
-![dns-domain](./cpsy-204-dns-linux.assets/dns-domain.webp) 
+![dns-domain](./cpsy-204-dns.assets/dns-domain.webp) 
 
 ---
 
@@ -176,7 +176,7 @@ Source: [What is a DNS zone?](https://www.cloudflare.com/en-ca/learning/dns/glos
 
 ### DNS Packets
 
-![dns-packets](./cpsy-204-dns-linux.assets/dns-packets.webp) 
+![dns-packets](./cpsy-204-dns.assets/dns-packets.webp) 
 
 ---
 
@@ -229,7 +229,7 @@ Source: [What is a DNS zone?](https://www.cloudflare.com/en-ca/learning/dns/glos
 3. The DNS resolver returns an answer with IP address for `www.example.com`.
 4. The browser use the IP address to access `www.example.com`
 
-![basic-dns-resolution](./cpsy-204-dns-linux.assets/basic-dns-resolution.png) 
+![basic-dns-resolution](./cpsy-204-dns.assets/basic-dns-resolution.png) 
 
 ---
 
