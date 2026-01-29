@@ -69,7 +69,7 @@
   - [An Introduction to Python Subprocess](https://www.datacamp.com/tutorial/python-subprocess)
   - [The Right Way to Run Shell Commands From Python](https://martinheinz.dev/blog/98)
   - [`sh` module](https://github.com/amoffat/sh)
-- [subprocess_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-04/subprocess_example.py)
+- [subprocess_tutorial.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-04/subprocess_tutorial.py)
 - [sh_example.py](https://github.com/sait-its/awesome-cprg-217/blob/main/unit-04/sh_example.py)
 
 ---
