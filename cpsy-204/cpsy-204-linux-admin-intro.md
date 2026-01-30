@@ -633,10 +633,10 @@ Filesystem     Inodes IUsed IFree IUse% Mounted on
 
 ### Links - Hard Link
 
-- inodes has everything about a file except for the name. Every file on the Linux filesystem starts with a single hard link. The *link* is between the filename and the actual data stored on the filesystem.
-- Use `ln {filename1} {filename2}` to create a hard link between a file (filename 1) and a linked file (filename2).
+- inodes has everything about a file but the name. Every file on Linux starts with a single hard link. The *link* is between the filename and the actual data stored on the filesystem.
+- Hard Link Syntax: `ln {filename1} {filename2}`
 
-- A hard link is an additional directory entry (filename) pointing to the same **inode** (physical data) on a disk.
+- A hard link is an additional filename pointing to the same **inode** (physical data).
 
   - **Synchronized:** Changes to content, permissions, or timestamps affect all links simultaneously.
 
