@@ -1,6 +1,6 @@
 ## Server Fundamentals
 
-## DNS on Linux
+## DNS
 
 ---
 
