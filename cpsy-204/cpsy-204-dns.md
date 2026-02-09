@@ -198,9 +198,9 @@ Source: [What is a DNS zone?](https://www.cloudflare.com/en-ca/learning/dns/glos
 
 - Provides authoritative answers for one or more zones  - it holds the zone file for a given zone
 - Master or Primary server normally loads data from its own Zone File 
-  - One master but can have multiple slave server
+  - One master but can have multiple slave servers
 
-- Slave server normally replicates the data from a master server via “zone transfer”   
+- Slave servers normally replicate the data from a master server via “zone transfer”   
 
 ---
 
@@ -238,11 +238,11 @@ Source: [What is a DNS zone?](https://www.cloudflare.com/en-ca/learning/dns/glos
 
 ### Recursive Query
 
-1. You type Microsoft.com into your browser
+1. You type microsoft.com into your browser
 
 2. The DNS client checks its DNS cache to see if it already has the IP address for that name. (If it does it can send the address directly back and is called a non-recursive query)
 
-3. If it does not have the address it asks the DNS server.(Name Resolver) (Configured in the IP settings or received from DHCP)
+3. If it does not have the address it asks the DNS server (Name Resolver), configured in the IP settings or received from DHCP
 
 4. In a recursive query the server must return either the IP address requested or an error message.
 
