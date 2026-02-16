@@ -30,6 +30,12 @@
 
 ---
 
+### Modern Digital Infrastructure 
+
+![modern-digital-infra](./cpsy-204-dns.assets/modern-digital-infra.jpg)
+
+---
+
 ### A little History of the Internet
 
 - [ARPANET (Advanced Research Projects Agency Network)](https://en.wikipedia.org/wiki/ARPANET) was the first wide-area [packet-switched network](https://en.wikipedia.org/wiki/Packet-switched_network) with distributed control and one of the first computer networks to implement the [TCP/IP](https://en.wikipedia.org/wiki/TCP/IP) protocol suite, the technical foundation of the [Internet](https://en.wikipedia.org/wiki/Internet). 
