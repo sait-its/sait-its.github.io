@@ -488,45 +488,63 @@ blog    IN  CNAME   ghs.google.com.  ; Points to external service [8]
 ### DNS Configuration - Linux
 
 - **BIND (Berkeley Internet Name Domain)** is the most widely used, open-source software suite for running DNS (Domain Name System) servers.
-- Install BIND packages and enable the service
+- Install BIND packages and enable the service.
 
 ```shell
 sudo dnf install bind bind-utils -y
-
 sudo systemctl enable --now named
 ```
 
----
+- Remember to update the `firewalld` rules to allow incoming DNS traffic.
 
-### DNS Configuration - Linux
-
-- Edit `/etc/named.conf`. First, add or edit the two values in the **options** field. One is the DNS server address, and the other is the **allow-query** to **any**.
-
-```
-[root@servera ~] # vim /etc/named.conf
-listen-on port 53 { 127.0.0.1; 192.168.25.132; };
-allow-query { localhost; any; };
+```shell
+sudo firewall-cmd --permanent --add-service=dns
+sudo firewall-cmd --reload
 ```
 
 ---
 
 ### DNS Configuration - Linux
 
-- Define the forward and reverse zones in the `/etc/named.conf` or `/etc/named.rfc1912.zones` (you can define zones in either of those files).
-- The following example appends zone definition details to the `/etc/named.rfc1912.zones` file.
+- Edit `/etc/named.conf`: First, add or edit the two values in the **options** field. One is the DNS server address, and the other is the **allow-query** to **any**.
 
 ```
-[root@servera ~] # vim /etc/named.rfc1912.zones
-  zone "example.com" IN { type master;
-  file "example.forward.zone";
-  allow-update { none; };
+options {
+    listen-on port 53 { 127.0.0.1; 192.168.25.132; };
+    allow-query { localhost; any; };
+    // Optional:
+    // allow-recursion { localhost; any; };
+    // forwarders { 1.1.1.1; 8.8.8.8; };
+}
+```
+
+Read: [Setting up and configuring a BIND DNS server](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_networking_infrastructure_services/setting-up-and-configuring-a-bind-dns-server#configuring-bind-as-a-caching-dns-server)
+
+---
+
+### DNS Configuration - Linux
+
+- Edit `/etc/named.conf`: Add **Zone Statement** to define zones of authority (master, slave, or cache-only).
+
+```
+zone "lab.internal" IN {
+        type primary;
+        file "lab.internal.zone";
+        allow-query { any; };
+        allow-update { none; };
 };
 
-  zone "25.168.192.in-addr.arpa" IN { 
-   type master;
-   file "example.reverse.zone";
-   allow-update { none; };
+zone "252.168.192.in-addr.arpa" IN {
+        type master;
+        file "/var/named/242.168.192.in-addr.arpa.zone";
+        allow-update { "none"; };
 };
+```
+
+- Verify the syntax of the `/etc/named.conf` file. If the command displays no output, the syntax is correct.
+
+```shell
+sudo named-checkconf
 ```
 
 ---
@@ -534,10 +552,16 @@ allow-query { localhost; any; };
 ### DNS Configuration - Linux
 
 - Create forward and reverse zone files.
-- Change the owner of /var/named/YOUR_ZONE_FILE to named:named (optional but highly recommended)
-- Verify zone config, named config, rfc file, read named.service status
-- Open firewall port 53 for tcp/udp for DNS service
-- Add the nameserver IP to /etc/resolv.conf
+- Set secure permissions on the zone file that allow only the `named` group to read it: Change the owner of `/var/named/YOUR_ZONE_FILE` to `root:named` and set the permissions of to `640`.
+- Verify the syntax of the  `/var/named/YOUR_ZONE_FILE`:
+
+```shell
+sudo named-checkzone YOUR_ZONE /var/named/YOUR_ZONE_FILE
+```
+
+- Add the nameserver IP to `/etc/resolv.conf` and verify it with `dig` or `nslookup`.
+
+Read: [Configuring zones on a BIND DNS server](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_networking_infrastructure_services/configuring-zones-on-a-bind-dns-server#setting-up-a-forward-zone-on-a-bind-primary-server)
 
 ---
 
@@ -588,4 +612,5 @@ allow-query { localhost; any; };
 - https://www.cloudflare.com/en-ca/learning/dns/glossary/dns-zone/
 - [DNS Zone File](https://www.computernetworkingnotes.com/linux-tutorials/dns-zone-file-format-configuration-and-directives.html)
 - https://www.redhat.com/en/blog/dns-configuration-introduction
+- [RHEL BIND Configuration](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_networking_infrastructure_services/setting-up-and-configuring-a-bind-dns-server)
 - [Understanding DNS bind zone file](https://arstechnica.com/gadgets/2020/08/understanding-dns-anatomy-of-a-bind-zone-file/)
