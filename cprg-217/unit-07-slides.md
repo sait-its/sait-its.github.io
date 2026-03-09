@@ -543,6 +543,87 @@ curl -X POST http://localhost:5000/api/data \
 
 ---
 
+### Use `urllib` to `POST`
+
+```python
+import urllib.request
+import urllib.error
+import json
+
+url = "http://localhost:5000/api/data"
+payload = { "name": "Mario", "age": 30, "occupation": "plumber" }
+
+# Convert dictionary to a JSON string and then to bytes
+data = json.dumps(payload).encode('utf-8')
+
+# Create the request object and specify the header
+req = urllib.request.Request(url, data=data, method='POST')
+req.add_header('Content-Type', 'application/json')
+
+# ......
+```
+
+---
+
+### Use `urllib` to `POST`
+
+```python
+# ......
+
+try:
+    # Send the request
+    with urllib.request.urlopen(req) as response:
+        status_code = response.getcode()
+        body = response.read().decode('utf-8')
+        print(f"Status Code: {status_code}")
+        print(f"Response: {body}")
+except urllib.error.URLError as e:
+    print(f"Connection Error: {e}")
+```
+
+---
+
+### Use `requests` Library to `POST`
+
+```python
+import requests
+
+url = "http://localhost:5000/api/data"
+payload = { "name": "Mario", "age": 30, "occupation": "plumber" }
+
+# The 'json' parameter automatically sets Content-Type to application/json
+response = requests.post(url, json=payload)
+
+print(f"Status Code: {response.status_code}")
+print(f"Response JSON: {response.json()}")
+```
+
+---
+
+### `FastAPI` Framework
+
+- [FastAPI](https://fastapi.tiangolo.com/) is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.
+
+```
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str | None = None):
+    return {"item_id": item_id, "q": q}
+```
+
+
+
+---
+
 ### Key Takeaways
 
 - Sockets enable communication between processes.
@@ -560,7 +641,8 @@ curl -X POST http://localhost:5000/api/data \
 - Use HTTP methods and interpret status codes correctly.
 - Get and consume data from external APIs with requests.
 - Design clear endpoints, data structures, and responses.
-- Build REST APIs efficiently using Flask framework.
+- Build REST APIs efficiently using Flask or FastAPI framework.
+- Use `urllib`, `requests`, or `httpx` library to access REST API servers.
 
 ---
 
@@ -580,3 +662,4 @@ curl -X POST http://localhost:5000/api/data \
 - https://medium.com/@liberatoreanita/understanding-rest-restful-apis-and-apis-naming-conventions-and-best-practices-fb5c4c7f3bc2
 - https://realpython.com/api-integration-in-python/
 - https://flask.palletsprojects.com/en/stable/
+- https://fastapi.tiangolo.com/
