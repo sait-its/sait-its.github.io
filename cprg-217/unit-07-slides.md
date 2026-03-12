@@ -238,6 +238,29 @@ s.close()
 
   - Python automatically closes sockets when they go out of scope, but this is not reliable.
   - Failure to close can lead to resource leaks and hanging connections.
+  - Use Context Manager (Recommended)
+
+---
+
+### Closing Sockets with Context Manager
+
+- Use `with` Context Manager to ensure the socket is properly closed even if an error occurs.
+- `with` is cleaner and safer than manually calling `close()`.
+
+```python
+import socket
+
+# Using a context manager ensures the socket
+# is automatically closed when the block exits.
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.connect(("www.sait.ca", 80))
+    s.send(b"GET / HTTP/1.1\r\nHost: www.sait.ca\r\n\r\n")
+    data = s.recv(1024)
+    print(data.decode())
+
+# No need to call s.close()
+# It is automatically closed when exiting the with block.
+```
 
 ---
 
@@ -245,6 +268,54 @@ s.close()
 
 - A simple client and server implementation. The server will echo whatever it receives back to the client. [Echo Client and Server](https://realpython.com/python-sockets/#echo-client-and-server)
 - File transfer is the process of copying or moving a file from one computer to another over a network or Internet connection. [How to Transfer Files in the Network using Sockets in Python](https://thepythoncode.com/article/send-receive-files-using-sockets-python)
+
+---
+
+### Half-Closing Sockets
+
+- In the world of network programming, closing a connection isn't always a "door-slamming" event.
+- Sometimes, you want to tell the other side, "I'm done talking, but I'm still listening."
+- That is what `shutdown(socket.SHUT_WR)` does.
+- Think of a socket as a **full-duplex** pipe: it has one lane for sending data and one lane for receiving it.
+
+---
+
+### Half-Closing Sockets
+
+- When you call `shutdown(socket.SHUT_WR)`, you are performing a **Half-Close**.
+  - **Stops the Outgoing Lane:** Your script can no longer send data through that socket. If you try to call `s.send()`, Python will raise an error.
+  - **Sends an EOF (End of File):** It sends a special TCP "FIN" packet to the remote party. On their end, their next `recv()` call will return **0 bytes**, signaling that you are done sending.
+  - **Keeps the Incoming Lane Open:** This is the crucial part. You can still call `recv()` and listen for data coming back from the other side.
+
+---
+
+### When to Use `shutdown()`
+
+- **The "Batch Upload" Scenario:** After sending the last byte of a large file to a server, you call `shutdown(SHUT_WR)`. The server sees the EOF, knows the file is complete, processes it, and sends back a "Success" message. `close()` destroys the entire socket object. You can't send *or* receive anymore.
+- **Protocol Cleanliness:** It tells the remote peer exactly where your data ends without having to define a custom `END_OF_MESSAGE` delimiter.
+
+---
+
+### Socket Programming Activities
+
+- Modified Echo Client to use Context Manager and Half-Close socket:
+
+```python
+import json
+import socket
+
+with open("data.json", "r", encoding="utf-8") as json_file:
+  	# socket can't send dict. json.dumps converts it to string
+    payload = json.dumps(json.load(json_file)).encode("utf-8")
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.connect(("127.0.0.1", 65432))
+    s.sendall(payload)
+    s.shutdown(socket.SHUT_WR)  # Use shutdown to half-close
+    data = s.recv(1024)  	   		# Can still receive data
+
+print(f"{data.decode('utf-8', errors='replace')}")
+```
 
 ---
 
