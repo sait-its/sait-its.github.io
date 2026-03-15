@@ -7,14 +7,14 @@ This is a GitHub Pages site hosting educational slides for SAIT (Southern Albert
 ## Overview
 
 This repository contains slide presentations for various courses:
-- **CPSY-204**: Server Fundamentals covering Linux intro
+- **CPSY-204**: Server Fundamentals covering Client/Server model, Linux intro, Linux Daemon, Service and systemd, DHCP and DNS
 - **CPRG-217**: Scripting course covering Python, Linux/Windows scripting, network programming, and Ansible
-- **CPSY-350**: Additional course materials
+- **CPSY-350**: Cloud Native Intro
 
 ## Technology Stack
 
 ### Reveal.js Framework
-- **Version**: 5.2.1
+- **Version**: 6.0.0
 - **Description**: HTML-based presentation framework for creating beautiful, interactive slide decks
 - **Features**:
   - Markdown support for easy content authoring
@@ -26,7 +26,7 @@ This repository contains slide presentations for various courses:
 ### Key Dependencies
 - **marked**: Markdown parser for converting `.md` files to slides
 - **highlight.js**: Syntax highlighting for code blocks
-- **Node.js**: Build tooling (requires Node.js >= 22.0.0)
+- **Node.js**: Build tooling (requires Node.js >= 24.0.0)
 
 ## Project Structure
 
@@ -42,7 +42,7 @@ This repository contains slide presentations for various courses:
 │   └── *.assets/           # Images and assets for slides
 ├── cpsy-204/               # CPSY-204 Server Fundamentals course slides
 │   ├── index.html          # Course navigation page
-│   ├── cpsy-204-unit-XX.md # Markdown slide content for each unit
+│   ├── cpsy-204-XX.md      # Markdown slide content for each topic
 │   └── *.assets/           # Images and assets for slides
 ├── cpsy-350/               # CPSY-350 course slides
 │   ├── index.html          # Course navigation page
@@ -100,12 +100,12 @@ Add a link to your slides in the appropriate navigation page:
 
 **For main units** - Edit `cprg-217/index.html`:
 ```html
-<a href="./viewer.html?file=my-new-topic.md">My New Topic</a></br>
+<a href="./viewer.html?file=cprg-217/my-new-topic.md">My New Topic</a></br>
 ```
 
 **For extra topics** - Edit `cprg-217/cprg-217-extras.html`:
 ```html
-<a href="./viewer.html?file=my-new-topic.md">My New Topic</a></br>
+<a href="./viewer.html?file=cprg-217/my-new-extra-topic.md">My New Extra Topic</a></br>
 ```
 
 #### 5. Test Locally
@@ -116,6 +116,8 @@ npm install
 # Start local server
 npm start
 
+# Visit http://localhost:8000
+# Or
 # Visit http://localhost:8000/cprg-217/
 ```
 
