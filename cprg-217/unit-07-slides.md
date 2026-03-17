@@ -319,6 +319,13 @@ print(f"{data.decode('utf-8', errors='replace')}")
 
 ---
 
+### What is an API
+
+- An API is a part of a website designed to **interact with programs**. Those programs use very specific URLs to request certain information. This kind of request is called an **API call**.
+- The requested data will be returned in an easily processed format, such as **JSON** or **XML**. Most apps that use external data sources, such as apps that integrate with social media sites, rely on **API calls**.
+
+---
+
 ### REST Architecture
 
 - **REST** stands for [**re**presentational **s**tate **t**ransfer](https://en.wikipedia.org/wiki/Representational_state_transfer) and is a software architecture style that defines a pattern for [client and server](https://en.wikipedia.org/wiki/Client–server_model) communications over a network.
@@ -334,9 +341,47 @@ print(f"{data.decode('utf-8', errors='replace')}")
 
 ---
 
-### REST APIs and Web Services
+### Analyze GitHub REST API Request
 
-- The following [GitHub’s REST API](https://docs.github.com/en/free-pro-team@latest/rest) allows you to access information about a specific GitHub user. 
+- Access the the following URL in your browser: https://api.github.com/search/repositories?q=language:python+sort:stars
+
+- The first part of the URL, `https://api.github.com/`, points to GitHub's API endpoint, the section of GitHub specifically designed to handle API requests.
+- The second part, `search/repositories`, instructs the API to search across all public repositories hosted on GitHub.
+
+---
+
+### Analyze GitHub REST API Request
+
+- The question mark (`?`) after repositories indicates that query parameters are coming next. Together, `?q=language:python` filters the results to Python repositories only.
+  - `q` stands for "query" — this is where we specify what we're searching for.
+  - The equals sign (`=`) starts the actual search term.
+  - `language:python` tells the GitHub to return only repos where Python is the primary programming language.
+- The final part, `+sort:stars`, sorts the projects by the number of stars they've been given.
+
+---
+
+### Analyze GitHub REST API Response
+
+- You can see from the response itself that it is not really meant for people. The format is designed to be read and processed by programs. As of this writing, GitHub returned more than 26 million repositories that list Python as their primary language.
+
+```
+{
+  "total_count": 26857782,
+  "incomplete_results": true,
+  "items": [
+    {
+      "id": 54346799,
+      "node_id": "MDEwOlJlcG9zaXRvcnk1NDM0Njc5OQ==",
+      "name": "public-apis",
+      "full_name": "public-apis/public-apis",
+      ......
+```
+
+---
+
+### More GitHub REST API Examples
+
+- The following [GitHub’s REST API](https://docs.github.com/en/free-pro-team@latest/rest) call allows you to access information about a specific GitHub user. 
 
 ```sh
 https://api.github.com/users/<username>
