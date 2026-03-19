@@ -720,11 +720,10 @@ print(f"Response JSON: {response.json()}")
 
 - [FastAPI](https://fastapi.tiangolo.com/) is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.
 
-```
+```python
 from fastapi import FastAPI
 
 app = FastAPI()
-
 
 @app.get("/")
 def read_root():
@@ -736,7 +735,40 @@ def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
+---
 
+### What's a Shebang
+
+- In short, a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) is a special kind of [comment](https://realpython.com/python-comments-guide/) that you may include in your source code to tell the operating system’s [shell](https://en.wikipedia.org/wiki/Shell_(computing)) where to find the interpreter for the rest of the file.
+
+```python
+#!/usr/bin/python3
+
+print("Hello, World!")
+```
+
+- Shebang must appear on the **first line** in your script, and it has to start with a [hash sign (`#`)](https://en.wikipedia.org/wiki/Number_sign) followed by an [exclamation mark (`!`)](https://en.wikipedia.org/wiki/Exclamation_mark), colloquially known as the bang, hence the name *shebang*.
+
+---
+
+### Putting `uv run` in the Shebang Line
+
+- `uv run` in the shebang line is a really neat pattern. Start your Python script like this:
+
+```python
+#!LOCATION_OF_YOUR_UV_BINARY run
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "flask==3.*",
+#     "requests==2.32.*",
+# ]
+# ///
+import flask
+# ...
+```
+
+- `chmod 755` it you can run it on *any machine* with the `uv` binary installed.
 
 ---
 
@@ -769,6 +801,8 @@ def read_item(item_id: int, q: str | None = None):
 - https://thepythoncode.com/article/send-receive-files-using-sockets-python
 - https://www.datacamp.com/tutorial/a-complete-guide-to-socket-programming-in-python
 - https://docs.python.org/3/library/socket.html
+- [Executing Python Scripts With a Shebang](https://realpython.com/python-shebang/)
+- https://simonwillison.net/2024/Aug/21/usrbinenv-uv-run/
 
 ---
 
