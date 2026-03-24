@@ -601,12 +601,12 @@ print(response.status_code) # 200
 
 ```python
 from flask import Flask, request, jsonify
-import json, datetime
+from datetime import datetime
+import json
 
 app = Flask(__name__) # Initialize the Flask application
 
-# Simple GET endpoint for testing
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET"]) # Simple GET endpoint for testing
 def home():
     return jsonify({"status": "online",
             "message": "Server is running. POST to /api/data"})
@@ -624,15 +624,14 @@ if __name__ == "__main__":
 @app.route("/api/data", methods=["POST"])
 def receive_data():
     try:
-        timestamp = datetime.datetime.now()
-            .strftime("%Y-%m-%d_%H-%M-%S")
-        collected_info = {"data": request.get_json(),
-                          "time": timestamp}
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        collected_info = {"sys_info": request.get_json(),
+                          "received_at": timestamp}
         filename = f"{timestamp}.json"
         # Add logging before return
         with open(filename, "w") as f:
             json.dump(collected_info, f, indent=4)
-        return {"status": "success"}, 200
+        return {"status": "success"}, 201
     except Exception as e:  # Add more specific Exceptions
         return {"status": "error", "message": str(e)}, 500
 ```

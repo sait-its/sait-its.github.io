@@ -124,11 +124,11 @@ baz(None)    # Valid, <- `| None`
 ```python
 from typing import Literal
 
-# The type checker will error if you pass 'boy' or 'girl'
-Sex = Literal['male', 'female']
+# The type checker will error if you pass 'AB' or 'SK'
+Province = Literal['Alberta', 'Saskatchewan']
 
-student_sex: Sex = "male"   # Valid
-student_sex: Sex = "girl"   # Invalid
+student_home: Province = "Alberta"  # Valid
+student_home: Province = "AB"       # Invalid
 ```
 
 ---
@@ -137,7 +137,7 @@ student_sex: Sex = "girl"   # Invalid
 
 - A common issue arises when defining a class method that references the class itself (e.g., a `follow` method in a `Student` class).
 - Since `Student` isn't fully defined yet inside its own body, Python used to raise a `NameError`.
-- **Solution:** Use `from __future__ import annotations`. This postpones the evaluation of type hints.
+- **Solution:** Use `from __future__ import annotations`. This postpones the evaluation of type hints. Generally unnecessary in Python 3.14 and later.
 
 ```python
 from __future__ import annotations
