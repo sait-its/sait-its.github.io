@@ -14,7 +14,7 @@ This repository contains slide presentations for various courses:
 ## Technology Stack
 
 ### Reveal.js Framework
-- **Version**: 6.0.0
+- **Version**: 6.0.1
 - **Description**: HTML-based presentation framework for creating beautiful, interactive slide decks
 - **Features**:
   - Markdown support for easy content authoring
