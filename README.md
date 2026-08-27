@@ -9,6 +9,7 @@ This is a GitHub Pages site hosting educational slides for SAIT (Southern Albert
 This repository contains slide presentations for various courses:
 - **CPSY-204**: Server Fundamentals covering Client/Server model, Linux intro, Linux Daemon, Service and systemd, DHCP and DNS
 - **CPRG-217**: Scripting course covering Python, Linux/Windows scripting, network programming, and Ansible
+- **CPSY-302**: Advanced Servers covering server management, monitoring, authentication, advanced network protocols, and PKI
 - **CPSY-350**: Cloud Native Intro
 
 ## Technology Stack

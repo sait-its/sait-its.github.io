@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CPSY 302 Advanced Servers</title>
+
+		<link rel="icon" href="../assets/slide-favicon.ico" type="image/x-icon">
+		<link rel="icon" href="../assets/slide-favicon-16x16.png" sizes="16x16" type="image/png">
+		<link rel="icon" href="../assets/slide-favicon-32x32.png" sizes="32x32" type="image/png">
+
+		<link rel="stylesheet" href="../dist/reset.css">
+		<link rel="stylesheet" href="../dist/reveal.css">
+		<link rel="stylesheet" href="../dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../dist/plugin/highlight/github.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section
+					data-background-color="ivory"
+					data-background-image="../assets/sait-logo.png"
+					data-background-size="3em"
+					data-background-position="top right"
+					data-separator="---"
+				>
+					<a href="../viewer.html?file=cpsy-302/sys-overview.md">Systems Overview</a></br>
+					<a href="../viewer.html?file=cpsy-302/windows-srv-monitoring.md">Windows Server Monitoring</a></br>
+					<a href="../viewer.html?file=cpsy-302/linux-monitoring.md">Linux Monitoring</a></br>
+					<a href="../viewer.html?file=cpsy-302/kerberos-overview.md">Kerberos Authentication Overview</a></br>
+					<a href="../viewer.html?file=cpsy-302/samba-kerberos.md">Samba with Kerberos</a></br>
+					<a href="../viewer.html?file=cpsy-302/win-iis.md">Web Services on Windows IIS</a></br>
+					<a href="../viewer.html?file=cpsy-302/lamp-stack.md">LAMP Stack on Linux</a></br>
+					<a href="../viewer.html?file=cpsy-302/cert-management.md">Certificates and Trust</a></br>
+					<a href="../viewer.html?file=cpsy-302/adv-net-services.md">Advanced Network Services</a></br>
+					<a href="../viewer.html?file=cpsy-302/entra-id-m365.md">Entra ID and Microsoft 365</a></br>
+				</section>
+			</div>
+		</div>
+
+		<script src="../dist/reveal.js"></script>
+		<script src="../dist/plugin/notes.js"></script>
+		<script src="../dist/plugin/markdown.js"></script>
+		<script src="../dist/plugin/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				disableLayout: false,
+				slideNumber: 'c/t',
+				width: 1100,
+				height: 800,
+				margin: 0.05,
+				minScale: 0.2,
+				maxScale: 2.0,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
