@@ -4,15 +4,6 @@
 
 ---
 
-### Why is Monitoring Important
-
-- **Core Infrastructure Role:** Linux servers form the backbone of modern enterprise, cloud infrastructure, web applications.
-- **Operational Goal:** Maintaining smooth, reliable performance across all hosted workloads is essential.
-- **Role of Monitoring & Alerting:** Enables system administrators to safeguard uptime, optimize performance, and harden security.
-- **Proactive Prevention:** Identifies potential system anomalies and risks early, preventing them from escalating into major outages.
-
----
-
 ### Why Linux Monitoring Matters
 
 - **Performance:** Detect high CPU, memory, disk, or network usage before it affects users.
