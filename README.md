@@ -128,6 +128,7 @@ Follow the same pattern as CPRG-217:
 1. Create markdown files in the course directory
 2. Use the `viewer.html` pattern or create course-specific HTML files
 3. Update navigation pages
+4. Add the course code and display name to the `courseTitles` mapping in `viewer.html`
 
 ## Development
 
@@ -160,4 +161,3 @@ This site is automatically deployed via GitHub Pages from the `main` branch. Any
 ## License
 
 MIT licensed | Copyright © 2024-2026
-
