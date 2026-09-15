@@ -103,7 +103,7 @@
     "marked": "^18.0.13",
     "marked-smartypants": "^1.1.11",
     "node-qunit-puppeteer": "^2.2.1",
-    "puppeteer": "^25.10.0",
+    "puppeteer": "^25.11.0",
     "qunit": "^2.26.0",
     "sass": "^1.104.1",
     "typescript": "^7.0.2",
@@ -129,7 +129,7 @@
     "@parcel/watcher@2.5.6": true,
     "esbuild@0.28.2": true,
     "fsevents@2.3.3": true,
-    "puppeteer@25.10.0": true
+    "puppeteer@25.11.0": true
   },
   "subdomain": "revealjs"
 }

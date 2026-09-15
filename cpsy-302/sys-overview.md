@@ -418,7 +418,7 @@ PubkeyAuthentication yes
 
 - Don’t forget you can run remote desktop to connect to a windows machine – if permitted.
 - In a domain, a sysadmin would have a regular account that they would use to do their regular work, and a secondary admin account that they would use to elevate their rights – this account would be a member of a group that would give them the rights to carry out their job.
-- The administrator account is often renamed and disabled, and protected with a strong password
+- The administrator account is often renamed and disabled, and protected with a strong password.
   When you have multiple users who are carrying out administrative tasks, you shouldn’t just be “sharing” the/an administrator account.
 
 ---
