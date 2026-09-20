@@ -15,7 +15,7 @@ This repository contains slide presentations for various courses:
 ## Technology Stack
 
 ### Reveal.js Framework
-- **Version**: 6.0.1
+- **Version**: 6.0.2
 - **Description**: HTML-based presentation framework for creating beautiful, interactive slide decks
 - **Features**:
   - Markdown support for easy content authoring
@@ -138,7 +138,18 @@ npm start
 ```
 Starts a local server at `http://localhost:8000`
 
+### Expose to network(s)
+
+```bash
+# Expose to one network
+npm start -- --host 192.168.0.34
+
+# Expose to all networks
+npm start -- --host
+```
+
 ### Building
+
 ```bash
 npm run build
 ```
