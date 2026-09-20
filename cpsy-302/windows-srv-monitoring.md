@@ -234,7 +234,7 @@ Get-Counter '\Processor(_Total)\% Processor Time' -SampleInterval 2 -MaxSamples 
 
 - **Current Utilization** 
   - The utilization averaged over a small time period. Typical sampling times for analyzers range from 100 ms to 10 seconds. 
-  - Utilization at any time helps determine how busy a resource is
+  - Utilization at any time helps determine how busy a resource is.
 
 ---
 

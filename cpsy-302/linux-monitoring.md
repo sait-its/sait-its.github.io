@@ -227,6 +227,15 @@ Read: [Exploring virtual memory with `vmstat`](https://www.redhat.com/en/blog/li
 
 ---
 
+### `witr` - Why is this Running
+
+- [`witr`](https://github.com/pranshuparmar/witr) traces any process, port, container, or file back to the exact chain that started it —
+  one command, machine-readable JSON, or an interactive TUI.
+
+![witr](./linux-monitoring.assets/witr.webp)
+
+---
+
 ### Linux Troubleshooting Workflow
 
 ![linux-ts-workflow](./linux-monitoring.assets/linux-ts-workflow.webp)
@@ -291,3 +300,4 @@ Read: [Exploring virtual memory with `vmstat`](https://www.redhat.com/en/blog/li
 - [`ip` command](https://man7.org/linux/man-pages/man8/ip.8.html)
 - [`systemctl` command](https://man7.org/linux/man-pages/man1/systemctl.1.html)
 - [`journalctl` command](https://man7.org/linux/man-pages/man1/journalctl.1.html)
+- https://github.com/pranshuparmar/witr
