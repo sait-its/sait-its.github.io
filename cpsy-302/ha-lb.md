@@ -281,12 +281,7 @@ Credit: [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-rever
 
 ### Thresholds and Recovery
 
-- Health policy normally includes:
-  - Check interval
-  - Timeout
-  - Failure threshold
-  - Success threshold
-  - Recovery behaviour
+- Health policy normally includes: Check interval, Timeout, Failure threshold, Success threshold, and Recovery behaviour.
 - Fast detection reduces time spent using a failed backend.
 - Aggressive thresholds can remove a backend after a temporary delay.
 - **Flapping** repeatedly removes and restores an unstable backend.
