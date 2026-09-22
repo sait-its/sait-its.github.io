@@ -311,16 +311,11 @@ Credit: [What Is Single Sign-On (SSO) and How It Works](https://aws.plainenglish
 - An attacker should not be able to capture an authentication message and simply reuse it later.
 
   - Kerberos uses:
-
   - Timestamps
-
   - Authenticators
-
   - Ticket lifetimes
-
   - Replay detection
-
-  - Freshness is an important part of Kerberos authentication.
+- Freshness is an important part of Kerberos authentication.
 
 ---
 
@@ -458,7 +453,7 @@ Credit: [Linux Active Directory Integration with SSSD](https://blog.ronnyvdb.net
 
 - **PAM** handles the Linux login process.
 - **SSSD** communicates with Active Directory.
-- **PAM** with **SSSD**: <br>User Login -> PAM -> SSD -> Active Directory 
+- **PAM** with **SSSD**: <br>User Login → PAM → SSD → Active Directory 
 
 ---
 
