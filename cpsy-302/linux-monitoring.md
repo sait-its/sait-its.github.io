@@ -236,6 +236,34 @@ Read: [Exploring virtual memory with `vmstat`](https://www.redhat.com/en/blog/li
 
 ---
 
+### The `/proc` Pseudo-Filesystem
+
+- `/proc` is a virtual filesystem (procfs) generated dynamically in memory by the Linux kernel.
+- Reading files here acts as a read-only window directly into active kernel data structures, device configurations, and process memory maps.
+- Numbered directories inside `/proc` (e.g., `/proc/1234/`) correspond to running Process IDs (PIDs), exposing that process's open file descriptors, environment variables, and status.
+- Named entries at the root level (like `cpuinfo`, `sys/`, and `meminfo`) report global, host-wide system parameters.
+
+---
+
+### `/proc/meminfo`
+
+- This file serves as the kernel's real-time ledger for system-wide memory utilization.
+- Tools like `free`, `top`, and `vmstat` read `/proc/meminfo` rather than hardware directly to display memory metrics.
+
+- `MemTotal`: Total usable RAM available to the kernel (physical RAM minus kernel code and reserved firmware space).
+- `MemFree`: Memory with literally nothing in it.
+- `MemAvailable`: Estimated RAM usable for new workloads without swapping, including reclaimable cache and buffers.
+
+---
+
+### Buffers vs. Cached
+
+- `Buffers`: In-flight raw disk blocks waiting to be written or read (metadata and filesystem overhead).
+- `Cached`: The page cache holding files read from disk. The kernel treats this as opportunistically held; if an application requests memory, these pages can be instantly evicted without a disk flush.
+- Fields like `SwapTotal` and `SwapFree` track paging space on disk, while `Dirty` shows memory waiting to be synced to disk, giving immediate visibility into pending I/O pressure.
+
+---
+
 ### Linux Troubleshooting Workflow
 
 ![linux-ts-workflow](./linux-monitoring.assets/linux-ts-workflow.webp)
