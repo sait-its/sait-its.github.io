@@ -174,6 +174,14 @@ Credit: [What Is Single Sign-On (SSO) and How It Works](https://aws.plainenglish
 
 ---
 
+### Kerberos V5 Exchanges
+
+![krb5-exchanges](./kerberos-fundamentals.assets/krb5-exchanges.png)
+
+Credit: [Kerberos Network Authentication Service (V5) Synopsis](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-kile/b4af186e-b2ff-43f9-b18e-eedb366abf13)
+
+---
+
 ### Kerberos Realm
 
 - A **realm** is an administrative Kerberos namespace.
@@ -286,14 +294,7 @@ Credit: [What Is Single Sign-On (SSO) and How It Works](https://aws.plainenglish
   - The service ticket can be reused during its valid lifetime.
 
   - This makes Kerberos efficient for enterprise **Single Sign-On**.
-
----
-
-### Windows Event ID 4768
-
 - [Windows event ID 4768](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4768) is generated every time the KDC attempts to validate credentials.
-
-![event-4768-kerberos-authn](./kerberos-fundamentals.assets/event-4768-kerberos-authn.webp)
 
 ---
 
@@ -309,8 +310,7 @@ Credit: [What Is Single Sign-On (SSO) and How It Works](https://aws.plainenglish
 ### Replay Protection
 
 - An attacker should not be able to capture an authentication message and simply reuse it later.
-
-  - Kerberos uses:
+- Kerberos uses:
   - Timestamps
   - Authenticators
   - Ticket lifetimes
@@ -512,6 +512,7 @@ Credit: [Linux Active Directory Integration with SSSD](https://blog.ronnyvdb.net
 - https://auth0.com/intro-to-iam/what-is-authorization
 - https://en.wikipedia.org/wiki/Kerberos_(protocol)
 - [Kerberos Network Authentication Service (V5) Synopsis](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-kile/b4af186e-b2ff-43f9-b18e-eedb366abf13)
+- [Kerberos Authentication Explained | A deep dive](https://www.youtube.com/watch?v=5N242XcKAsM)
 - [Windows event ID 4768](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4768)
 - [Linux Active Directory Integration with SSSD](https://blog.ronnyvdb.net/2019/02/22/howto-linux-active-directory-integration-with-sssd/)
 - [SSSD and UID and GID Numbers](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/deployment_guide/sssd-system-uids)
