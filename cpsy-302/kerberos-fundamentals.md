@@ -453,7 +453,7 @@ Credit: [Linux Active Directory Integration with SSSD](https://blog.ronnyvdb.net
 
 - **PAM** handles the Linux login process.
 - **SSSD** communicates with Active Directory.
-- **PAM** with **SSSD**: <br>User Login → PAM → SSD → Active Directory 
+- **PAM** with **SSSD**: <br>User Login → PAM → SSSD → Active Directory 
 
 ---
 
