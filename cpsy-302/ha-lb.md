@@ -179,7 +179,7 @@ Credit: [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-rever
   - Request-oriented decisions
   - HTTP/HTTPS awareness
   - Content-based routing
-  - Easier integration with TLS termination and web security
+  - Easier integration with SSL/TLS termination and web security
 - Select the layer according to the protocol and routing requirements—not product preference.
 
 ---
@@ -187,12 +187,20 @@ Credit: [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-rever
 ### TLS Handling
 
 - A reverse proxy may terminate the client’s TLS connection.
-- **TLS termination** centralizes certificates and HTTPS policy.
+- **SSL/TLS termination** centralizes certificates and HTTPS policy.
 - Traffic from proxy to backend may then use:
   - Unencrypted HTTP on a trusted network
-  - A new TLS connection
+  - A new SSL/TLS connection
 - **Re-encryption** protects the backend path but adds certificate and processing requirements.
 - TLS placement affects security, visibility, troubleshooting, and performance.
+
+---
+
+### SSL/TLS Termination
+
+![ssl-termination-diagram](./ha-lb.assets/ssl-termination-diagram.png)
+
+Credit: [SSL Termination Definition](https://www.vmware.com/topics/ssl-termination)
 
 ---
 
@@ -464,4 +472,5 @@ Credit: [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-rever
 - [Load Balancing Vs Failover](https://www.geeksforgeeks.org/system-design/load-balancing-vs-failover/)
 - [How Elastic Load Balancing works](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)
 - [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-reverse-proxy-whats-the-difference-472644cc8324)
+- [SSL Termination Definition](https://www.vmware.com/topics/ssl-termination)
 - [nginx documentation](https://nginx.org/en/docs/)
