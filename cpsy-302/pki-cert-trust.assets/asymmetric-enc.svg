@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 510" width="100%" height="100%">
+  <defs>
+    <style>
+      .label-title { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 21px; font-weight: 600; fill: #2c367d; text-anchor: middle; }
+      .label-sub { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13.5px; fill: #2c367d; text-anchor: middle; }
+      .doc-text { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 17px; fill: #1d2550; text-anchor: middle; line-height: 1.4; }
+      .cipher-text { font-family: "Courier New", Courier, monospace; font-size: 14.5px; font-weight: 600; fill: #1d2550; text-anchor: middle; }
+    </style>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#141a5e" />
+    </marker>
+    <marker id="thin-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 6 5 L 0 8 z" fill="#8f9bb3" />
+    </marker>
+  </defs>
+
+  <!-- Horizontal Process Pipeline Arrow -->
+  <line x1="180" y1="135" x2="755" y2="135" stroke="#141a5e" stroke-width="5" marker-end="url(#arrow)" />
+
+  <!-- ==================== 1. UNENCRYPTED PLAINTEXT (LEFT) ==================== -->
+  <g transform="translate(20, 20)">
+    <!-- Document Outline -->
+    <path d="M 12 12 
+             L 108 12 
+             L 152 56 
+             L 152 216 
+             L 12 216 Z" 
+          fill="#ffffff" stroke="#ea6918" stroke-width="15" stroke-linejoin="round" stroke-linecap="round" />
+    <!-- Dog-ear fold line -->
+    <path d="M 108 12 L 108 56 L 152 56" fill="none" stroke="#ea6918" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" />
+    
+    <!-- Document Text -->
+    <text x="82" y="115" class="doc-text">
+      <tspan x="82" dy="0">May the</tspan>
+      <tspan x="82" dy="25">Force be</tspan>
+      <tspan x="82" dy="25">with you.</tspan>
+    </text>
+  </g>
+
+  <text x="102" y="270" class="label-title">
+    <tspan x="102" dy="0">Unencrypted</tspan>
+    <tspan x="102" dy="26">Plaintext</tspan>
+    <tspan x="102" dy="26">Message</tspan>
+  </text>
+
+  <!-- ==================== 2. ENCRYPTION LOCK & BLUE KEY ==================== -->
+  <!-- Vertical Key Pointer Arrow -->
+  <line x1="280" y1="285" x2="280" y2="185" stroke="#9aa3af" stroke-width="3" marker-end="url(#thin-arrow)" />
+
+  <!-- Closed Lock -->
+  <g transform="translate(242, 80)">
+    <!-- Shackle -->
+    <path d="M 19 32 V 22 A 19 19 0 0 1 57 22 V 32" fill="none" stroke="#43a047" stroke-width="8.5" stroke-linecap="round" />
+    <!-- Body -->
+    <path d="M 6 30 C 6 29 10 28 38 28 C 66 28 70 29 70 30 L 74 72 C 74 77 68 80 38 80 C 8 80 2 77 2 72 Z" fill="#43a047" />
+    <!-- Keyhole -->
+    <circle cx="38" cy="48" r="6" fill="#ffffff" />
+    <polygon points="35,48 41,48 43,62 33,62" fill="#ffffff" />
+  </g>
+
+  <!-- Blue Encryption Key -->
+  <g transform="translate(280, 345)">
+    <path d="M 0 -35 
+             C 16 -35 27 -24 27 -8 
+             C 27 5 18 16 7 19 
+             L 7 55 
+             L -7 55 
+             L -7 45 
+             L 0 45 
+             L -7 38 
+             L -7 28 
+             L 0 28 
+             L -7 21 
+             C -18 17 -27 5 -27 -8 
+             C -27 -24 -16 -35 0 -35 Z
+             M 0 -22
+             A 6 6 0 1 0 0.01 -22 Z" 
+          fill="#1c2b64" />
+  </g>
+
+  <!-- Key Labels (Multi-line Asymmetric Key Text) -->
+  <text x="280" y="425" class="label-title">Encryption Key</text>
+  <text x="280" y="448" class="label-sub">
+    <tspan x="280" dy="0">(MIIBIjANBgkqhkiG9w0BAQ</tspan>
+    <tspan x="280" dy="18">EFAAOCAQSAMIBCgKCAQ</tspan>
+    <tspan x="280" dy="18">EAjVilSosPyM+FkUBnTIp...)</tspan>
+  </text>
+
+  <!-- ==================== 3. ENCRYPTED CIPHERTEXT (CENTER) ==================== -->
+  <g transform="translate(390, 20)">
+    <!-- Document Outline -->
+    <path d="M 12 12 
+             L 108 12 
+             L 152 56 
+             L 152 216 
+             L 12 216 Z" 
+          fill="#ffffff" stroke="#ea6918" stroke-width="15" stroke-linejoin="round" stroke-linecap="round" />
+    <!-- Dog-ear fold line -->
+    <path d="M 108 12 L 108 56 L 152 56" fill="none" stroke="#ea6918" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" />
+    
+    <!-- Ciphertext lines -->
+    <text x="82" y="98" class="cipher-text">
+      <tspan x="82" dy="0">VF99xCy5eM</tspan>
+      <tspan x="82" dy="21">EcvXbyMZna</tspan>
+      <tspan x="82" dy="21">4mvzT+js+LV</tspan>
+      <tspan x="82" dy="21">heJYXg8DO3</tspan>
+      <tspan x="82" dy="21">81PS9KVd...</tspan>
+    </text>
+  </g>
+
+  <text x="472" y="275" class="label-title">
+    <tspan x="472" dy="0">Encrypted</tspan>
+    <tspan x="472" dy="28">Ciphertext</tspan>
+  </text>
+
+  <!-- ==================== 4. DECRYPTION LOCK & GREEN KEY ==================== -->
+  <!-- Vertical Key Pointer Arrow -->
+  <line x1="660" y1="285" x2="660" y2="185" stroke="#9aa3af" stroke-width="3" marker-end="url(#thin-arrow)" />
+
+  <!-- Open Lock -->
+  <g transform="translate(622, 72)">
+    <!-- Open Shackle -->
+    <path d="M 19 32 V 15 A 19 19 0 0 1 57 15 V 24" fill="none" stroke="#43a047" stroke-width="8.5" stroke-linecap="round" />
+    <!-- Body -->
+    <path d="M 6 38 C 6 37 10 36 38 36 C 66 36 70 37 70 38 L 74 80 C 74 85 68 88 38 88 C 8 88 2 85 2 80 Z" fill="#43a047" />
+    <!-- Keyhole -->
+    <circle cx="38" cy="56" r="6" fill="#ffffff" />
+    <polygon points="35,56 41,56 43,70 33,70" fill="#ffffff" />
+  </g>
+
+  <!-- Green Decryption Key -->
+  <g transform="translate(660, 345)">
+    <path d="M 0 -35 
+             C 16 -35 27 -24 27 -8 
+             C 27 5 18 16 7 19 
+             L 7 55 
+             L -7 55 
+             L -7 45 
+             L 0 45 
+             L -7 38 
+             L -7 28 
+             L 0 28 
+             L -7 21 
+             C -18 17 -27 5 -27 -8 
+             C -27 -24 -16 -35 0 -35 Z
+             M 0 -22
+             A 6 6 0 1 0 0.01 -22 Z" 
+          fill="#43a047" />
+  </g>
+
+  <!-- Key Labels (Multi-line Asymmetric Key Text) -->
+  <text x="660" y="425" class="label-title">Decryption Key</text>
+  <text x="660" y="448" class="label-sub">
+    <tspan x="660" dy="0">(MIIEvAIBADANBgkqhkiG9</tspan>
+    <tspan x="660" dy="18">w0BAQEFAASCBKYwggSiA</tspan>
+    <tspan x="660" dy="18">gEAAoIBAQCNWlhKiw...)</tspan>
+  </text>
+
+  <!-- ==================== 5. DECRYPTED PLAINTEXT (RIGHT) ==================== -->
+  <g transform="translate(770, 20)">
+    <!-- Document Outline -->
+    <path d="M 12 12 
+             L 108 12 
+             L 152 56 
+             L 152 216 
+             L 12 216 Z" 
+          fill="#ffffff" stroke="#ea6918" stroke-width="15" stroke-linejoin="round" stroke-linecap="round" />
+    <!-- Dog-ear fold line -->
+    <path d="M 108 12 L 108 56 L 152 56" fill="none" stroke="#ea6918" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" />
+    
+    <!-- Document Text -->
+    <text x="82" y="115" class="doc-text">
+      <tspan x="82" dy="0">May the</tspan>
+      <tspan x="82" dy="25">Force be</tspan>
+      <tspan x="82" dy="25">with you.</tspan>
+    </text>
+  </g>
+
+  <text x="852" y="275" class="label-title">
+    <tspan x="852" dy="0">Decrypted</tspan>
+    <tspan x="852" dy="26">Plaintext</tspan>
+    <tspan x="852" dy="26">Message</tspan>
+  </text>
+</svg>

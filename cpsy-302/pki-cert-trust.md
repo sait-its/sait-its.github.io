@@ -11,7 +11,7 @@
 - Very fast and efficient. Commonly used to encrypt large amounts of data.
 - **Challenge:** How to securely share the secret key?
 
-![symmetric-enc](./pki-cert-trust.assets/symmetric-enc.webp)
+<img src="./pki-cert-trust.assets/symmetric-enc.svg" height="300" alt="symmetric encryption">
 
 ---
 
@@ -22,7 +22,7 @@
 - The two keys **do not need to be secretly shared**.
 - **New challenge:** Alice has Bob's public key, but how does she know it **really belongs to Bob**?
 
-![asymmetric-enc](./pki-cert-trust.assets/asymmetric-enc.webp)
+<img src="./pki-cert-trust.assets/asymmetric-enc.svg" height="300" alt="asymmetric encryption">
 
 ---
 
@@ -77,7 +77,7 @@
 
 ---
 
-### Certificate in Action
+### Certificate Illustrated
 
 ![cert-in-action](./pki-cert-trust.assets/cert-in-action.webp)
 
@@ -191,6 +191,45 @@
 
 ---
 
+### Why Should We Trust a CA
+
+- **The Root of Trust:** Trusting a CA functions like trusting a bank or food vendor—it is grounded in reputation, regulation, and social consensus rather than pure mathematics.   
+- **Pre-installed Trust Anchors:** Browsers and operating systems come pre-packaged with trusted root certificates; users inherently delegate trust to reputable software vendors.   
+- **Beyond Hierarchical Chains:** CA hierarchies do not create trust out of nothing; digital trust always builds upon existing external channels, real-world credentials, and established multi-source reputation.
+
+---
+
+### `Windows` Certificate Store
+
+- **Storage Architecture:** Registry-backed binary stores managed via CryptoAPI/CNG rather than flat filesystem files.
+
+- **GUI Management:** `certlm.msc` (Local Machine) or `certmgr.msc` (Current User).
+- **Registry Locations**:![win-cert-reg](./pki-cert-trust.assets/win-cert-reg.webp)
+
+---
+
+### `Linux` Certificate Trust Bundles
+
+- **Storage Architecture:** Plaintext PEM certificate drop directories compiled by distribution scripts into a monolithic runtime bundle.
+
+- **Debian / Ubuntu:**
+
+  - Drop `.crt` files to path:<br>`/usr/local/share/ca-certificates/*.crt`
+
+  - Compiled Bundle:<br>`/etc/ssl/certs/ca-certificates.crt`
+
+  - Update Command:<br>`sudo update-ca-certificates`
+
+---
+
+### `macOS` Keychain Architecture
+
+- **Storage Architecture:** Binary Apple Keychain databases split strictly by privilege and System Integrity Protection (SIP).
+
+- **GUI Management:** **Keychain Access.app**![keychain-access](./pki-cert-trust.assets/keychain-access.webp)
+
+---
+
 ### Root, Subordinate, and Issuing CAs
 
 - The **Root CA** is the trust anchor
@@ -218,6 +257,22 @@
   - Processes normal certificate requests
 
   - Issues and revokes operational certificates
+
+---
+
+### Private PKI
+
+- When you deploy **Active Directory Certificate Services** (ADCS), it serves as an organization’s internal, private Public Key Infrastructure (PKI).
+- It is basically your office handing you a laminated ID badge made by Justin in HR. Inside the building? You’re golden. The doors open, the supply closet unlocks, and everyone respects your plastic rectangle of power.
+- Outside the building? Try flashing that "Associate Regional Snack Coordinator" badge at airport security. They’ll laugh you all the way back to the parking lot, because nobody in the real world knows who the heck Justin is, let alone trusts his laminator.
+
+---
+
+### Private PKI
+
+![costco-card-tsa](./pki-cert-trust.assets/costco-card-tsa.webp)
+
+Credit: [Costco cardholders warned](https://talent24h.okdiario.com/united-states/costco-cardholders-warned-tsa-rejecting-cards-at-checkpoints/)
 
 ---
 
@@ -283,6 +338,26 @@ Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-u
 
 ---
 
+### How a Client Validates a Certificate
+
+- The client asks:
+
+  - Is the certificate currently valid?
+
+  - Is every signature in the chain valid?
+
+  - Can the chain reach a trusted root?
+
+  - Is the certificate permitted for this use?
+
+  - Has any certificate been revoked?
+
+  - Does the identity match the expected service?
+
+- [Microsoft’s Schannel guidance](https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-ssp-overview) includes chain, time, revocation, usage, trust, and server-identity checks.
+
+---
+
 ###  Authority Information Access
 
 - AIA means **Authority Information Access**
@@ -343,26 +418,6 @@ Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-u
 
 ---
 
-### How a Client Validates a Certificate
-
-- The client asks:
-
-  - Is the certificate currently valid?
-
-  - Is every signature in the chain valid?
-
-  - Can the chain reach a trusted root?
-
-  - Is the certificate permitted for this use?
-
-  - Has any certificate been revoked?
-
-  - Does the identity match the expected service?
-
-- [Microsoft’s Schannel guidance](https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-ssp-overview) includes chain, time, revocation, usage, trust, and server-identity checks.
-
----
-
 ### Certificates Revoked
 
 - [Several Iranian banking websites and digital platforms have had their SSL/TLS certificates revoked](https://digiato.global/report/iran-banks-tls-certificate-revocations/) by international CAs due to US sanctions against Iran.
@@ -388,42 +443,193 @@ Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-u
 
 ---
 
-### Why Should We Trust a CA
+### Putting Theory into Practice
 
-- **The Root of Trust:** Trusting a CA functions like trusting a bank or food vendor—it is grounded in reputation, regulation, and social consensus rather than pure mathematics.   
-- **Pre-installed Trust Anchors:** Browsers and operating systems come pre-packaged with trusted root certificates; users inherently delegate trust to reputable software vendors.   
-- **Beyond Hierarchical Chains:** CA hierarchies do not create trust out of nothing; digital trust always builds upon existing external channels, real-world credentials, and established multi-source reputation.
+- Build an enterprise-grade **Two-Tier PKI Hierarchy**:
 
----
+    - **ROOTCA:** Standalone, air-gapped Root CA (Workgroup, network disconnected)
 
-### `Windows` Certificate Store
+    - **SUBCA:** Enterprise Subordinate Issuing CA (Domain-joined, online, templates enabled)
 
-- **Storage Architecture:** Registry-backed binary stores managed via CryptoAPI/CNG rather than flat filesystem files.
+    - **HTTP Distribution Host:** IIS running on SUBCA serving certificates and revocation lists
 
-- **GUI Management:** `certlm.msc` (Local Machine) or `certmgr.msc` (Current User).
-- **Registry Locations**:![win-cert-reg](./pki-cert-trust.assets/win-cert-reg.webp)
+- **Core Mission:** Provide high-assurance digital trust to domain clients while keeping the top-level signing key permanently disconnected from network threats.
 
 ---
 
-### `Linux` Certificate Trust Bundles
+### 4 Core Phases
 
-- **Storage Architecture:** Plaintext PEM certificate drop directories compiled by distribution scripts into a monolithic runtime bundle.
+- **Phase 1: Build the Trust Anchor (Root CA)**
 
-- **Debian / Ubuntu:**
+  - Generate root key pair and self-signed certificate.
 
-  - Drop `.crt` files to path:<br>`/usr/local/share/ca-certificates/*.crt`
+  - Configure AIA/CDP extensions for future issued certificates.
 
-  - Compiled Bundle:<br>`/etc/ssl/certs/ca-certificates.crt`
+  - Publish public Root CA artifacts to Active Directory.
 
-  - Update Command:<br>`sudo update-ca-certificates`
+- **Phase 2: Establish the HTTP Distribution Infrastructure**
+  - Host public artifacts on IIS with a resilient DNS alias (`pki.domain.internal`).
 
 ---
 
-### `macOS` Keychain Architecture
+### 4 Core Phases
 
-- **Storage Architecture:** Binary Apple Keychain databases split strictly by privilege and System Integrity Protection (SIP).
+- **Phase 3: Provision the Subordinate CA**
 
-- **GUI Management:** **Keychain Access.app**![keychain-access](./pki-cert-trust.assets/keychain-access.webp)
+  - Submit CSR to Root CA, approve it offline, and install the signed intermediate cert.
+
+  - Configure SubCA AIA/CDP URLs and publish its revocation list (CRL).
+
+- **Phase 4: Air-Gap the Root & Verify Chain Integrity**
+  - Back up Root CA keys, shut it down, and validate end-to-end chain and revocation over HTTP.
+
+---
+
+### File Extensions
+
+<table>
+  <thead>
+    <tr>
+      <th>Extension</th>
+      <th>Name</th>
+      <th>What It Really Is</th>
+      <th>Sensitive?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.req</code></td>
+      <td>CSR</td>
+      <td>Request payload with public key &amp; identity</td>
+      <td><strong>No Private Key</strong></td>
+    </tr>
+    <tr>
+      <td><code>.cer</code> / <code>.crt</code></td>
+      <td>Certificate</td>
+      <td>Signed public key + extensions (DER or Base64)</td>
+      <td><strong>No Private Key</strong></td>
+    </tr>
+    <tr>
+      <td><code>.crl</code></td>
+      <td>Revocation List</td>
+      <td>Signed list of revoked certificate serial numbers</td>
+      <td><strong>No Private Key</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+### File Extensions
+
+<table>
+  <thead>
+    <tr>
+      <th>Extension</th>
+      <th>Name</th>
+      <th>What It Really Is</th>
+      <th>Sensitive?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.pfx</code> / <code>.p12</code></td>
+      <td>PKCS#12 Archive</td>
+      <td>Certificate <strong>plus</strong> private key bundle</td>
+      <td><strong>YES (Keep Secured)</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+### The "Sneakernet" Boundary
+
+- The Root CA network adapter remains **disconnected** at all times.
+
+- Data moves between environments strictly through controlled staging media (`E:\PKI-Transfer`).
+
+- **Golden Rule:** **Private keys NEVER leave their originating server.**
+
+---
+
+### What Crosses, What Stays?
+
+<table>
+  <thead>
+    <tr>
+      <th>Direction</th>
+      <th>Artifact Moved</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Root &rarr; SubCA</td>
+      <td><code>ROOTCA_*.crt</code></td>
+      <td>Public trust anchor certificate</td>
+    </tr>
+    <tr>
+      <td>Root &rarr; SubCA</td>
+      <td><code>DOMAIN-RootCA.crl</code></td>
+      <td>Public revocation list</td>
+    </tr>
+    <tr>
+      <td>SubCA &rarr; Root</td>
+      <td><code>DOMAIN-IssuingCA.req</code></td>
+      <td>Certificate Signing Request (Public Key + Subject)</td>
+    </tr>
+    <tr>
+      <td>Root &rarr; SubCA</td>
+      <td><code>DOMAIN-IssuingCA.cer</code></td>
+      <td>Signed SubCA certificate</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+### Why Web Distribution Matters
+
+- **Why HTTP instead of LDAP/AD for client fetches?**
+
+  - Cross-platform support (Linux, macOS, network appliances, and mobile devices cannot query AD LDAP natively).
+
+  - Eliminates circular dependencies (HTTPS requires checking a certificate before validating a certificate!).
+
+  - Fast, cacheable, and lightweight.
+
+---
+
+### Two-Tier PKI Workflow
+
+![two-tier-pki-arch-workflow](./pki-cert-trust.assets/two-tier-pki-arch-workflow.svg)
+
+---
+
+### Implementation Pain Points
+
+- A Root CA is a self-signed trust anchor; it has no parent to check against, so AIA/CDP extensions inside its certificate are meaningless.
+- Leaving default templates enabled on a Root CA risks accidentally issuing end-entity certs from the root, breaking the two-tier trust separation.
+- Create `CAPolicy.inf` to prevent AIA/CDP extensions on the root and disable default templates.
+
+---
+
+### What If Scenario Questions
+
+1. The Root CA VM has been deleted from disk. Can a domain client still obtain a valid certificate from the SubCA?
+2. Can we use HTTP**S** for our AIA/CDP distribution point (`https://pki...`)?
+3. If you change the CDP URL on the SubCA today, does it fix certificates issued yesterday?
+
+<br>🤯Let your brain cook for at least one minute before you run straight to the spoilers on the next page.
+
+---
+
+### Answers
+
+1. Yes, until the SubCA's certificate or Root CRL expires.
+2. No, it creates an unbreakable circular dependency if the client must validate TLS revocation before validating TLS revocation!
+3. No, URLs are permanently baked into certificates at issuance time.
 
 ---
 
@@ -434,10 +640,12 @@ Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-u
 - [Microsoft PKI Planning and Deploying Certificate Services](https://www.petenetlive.com/KB/Article/0001309)
 - [Schannel SSP Technical Overview](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786429(v=ws.11))
 - [TLS/SSL overview (Schannel SSP)](https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-ssp-overview) 
+- https://en.wikipedia.org/wiki/Sneakernet
 
 ---
 
 ### AI Disclaimer
 
 - M365 Copilot was used to select topics about PKI.
-- I sketch concepts on my iPad with an Apple Pencil and use ChatGPT Images 2.5 to render them. Every AI-generated illustration is manually reviewed and verified.
+- Concepts were sketched by hand on an iPad using an Apple Pencil, with ChatGPT Images 2.5 used for final rendering.
+- Every AI-generated illustration is manually reviewed and verified.

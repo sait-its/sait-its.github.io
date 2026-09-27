@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%" style="background:transparent; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="rootGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef2f2" />
+      <stop offset="100%" stop-color="#fee2e2" />
+    </linearGradient>
+    <linearGradient id="subGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff" />
+      <stop offset="100%" stop-color="#dbeafe" />
+    </linearGradient>
+    <linearGradient id="mediaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb" />
+      <stop offset="100%" stop-color="#fef3c7" />
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#0284c7" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#d97706" />
+    </marker>
+  </defs>
+
+  <!-- ROOT CA ZONE -->
+  <rect x="50" y="30" width="280" height="380" rx="10" fill="url(#rootGrad)" stroke="#dc2626" stroke-width="2" />
+  <rect x="65" y="45" width="250" height="35" rx="6" fill="#dc2626" />
+  <text x="190" y="67" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">OFFLINE ROOT CA</text>
+  <text x="190" y="100" text-anchor="middle" fill="#b91c1c" font-size="11" font-weight="600">Standalone / Network Disconnected</text>
+
+  <rect x="65" y="120" width="250" height="60" rx="6" fill="#ffffff" stroke="#f87171" stroke-width="1" />
+  <text x="75" y="140" fill="#1e293b" font-size="12" font-weight="600">[1] Install Root CA</text>
+  <text x="75" y="158" fill="#475569" font-size="11">• 4096-bit RSA / SHA-256</text>
+  <text x="75" y="173" fill="#475569" font-size="11">• Set AIA &amp; CDP registry tokens</text>
+
+  <rect x="65" y="195" width="250" height="50" rx="6" fill="#ffffff" stroke="#f87171" stroke-width="1" />
+  <text x="75" y="215" fill="#1e293b" font-size="12" font-weight="600">[6] Issue SubCA Request</text>
+  <text x="75" y="233" fill="#475569" font-size="11">• Approve in certsrv.msc</text>
+
+  <rect x="65" y="260" width="250" height="60" rx="6" fill="#ffffff" stroke="#f87171" stroke-width="1" />
+  <text x="75" y="280" fill="#1e293b" font-size="12" font-weight="600">[10] Take Offline &amp; Secure</text>
+  <text x="75" y="298" fill="#475569" font-size="11">• certutil -backupKey &amp; DB</text>
+  <text x="75" y="313" fill="#475569" font-size="11">• Power off virtual machine</text>
+
+  <!-- TRANSFER MEDIA -->
+  <rect x="390" y="80" width="220" height="280" rx="10" fill="url(#mediaGrad)" stroke="#d97706" stroke-width="2" stroke-dasharray="6,6" />
+  <text x="500" y="110" text-anchor="middle" fill="#92400e" font-size="14" font-weight="700">SNEAKERNET MEDIA</text>
+  <text x="500" y="130" text-anchor="middle" fill="#b45309" font-size="11" font-weight="600">Virtual Disk / E:\PKI-Transfer</text>
+
+  <rect x="405" y="150" width="190" height="35" rx="5" fill="#ffffff" stroke="#fcd34d" stroke-width="1" />
+  <text x="500" y="172" text-anchor="middle" fill="#92400e" font-size="11" font-weight="600">ROOTCA_*.crt &amp; *.crl</text>
+
+  <rect x="405" y="200" width="190" height="35" rx="5" fill="#ffffff" stroke="#fcd34d" stroke-width="1" />
+  <text x="500" y="222" text-anchor="middle" fill="#92400e" font-size="11" font-weight="600">SubCA.req</text>
+
+  <rect x="405" y="250" width="190" height="35" rx="5" fill="#ffffff" stroke="#fcd34d" stroke-width="1" />
+  <text x="500" y="272" text-anchor="middle" fill="#92400e" font-size="11" font-weight="600">SubCA.cer</text>
+
+  <text x="500" y="330" text-anchor="middle" fill="#dc2626" font-size="11" font-weight="700">⚠ Private Keys NEVER Cross</text>
+
+  <!-- SUB CA / IIS ZONE -->
+  <rect x="670" y="30" width="280" height="380" rx="10" fill="url(#subGrad)" stroke="#2563eb" stroke-width="2" />
+  <rect x="685" y="45" width="250" height="35" rx="6" fill="#2563eb" />
+  <text x="810" y="67" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">ONLINE ISSUING CA / IIS</text>
+  <text x="810" y="100" text-anchor="middle" fill="#1d4ed8" font-size="11" font-weight="600">Domain-Joined Enterprise CA</text>
+
+  <rect x="685" y="120" width="250" height="60" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1" />
+  <text x="695" y="140" fill="#1e293b" font-size="12" font-weight="600">[2-4] Setup HTTP Distribution</text>
+  <text x="695" y="158" fill="#475569" font-size="11">• IIS /pki &amp; allowDoubleEscaping</text>
+  <text x="695" y="173" fill="#475569" font-size="11">• DNS CNAME: pki.domain.internal</text>
+
+  <rect x="685" y="195" width="250" height="50" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1" />
+  <text x="695" y="215" fill="#1e293b" font-size="12" font-weight="600">[5] Generate SubCA Request</text>
+  <text x="695" y="233" fill="#475569" font-size="11">• Install Enterprise Subordinate CA</text>
+
+  <rect x="685" y="260" width="250" height="60" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1" />
+  <text x="695" y="280" fill="#1e293b" font-size="12" font-weight="600">[7-9] Bind Cert &amp; Publish CRL</text>
+  <text x="695" y="298" fill="#475569" font-size="11">• certutil -installcert</text>
+  <text x="695" y="313" fill="#475569" font-size="11">• Set-ItemProperty Reg &amp; gen CRL</text>
+
+  <!-- ARROWS BETWEEN ZONES -->
+  <line x1="315" y1="167" x2="395" y2="167" stroke="#d97706" stroke-width="2" marker-end="url(#arrowAmber)" />
+  <line x1="685" y1="217" x2="605" y2="217" stroke="#d97706" stroke-width="2" marker-end="url(#arrowAmber)" />
+  <line x1="315" y1="267" x2="395" y2="267" stroke="#d97706" stroke-width="2" marker-end="url(#arrowAmber)" />
+  <line x1="605" y1="267" x2="675" y2="267" stroke="#d97706" stroke-width="2" marker-end="url(#arrowAmber)" />
+
+  <!-- BOTTOM CONSUMERS ZONE -->
+  <rect x="150" y="450" width="700" height="120" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2" />
+  <text x="500" y="480" text-anchor="middle" fill="#15803d" font-size="14" font-weight="700">DOMAIN CLIENTS &amp; SERVERS</text>
+  <text x="500" y="505" text-anchor="middle" fill="#166534" font-size="12">• Automatically trust Root CA via Active Directory GPO</text>
+  <text x="500" y="525" text-anchor="middle" fill="#166534" font-size="12">• Auto-enroll for leaf certificates from Online Subordinate CA</text>
+  <text x="500" y="545" text-anchor="middle" fill="#166534" font-size="12">• Fetch CRL &amp; AIA chain over HTTP: http://pki.domain.internal/pki/ (Works while Root is offline!)</text>
+
+  <line x1="810" y1="410" x2="810" y2="445" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow)" />
+</svg>
