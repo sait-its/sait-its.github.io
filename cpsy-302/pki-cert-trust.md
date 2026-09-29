@@ -615,6 +615,24 @@ Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-u
 
 ---
 
+### `CAPolicy.inf` File
+
+- The `CAPolicy.inf` file contains various settings that are used when installing a CA or when renewing the CA certificate.
+- The `CAPolicy.inf` file must be created and stored in the `%systemroot%` directory (typically `C:\Windows`) for it to be used.
+- A root CA might have a `CAPolicy.inf` file like this:
+
+```ini
+[Version]
+Signature= "$Windows NT$"
+[Certsrv_Server]
+RenewalKeyLength=4096
+RenewalValidityPeriod=Years
+RenewalValidityPeriodUnits=20
+LoadDefaultTemplates=0
+```
+
+---
+
 ### What If Scenario Questions
 
 1. The Root CA VM has been deleted from disk. Can a domain client still obtain a valid certificate from the SubCA?
@@ -638,6 +656,7 @@ Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-u
 - [Asymmetric vs Symmetric Encryption](https://www.thesslstore.com/blog/asymmetric-vs-symmetric-encryption/)
 - [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/)
 - [Microsoft PKI Planning and Deploying Certificate Services](https://www.petenetlive.com/KB/Article/0001309)
+- [PKI design considerations](https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/pki-design-considerations)
 - [Schannel SSP Technical Overview](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786429(v=ws.11))
 - [TLS/SSL overview (Schannel SSP)](https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-ssp-overview) 
 - https://en.wikipedia.org/wiki/Sneakernet
