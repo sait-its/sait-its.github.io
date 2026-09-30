@@ -276,6 +276,18 @@ Credit: [Costco cardholders warned](https://talent24h.okdiario.com/united-states
 
 ---
 
+### To Become a Public CA
+
+- **Apply to Major Root Programs:** Apply for inclusion and undergo public review in the trust stores of major operating systems and browsers, notably Chrome, Apple, Microsoft, and Mozilla.
+
+- **Build Secure Signing Infrastructure & Pass Strict Audits:** Establish Hardware Security Modules (HSMs) to safeguard root and intermediate keys, maintain rigorous compliance standards (such as WebTrust or ETSI audits), and provide reproducible, verifiable builds for signing software.
+
+- **Support Standardized Automation (ACME & ARI)** 
+
+- **Target Next-Gen Security & Post-Quantum Standards** 
+
+---
+
 ### Standalone Root CA
 
 - Does not depend on Active Directory
@@ -545,7 +557,9 @@ Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-u
 
 ### The "Sneakernet" Boundary
 
-- The Root CA network adapter remains **disconnected** at all times.
+- **Sneakernet**, also called **sneaker net**, is an informal term for the transfer of electronic information by physically moving media such as [magnetic tape](https://en.wikipedia.org/wiki/Magnetic_tape), [floppy disks](https://en.wikipedia.org/wiki/Floppy_disk), [optical discs](https://en.wikipedia.org/wiki/Optical_disc), [USB flash drives](https://en.wikipedia.org/wiki/USB_flash_drive) or external [hard drives](https://en.wikipedia.org/wiki/Hard_drive) between computers, rather than transmitting it over a computer network.
+
+- The Root CA network remains **disconnected** at all times.
 
 - Data moves between environments strictly through controlled staging media (`E:\PKI-Transfer`).
 
@@ -660,6 +674,7 @@ LoadDefaultTemplates=0
 - [Schannel SSP Technical Overview](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786429(v=ws.11))
 - [TLS/SSL overview (Schannel SSP)](https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-ssp-overview) 
 - https://en.wikipedia.org/wiki/Sneakernet
+- [Building a certificate authority for the whole Internet](https://blog.cloudflare.com/cloudflare-certificate-authority/)
 
 ---
 
