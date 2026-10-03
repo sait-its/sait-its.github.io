@@ -264,6 +264,64 @@ Read: [Exploring virtual memory with `vmstat`](https://www.redhat.com/en/blog/li
 
 ---
 
+### Memory Allocation Strategy
+
+- Both **Linux** and **Windows** use **virtual memory**. A process can reserve more address space than the amount of physical RAM currently available.
+- **Windows commit accounting** treats committed private memory as a **promise** that must be backed by RAM or the page file. The system tracks current commit against a commit limit.
+- **Linux can overcommit memory**. Depending on `vm.overcommit_memory`, the kernel may approve an allocation before it knows whether enough RAM and swap will be available when every page is actually used.
+- The key difference is how strictly and aggressively each OS guarantees memory allocations.
+
+---
+
+### Linux Overcommit
+
+- Applications often reserve more virtual memory than they actually touch.
+- Forked processes can initially share pages through copy-on-write instead of immediately duplicating all memory.
+- File-backed mappings can be reloaded from disk, so not every mapped page requires swap backing.
+- Overcommit improves utilization, but it accepts risk: several processes may later demand their promised pages at the same time.
+- Check the policy with:<br>`sysctl vm.overcommit_memory`
+
+---
+
+### Linux Overcommit Modes
+
+- `0`: Heuristic overcommit. The kernel accepts reasonable requests and rejects obvious over-allocation. This is the typical default.
+- `1`: Always overcommit. Allocations are accepted with minimal commit checking.
+- `2`: Strict accounting. Commit is limited according to swap and the configured RAM ratio or limit.
+- View system commitment with:<br>`grep -E 'CommitLimit|Committed_AS' /proc/meminfo`
+- `Committed_AS` is promised virtual memory. It is not the same as memory currently resident in RAM.
+
+---
+
+### When Linux Runs Out of Memory
+
+- Linux first tries normal recovery, including reclaiming cache and using swap when available.
+- If the kernel still cannot satisfy a required allocation, it enters an **out-of-memory condition**.
+- The OOM killer selects a process to terminate so the kernel can reclaim memory and keep the rest of the system operating.
+- A killed service is the visible event. The real lesson is the pressure that developed before it happened.
+- Useful evidence includes `MemAvailable`, swap use, page activity, per-process growth, and kernel log messages.
+
+---
+
+### Why Trigger OOM in the Lab
+
+- The controlled workload turns memory exhaustion into an observable incident instead of an abstract concept.
+- Students can compare **allocated memory**, **resident memory**, **available memory**, **swap**, and **commit accounting** as pressure increases.
+- Students can identify the memory-consuming process using `top`, `htop`, `ps`, or `pidstat`.
+- Students can correlate metrics with evidence from `journalctl -k`, `dmesg`, and `/proc`.
+- The goal is not merely to watch a process die. The goal is to recognize warning signs, prove why it happened, and explain the kernel's recovery action.
+
+---
+
+### Observe Before, During, and After
+
+- **Before:** Record `free -h`, `/proc/meminfo`, swap status, and the largest processes.
+- **During:** Watch `MemAvailable`, swap activity, process RSS, and `vmstat` paging columns.
+- **After:** Identify the terminated process and confirm the OOM event in the kernel journal.
+- Ask: Did the system reclaim cache? Did it use swap? Which process grew? What evidence proves the kernel invoked OOM handling?
+
+---
+
 ### Linux Troubleshooting Workflow
 
 ![linux-ts-workflow](./linux-monitoring.assets/linux-ts-workflow.webp)
@@ -329,3 +387,5 @@ Read: [Exploring virtual memory with `vmstat`](https://www.redhat.com/en/blog/li
 - [`systemctl` command](https://man7.org/linux/man-pages/man1/systemctl.1.html)
 - [`journalctl` command](https://man7.org/linux/man-pages/man1/journalctl.1.html)
 - https://github.com/pranshuparmar/witr
+- [Linux kernel overcommit accounting](https://docs.kernel.org/mm/overcommit-accounting.html)
+- [Microsoft memory and address-space limits](https://learn.microsoft.com/en-us/windows/win32/memory/memory-limits-for-windows-releases)
