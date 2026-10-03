@@ -16,6 +16,12 @@
 
 ---
 
+### Certificate Template Example
+
+![cert-template-computer](./cert-deployment.assets/cert-template-computer.webp)
+
+---
+
 ### Enterprise CA and Templates
 
 - Certificate templates are stored in Active Directory
@@ -34,6 +40,12 @@
 - Permissions can be limited to the intended computers
 
 - **Note:** Choose the existing template that most closely matches the required certificate, then customize the copy.
+
+---
+
+### Duplicated Template
+
+![duplicated-template](./cert-deployment.assets/duplicated-template.webp)
 
 ---
 
