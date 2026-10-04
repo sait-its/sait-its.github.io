@@ -4,6 +4,12 @@
 
 ---
 
+### Certificate Deployment Workflow
+
+![pki-cert-deploy-workflow](./cert-deployment.assets/pki-cert-deploy-workflow.webp)
+
+---
+
 ###  Certificate Templates
 
 - A certificate template is a set of certificate rules
@@ -106,6 +112,12 @@
   - Only the intended users or computers should receive access
 
 - Certificate templates allow administrators to control which users and computers can read templates and enrol for certificates.
+
+---
+
+### Template Permissions
+
+![tmpl-perm](./cert-deployment.assets/tmpl-perm.webp)
 
 ---
 
@@ -289,6 +301,12 @@
 
 ---
 
+### Inspect Before Use
+
+![inspect-cert-before-use](./cert-deployment.assets/inspect-cert-before-use.webp)
+
+---
+
 ### IIS Server Certificate
 
 - An appropriate IIS server certificate should:
@@ -319,6 +337,12 @@
 
 ---
 
+### IIS HTTPS Binding
+
+![iis-https-binding](./cert-deployment.assets/iis-https-binding.webp)
+
+---
+
 ### HTTPS Using TLS
 
 - The client connects to the IIS server
@@ -346,6 +370,12 @@
   - Has a certificate in the chain been revoked?
 
 - Windows certificate validation includes chain, time, revocation, usage, and server-identity checks.
+
+---
+
+### Browser Certificate Viewer
+
+![client-cert-viewer](./cert-deployment.assets/client-cert-viewer.webp)
 
 ---
 
@@ -391,7 +421,7 @@
 
 ### Modern Terminology and Practice
 
-- Say **HTTPS using TLS**, not “SSL,” in theory slides
+- Say **HTTPS using TLS**, not “SSL,”
 - IIS may still use “SSL” in some interface labels
 - Do not use SHA-1 for new certificate designs
 - Avoiding RSA keys smaller than 2048 bits
@@ -399,113 +429,6 @@
 - Use purpose-specific templates and current cryptography
 
 - Windows can reject certificates using outdated algorithms such as MD5 and SHA-1, while current Windows documentation treats TLS as the modern protocol family.
-
----
-
-### Why Archive Private Keys
-
-- **Data Recovery:** Restores access to encrypted files or emails if a user loses their private key, leaves an organization, or suffers a hardware failure.
-- **Business Continuity:** Ensures that encrypted corporate assets and communications remain readable by authorized entities over time.
-- **Regulatory Compliance:** Satisfies legal or organizational requirements to maintain access to critical business data.
-
----
-
-### What Should Be Archived
-
-- **Appropriate**
-
-  - Private keys used to decrypt important business data
-
-  - Encryption keys covered by an organizational recovery policy
-
-- **Normally not archived**: Authentication-only keys, Signing-only keys, and Keys that should be replaced after loss or compromise.
-
-- Signing keys normally do not require recovery because the public key is enough to verify an existing signature.
-
----
-
-### Key Recovery Agent
-
-- KRA means **Key Recovery Agent**
-- A KRA is authorized to decrypt archived private keys
-- The KRA certificate contains a recovery public key
-- The matching KRA private key must be protected
-- A lost KRA private key may prevent future recovery
-
----
-
-### Conceptual Archival Flow
-
-- A template requires private-key archival
-- The client creates an encryption key pair
-- The private key is protected during submission
-- The CA verifies the submitted key pair
-- The CA encrypts the key for an authorized KRA
-- The encrypted key is stored in the CA database
-
-- The CA releases the clear-text key material after securely processing it.
-
----
-
-### Conceptual Recovery Flow
-
-- An authorized recovery request is approved
-- The certificate record is located in the CA database
-- The encrypted key material is retrieved
-- The matching KRA private key decrypts it
-- The certificate and key are placed in a protected PFX
-- The PFX password is delivered through a secure separate channel
-
----
-
-### Archival Is Not Backup
-
-- **Private-key archival**
-
-  - Protects selected user or computer encryption keys
-
-  - Supports recovery of encrypted data
-
-- **CA backup**
-
-  - Protects the CA database, CA private key, and configuration
-
-  - Supports recovery or migration of the CA service
-
-- A complete CA protection plan includes the CA database, CA private keys, configuration, and Enterprise CA template assignments.
-
----
-
-### Separation of Duties
-
-- A certificate manager locates recovery material
-- A KRA decrypts the archived private key
-- One person should not control the entire process
-- Recovery requires documented authorization
-- Every recovery should be auditable
-
-- Microsoft recommends assigning the certificate-manager and KRA responsibilities to different individuals.
-
----
-
-### Recovery Risks
-
-- Archived keys can reveal protected data
-- The CA database becomes a high-value target
-- A compromised KRA key can expose archived material
-- Unauthorized recovery may violate policy or privacy
-- Loss of recovery components may make recovery impossible
-
----
-
-### Operational Safeguards
-
-- Archive only approved encryption keys
-- Restrict who can receive a KRA certificate
-- Protect and back up KRA private keys
-- Require approval before recovery
-- Audit retrieval, recovery, and delivery
-- Test recovery using non-production data
 
 ---
 
@@ -520,19 +443,11 @@
 
 ### Key Takeaways
 
-- The client machine generates the key pair locally and keeps the private key while submitting only the public key to the CA.
-- Auto-enrollment succeeds only when client-side Group Policy and template security permissions both allow the request.
+- The client generates the key pair locally and keeps the private key while submitting only the public key to the CA.
+- Auto-enrollment requires both client Group Policy and template security permissions to permit the request.
 - Every certificate must include the specific Enhanced Key Usage required by the service, such as Server Authentication for web servers.
-- An HTTPS binding will fail to establish secure connections if the server cannot access the certificate's matching private key.
-
----
-
-### Key Takeaways
-
+- HTTPS bindings fail if the server cannot access the certificate's matching private key.
 - Clients validate web certificates by confirming the name in the Subject Alternative Name matches the URL and the revocation list is reachable.
-- Organizations should only archive private keys used to decrypt important business data, never authentication or signing keys.
-- Operational security requires separating duties so the manager who locates an archived key is not the Key Recovery Agent who decrypts it.
-- Private key archival exists to recover encrypted user data, whereas CA backups protect the CA service infrastructure and database.
 
 ---
 
@@ -542,3 +457,10 @@
 - [Microsoft PKI Planning and Deploying Certificate Services](https://www.petenetlive.com/KB/Article/0001309)
 - [Manage certificate templates](https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/manage-certificate-templates)
 - [Key Archival Security Considerations](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wcce/95f13be7-e0e9-4e58-9762-228bb086e7f7)
+
+---
+
+### AI Disclaimer
+
+- Concepts were sketched by hand on an iPad using an Apple Pencil, with ChatGPT Images 2.5 used for final rendering.
+- Every AI-generated illustration is manually reviewed and verified.
