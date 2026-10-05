@@ -378,9 +378,9 @@ Credit: [Kerberos Network Authentication Service (V5) Synopsis](https://learn.mi
 
 ### AD Integration with SSSD
 
-![linux-ad-sssd](./kerberos-fundamentals.assets/linux-ad-sssd.png)
+![linux-krb-ad](./kerberos-fundamentals.assets/linux-krb-ad.webp)
 
-Credit: [Linux Active Directory Integration with SSSD](https://blog.ronnyvdb.net/2019/02/22/howto-linux-active-directory-integration-with-sssd/)
+Credit: [Linux Authentication with Active Directory](https://hrouhani.org/linux-authentication-with-active-directory/)
 
 ---
 

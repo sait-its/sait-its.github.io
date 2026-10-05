@@ -4,28 +4,13 @@
 
 ---
 
-### Network File Services
-
-- A **network file service** allows users to access files stored on another computer.
-- Files are stored centrally instead of only on individual workstations.
-- Centralized file services make it easier to manage:
-  - Access permissions
-  - Shared data
-  - Backups
-  - Security
-- Windows environments commonly use **SMB** for network file services.
-
----
-
 ### Server Message Block
 
 - **SMB — Server Message Block**
-- SMB is a network protocol used to access shared resources.
-- Common SMB resources include:
-  - Files
-  - Folders
-  - Printers
-- SMB is the primary file-sharing protocol used in modern Windows environments.
+- **SMB** is a network protocol used to access shared resources.
+- Common SMB resources include **Files**, **Folders** and **Printers**
+- **SMB** is the primary file-sharing protocol used in modern Windows environments.
+- Centralized file services make it easier to manage **Access permissions**, **Shared data**, **Backups** and **Security**.
 - Modern SMB normally communicates over **TCP port 445**.
 
 ---
@@ -42,24 +27,16 @@
 
 ---
 
-### SMB Shares
-
-- An SMB server publishes resources called **shares**.
-- A share usually represents a directory on the server.
-- The share has a network name that clients use to access it.
-- The share name does not need to match the server's local directory name.
-- Multiple shares can exist on the same SMB server.
-
----
-
 ### UNC Paths
 
-- Windows commonly accesses SMB resources using a **UNC path**.
+- Windows commonly accesses **SMB** resources using a **UNC path**.
 - **UNC — Universal Naming Convention**
 - Basic format: `\\server\share`
 
 - The first component `\\server` identifies the server.
 - The second component `\share` identifies the share.
+- The share name does not need to match the server's local directory name.
+- Multiple shares can exist on the same SMB server.
 
 ---
 
@@ -69,20 +46,8 @@
 - The client and server negotiate a compatible dialect when establishing a connection.
 - Modern systems normally use **SMB 2.x or SMB 3.x**.
 - **SMB 3.1.1** provides modern security and protocol capabilities.
-- SMB 1 is obsolete and should normally remain disabled.
-
----
-
-### SMB 3
-
-- SMB 3 introduced major improvements for enterprise environments.
-- Features include:
-  - Improved performance
-  - Improved availability
-  - SMB encryption
-  - Improved signing
-  - Better resiliency
-- SMB continues to evolve as an enterprise file-service protocol.
+- **SMB 1** is obsolete and should normally remain disabled.
+- **SMB 3** introduced major improvements for enterprise environments: performance, availability, encryption, signing and resiliency.
 
 ---
 
@@ -169,35 +134,15 @@
 
 ### Domain Membership
 
-- Joining a computer to Active Directory creates a **computer account**.
-- The computer becomes an identity in the domain.
+- Joining a computer to Active Directory creates a **computer account** (also known as a machine account).
+- The computer becomes an identity in the domain. It has credentials separate from normal user accounts.
 - A trust relationship is established between the computer and Active Directory.
 - The computer receives credentials used for ongoing domain communication.
-- Domain membership is therefore more than simply knowing the domain name.
-
----
-
-### The Machine Account
-
-- A domain member has its own **machine account**.
-- The machine account represents the computer in Active Directory.
-- It has credentials separate from normal user accounts.
-- These credentials allow the server to prove that it is a trusted domain member.
 - Administrators do not provide their passwords for every future domain operation.
 
 ---
 
-### Machine Trust
-
-- The machine account establishes a **trust relationship** with the domain.
-- Samba uses this relationship for ongoing communication with Active Directory.
-- Machine credentials are maintained automatically.
-- If the trust relationship becomes invalid, domain operations can fail.
-- A successful user password does not repair a broken machine trust.
-
----
-
-### Kerberos and Samba
+### Kerberos Fundamentals Review
 
 - Active Directory uses **Kerberos** as its primary authentication protocol.
 - A domain user normally receives a **Ticket-Granting Ticket (TGT)** after authentication.
@@ -207,14 +152,13 @@
 
 ---
 
-### Kerberos-to-SMB
+### Kerberos and Samba
 
 - Suppose a domain user accesses:<br> `\\fileserver.example.com\Team`
-
-- The client needs to authenticate to the SMB service on that server.
-- Kerberos identifies the requested service using a **Service Principal Name (SPN)**.
-- SMB commonly uses the **cifs** service class.
+- Clients need to authenticate to the SMB service (commonly uses the **cifs** service class) on that server.
+- **Kerberos** identifies the requested service using a **Service Principal Name (SPN)**.
 - The client can request a Kerberos service ticket for the file service.
+- Samba and the Linux filesystem still determine what the authenticated user may do.
 
 ---
 
@@ -226,26 +170,6 @@
 - The hostname identifies the server providing the service.
 - The KDC issues a service ticket for that specific service.
 - The client presents the ticket when connecting to the SMB server.
-
----
-
-### Kerberos Single Sign-On
-
-- The user has already authenticated to the domain.
-- The client can use the existing TGT to request an SMB service ticket.
-- The user does not need to repeatedly enter their password.
-- Samba receives proof of the authenticated domain identity.
-- This is an example of **Kerberos Single Sign-On**.
-
----
-
-### Authentication vs. Authorization
-
-- **Authentication:** Who are you?
-- **Authorization:** What are you allowed to do?
-- Kerberos can authenticate the domain user.
-- Authentication alone does not grant access to a file.
-- Samba and the Linux filesystem still determine what the authenticated user may do.
 
 ---
 
@@ -286,11 +210,11 @@
 
 - **Winbind** integrates Samba with Windows domain identities.
 - It allows Linux to resolve Active Directory users and groups.
-- Winbind can map:
-  - AD user SID → Linux UID
-  - AD group SID → Linux GID
+- Winbind can map: AD user SID → Linux UID, AD group SID → Linux GID
 - This allows domain identities to participate in Linux filesystem permissions.
 - **winbindd** is the Winbind daemon.
+
+![winbind-ad-diagram](./samba-ad.assets/winbind-ad-diagram.svg)
 
 ---
 
@@ -363,44 +287,12 @@
 
 ---
 
-### Active Directory Discovery
-
-- A Linux server must locate Active Directory services before joining the domain.
-- Active Directory publishes services through **DNS SRV records**.
-- Important services include:
-  - LDAP
-  - Kerberos
-  - Domain Controllers
-- Correct DNS configuration is therefore fundamental to AD integration.
-
----
-
-### DNS and Active Directory
-
-- Active Directory is heavily dependent on DNS.
-- DNS allows clients and servers to locate domain services.
-- A normal hostname lookup is not enough.
-- AD clients also need service discovery information.
-- Incorrect DNS configuration can appear as authentication or domain-join failures.
-
----
-
 ### DNS `SRV` Records
 
-- **SRV records** identify servers providing particular network services.
-- Active Directory publishes records for services such as: LDAP, Kerberos
-- An SRV record can contain: Service, Protocol, Priority, Weight, Port, Target
-- Clients use these records to locate appropriate domain services.
-
----
-
-### Why Time Matters
-
-- Kerberos uses timestamps as part of authentication.
-- Domain members and Domain Controllers need synchronized clocks.
-- Excessive clock skew can cause Kerberos authentication to fail.
-- A correct password cannot compensate for incorrect system time.
-- DNS and time should therefore be checked before troubleshooting higher layers.
+- A Linux server must locate Active Directory services before joining the domain.
+- Active Directory publishes services through **DNS SRV records**. Important services include: LDAP, Kerberos and Domain Controllers.
+- An SRV record can contain: Service, Protocol, Priority, Weight, Port, Target.
+- Correct DNS configuration is therefore fundamental to AD integration.
 
 ---
 
@@ -478,7 +370,7 @@ Credit: [All about AGDLP group scope for active directory](https://www.infosecin
 
 ### Samba Share Configuration
 
-- Samba shares are normally defined in **smb.conf**.
+- Samba shares are normally defined in **`smb.conf`**.
 - A share definition can specify:
   - Share name
   - Filesystem path
@@ -542,32 +434,24 @@ Credit: [All about AGDLP group scope for active directory](https://www.infosecin
 
 ### POSIX ACLs
 
-- **ACL — Access Control List**
-- POSIX ACLs extend traditional Linux permissions.
-- ACLs allow additional users and groups to receive permissions.
-- Multiple AD groups can therefore receive different permissions on the same directory.
-- ACLs are useful for enterprise shared folders.
+- Traditional Unix/Linux permissions restrict you to defining rights for a single owner, a single group, and everyone else.
+- POSIX ACLs (**ACL — Access Control List**) provide a flexible, fine-grained access control mechanism for files and directories that goes beyond the traditional UNIX owner/group/other permission model.
+- POSIX ACLs allow you to grant or deny explicit read, write, and execute permissions to **multiple individual users and specific groups**.
 
 ---
 
 ### Access ACLs
 
 - An **access ACL** controls permissions on an existing file or directory.
-- It can contain entries for:
-  - Owner
-  - Named users
-  - Owning group
-  - Named groups
-  - Mask
-  - Others
-- These entries determine current access to the object.
+- It can contain entries for: Owner, Named users, Owning group, Named groups, Mask, Others.
+- Access ACLs are rules applied directly to a file or directory to dictate **current access rights**.
 
 ---
 
 ### Default ACLs
 
-- A directory can also contain a **default ACL**.
-- Default ACLs provide an inheritance template for new objects.
+- Rules applied **only to directories**.
+- They act as **blueprints/templates**: any new file or subdirectory created inside that directory automatically inherits these permissions.
 - New files and subdirectories receive ACL information based on the parent directory.
 - Default ACLs do not retroactively modify existing files.
 - They help maintain consistent permissions over time.
@@ -588,13 +472,9 @@ Credit: [All about AGDLP group scope for active directory](https://www.infosecin
 
 ### The ACL Mask
 
-- POSIX ACLs contain a **mask**.
-- The mask limits the maximum effective permissions available to:
-  - Named users
-  - Named groups
-  - The owning group
-- An ACL entry may appear to grant `rwx`.
-- A restrictive mask can reduce those effective permissions.
+- POSIX ACLs contain a **mask (m:)**.
+- Defines the maximum allowed permissions for all Named users, Named groups, and the Owning group.
+- Even if a user is granted `rwx`, if the mask is set to `r--`, their effective permission is restricted to read-only.
 
 ---
 
@@ -628,63 +508,30 @@ Credit: [All about AGDLP group scope for active directory](https://www.infosecin
 
 ---
 
-### Windows SMB Connection
+### Windows Clinet SMB Connection
 
-- A Windows client connects to a Samba share using SMB.
-- The client identifies the target server and share.
-- Authentication establishes the user's identity.
-- Samba determines whether the user may access the share.
-- Linux determines whether the resulting identity may access the requested file.
-
----
-
-### Windows Single Sign-On
-
-- A domain user normally authenticates when signing in to Windows.
-- The existing domain identity can then be used for network services.
-- Kerberos can provide service tickets without repeatedly requesting the password.
-- This creates a transparent user experience.
-- **SSO simplifies authentication; it does not bypass authorization.**
+- **Connect:** A Windows client connects to a Samba share using SMB.
+- **Authenticate:** In a domain, Kerberos can provide Single Sign-On (SSO).
+- **Authorize:** Samba checks share permissions, then Linux checks file-system permissions.
+- **SSO ≠ Access:** SSO avoids repeated logins but does not bypass permissions.
 
 ---
 
-### Windows Security Tokens
+### Access Token Lifecycle
 
-- Windows creates an **access token** for a user session.
-- The token contains information about the authenticated identity.
-- It also contains security group memberships.
-- Applications use this security context when accessing resources.
-- Group membership therefore directly affects authorization decisions.
-
----
-
-### Group Membership Changes
-
-- Group membership can change while a user is already signed in.
-- Existing security contexts may still contain older membership information.
-- A new sign-in may be required before the new membership is reflected.
-- Identity systems may also cache group information.
-- Stale identity information can make correct permissions appear broken.
+- **Logon Token:** Windows creates an access token when the user signs in.
+- **Identity & Groups:** The token contains the user's identity and group memberships.
+- **Group Changes:** Existing tokens do not automatically reflect later group membership changes.
+- **Refresh:** Signing out and back in creates a new token with updated memberships.
 
 ---
 
-### SMB Sessions
+### SMB Connection Process
 
-- Windows maintains SMB sessions with remote servers.
-- An existing session may continue using previously supplied credentials.
-- Connecting again does not always create a completely new authentication context.
-- Credential caching can therefore affect access testing.
-- Always distinguish the intended user from the identity actually connected.
-
----
-
-### SMB Connection Negotiation
-
-- When an SMB connection begins, client and server negotiate capabilities.
-- This includes the SMB dialect.
-- Security capabilities may also be negotiated.
-- The resulting session represents the authenticated user.
-- File operations then occur within that SMB session.
+- **Connect:** Client and Samba establish an SMB connection.
+- **Negotiate:** They agree on an SMB version and supported capabilities.
+- **Authenticate:** The user's identity is authenticated, typically with Kerberos in an AD environment.
+- **Create Session:** Samba creates an authenticated SMB session used for subsequent file access.
 
 ---
 
@@ -707,7 +554,7 @@ Credit: [All about AGDLP group scope for active directory](https://www.infosecin
 
 - **SMB** provides network file sharing in Windows environments.
 - **Samba** allows Linux systems to provide SMB services.
-- Samba can operate as an **Active Directory member server**.
+- **Samba** can operate as an **Active Directory member server**.
 - **smbd** provides the SMB file service.
 - **Winbind** connects AD identities to the Linux identity model.
 - **NSS** makes those identities available to Linux applications.
@@ -752,3 +599,6 @@ Credit: [All about AGDLP group scope for active directory](https://www.infosecin
 - https://www.samba.org/
 - [winbindd](https://www.samba.org/samba/docs/current/man-html/winbindd.8.html)
 - [All about AGDLP group scope for active directory](https://www.infosecinstitute.com/resources/general-security/agdlp-group-scope-active-directory-account-global-domain-local-permissions/)
+- [`smb.conf`](https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html)
+- [POSIX Access Control Lists](https://docs.redhat.com/en/documentation/red_hat_gluster_storage/3/html/administration_guide/sect-posix_access_control_lists)
+- [Setuid, Setgid, and the Sticky Bit](https://www.cbtnuggets.com/blog/technology/system-admin/linux-file-permissions-understanding-setuid-setgid-and-the-sticky-bit)
