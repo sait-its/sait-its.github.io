@@ -99,15 +99,15 @@
     "glob": "^13.0.6",
     "highlight.js": "^11.12.0",
     "jszip": "^3.10.2",
-    "marked": "^18.0.14",
+    "marked": "^18.1.1",
     "marked-smartypants": "^1.1.12",
     "node-qunit-puppeteer": "^2.2.1",
-    "puppeteer": "^25.12.0",
+    "puppeteer": "^25.13.0",
     "qunit": "^2.26.0",
     "sass": "^1.105.1",
     "typescript": "^6.0.3",
-    "vite": "^8.3.2",
-    "vite-plugin-dts": "^5.1.1"
+    "vite": "^8.3.4",
+    "vite-plugin-dts": "^5.1.2"
   },
   "overrides": {
     "@microsoft/api-extractor": {
@@ -127,8 +127,8 @@
   "allowScripts": {
     "esbuild@0.28.2": true,
     "fsevents@2.3.3": true,
-    "puppeteer@25.12.0": true,
-    "@parcel/watcher@2.6.0": true
+    "@parcel/watcher@2.6.0": true,
+    "puppeteer@25.13.0": true
   },
   "subdomain": "revealjs"
 }

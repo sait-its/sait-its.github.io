@@ -363,17 +363,6 @@ Credit: [Storage Replica overview](https://learn.microsoft.com/en-us/windows-ser
 
 ---
 
-### Balancing Algorithms
-
-- **Round robin:** Selects servers sequentially.
-- **Weighted round robin:** Sends more work to higher-capacity servers.
-- **Least connections:** Selects the server with fewer active connections.
-- **Hash-based selection:** Uses client or request information to choose a backend.
-- **Session persistence:** Attempts to keep related client requests on the same backend.
-- The best algorithm depends on server capacity, connection duration, application state, and traffic behaviour.
-
----
-
 ### Kubernetes Clusters
 
 - A Kubernetes cluster contains a **control plane** and **worker nodes**.

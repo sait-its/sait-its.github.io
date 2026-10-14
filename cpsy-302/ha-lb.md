@@ -53,6 +53,36 @@ Credit: [Load Balancing Vs Failover](https://www.geeksforgeeks.org/system-design
 
 ---
 
+### Benefits of Load Balancing
+
+- **Higher Availability**
+  - Run application server maintenance or upgrades without application downtime
+  - Provide automatic disaster recovery to backup sites
+  - Perform health checks and prevent issues that can cause downtime
+- **Better Scalability**
+  - Prevents traffic bottlenecks at any one server
+  - Predicts application traffic so that you can add or remove different servers, if needed
+  - Adds redundancy to your system so that you can scale with confidence
+
+---
+
+### Benefits of Load Balancing
+
+- **Stronger Security**
+
+  - Monitor traffic and block malicious content
+  - Redirect attack traffic to multiple backend to minimize impact
+  - Route traffic through firewalls for additional security
+
+- **Faster Performance**
+
+  - Distribute the load evenly between servers
+  - Redirect client requests to a closer server to reduce latency
+
+  - Optimizes virtual and physical resource reliability
+
+---
+
 ### Load-Balancing Architecture
 
 - A load-balanced service normally contains:
@@ -114,6 +144,13 @@ Credit: [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-rever
 
 ---
 
+### Routing Policy
+
+- **Static load balancing algorithms** follow fixed rules and are independent of the current server state: **Round-robin**, **Weighted round-robin**, **IP/Request hash**, etc.
+- **Dynamic load balancing algorithms** examine the current state of the servers before distributing traffic: **Least connection**, **Weighted least connection**, **Least response time**, **Resource-based**, etc.
+
+---
+
 ### Backend Pools
 
 - A **backend pool** contains instances that can provide the service.
@@ -171,16 +208,14 @@ Credit: [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-rever
 ### Layer 4 vs. Layer 7
 
 - **Layer 4**
-  - Connection-oriented decisions
+  - **Connection-oriented** decisions
   - TCP/UDP support
   - Limited content awareness
-  - Lower routing complexity
 - **Layer 7**
-  - Request-oriented decisions
-  - HTTP/HTTPS awareness
-  - Content-based routing
+  - **Request-oriented** decisions
+  - HTTP/HTTPS awareness. Content-based routing
   - Easier integration with SSL/TLS termination and web security
-- Select the layer according to the protocol and routing requirements—not product preference.
+- Select the layer according to the protocol and routing requirements, not product preference.
 
 ---
 
@@ -471,6 +506,7 @@ Credit: [SSL Termination Definition](https://www.vmware.com/topics/ssl-terminati
 - [High Availability vs. Fault Tolerance](https://www.spiceworks.com/networking/high-availability-fault-tolerance-comparison/)
 - [Load Balancing Vs Failover](https://www.geeksforgeeks.org/system-design/load-balancing-vs-failover/)
 - [How Elastic Load Balancing works](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)
+- [What is Load Balancing?](https://aws.amazon.com/what-is/load-balancing/)
 - [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-reverse-proxy-whats-the-difference-472644cc8324)
 - [SSL Termination Definition](https://www.vmware.com/topics/ssl-termination)
 - [nginx documentation](https://nginx.org/en/docs/)
