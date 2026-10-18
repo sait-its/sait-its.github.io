@@ -102,9 +102,9 @@
     "marked": "^18.1.1",
     "marked-smartypants": "^1.1.12",
     "node-qunit-puppeteer": "^2.2.1",
-    "puppeteer": "^25.13.0",
+    "puppeteer": "^25.14.0",
     "qunit": "^2.26.0",
-    "sass": "^1.105.1",
+    "sass": "^1.105.2",
     "typescript": "^6.0.3",
     "vite": "^8.3.4",
     "vite-plugin-dts": "^5.1.2"
@@ -128,7 +128,7 @@
     "esbuild@0.28.2": true,
     "fsevents@2.3.3": true,
     "@parcel/watcher@2.6.0": true,
-    "puppeteer@25.13.0": true
+    "puppeteer@25.14.0": true
   },
   "subdomain": "revealjs"
 }

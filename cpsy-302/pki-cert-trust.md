@@ -260,7 +260,7 @@
 
 ---
 
-### Private PKI
+### Private CA
 
 - When you deploy **Active Directory Certificate Services** (ADCS), it serves as an organization’s internal, private Public Key Infrastructure (PKI).
 - It is basically your office handing you a laminated ID badge made by Justin in HR. Inside the building? You’re golden. The doors open, the supply closet unlocks, and everyone respects your plastic rectangle of power.
@@ -268,7 +268,7 @@
 
 ---
 
-### Private PKI
+### Private CA
 
 ![costco-card-tsa](./pki-cert-trust.assets/costco-card-tsa.webp)
 
