@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1340 500" width="100%" height="100%">
+  <defs>
+    <!-- Arrowhead markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2b2b2b" />
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#d32f2f" />
+    </marker>
+
+    <!-- Reusable Server Icon -->
+    <g id="server-icon">
+      <rect x="0" y="0" width="76" height="17" rx="5" fill="#138A36" />
+      <line x1="12" y1="5" x2="12" y2="12" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="20" y1="5" x2="20" y2="12" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="28" y1="5" x2="28" y2="12" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+      <circle cx="56" cy="8.5" r="2.2" fill="#ffffff" />
+      <circle cx="66" cy="8.5" r="2.2" fill="#ffffff" />
+
+      <rect x="0" y="21" width="76" height="17" rx="5" fill="#138A36" />
+      <line x1="12" y1="26" x2="12" y2="33" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="20" y1="26" x2="20" y2="33" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="28" y1="26" x2="28" y2="33" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+      <circle cx="56" cy="29.5" r="2.2" fill="#ffffff" />
+      <circle cx="66" cy="29.5" r="2.2" fill="#ffffff" />
+
+      <rect x="0" y="42" width="76" height="17" rx="5" fill="#138A36" />
+      <line x1="12" y1="47" x2="12" y2="54" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="20" y1="47" x2="20" y2="54" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="28" y1="47" x2="28" y2="54" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+      <circle cx="56" cy="50.5" r="2.2" fill="#ffffff" />
+      <circle cx="66" cy="50.5" r="2.2" fill="#ffffff" />
+    </g>
+
+    <!-- Reusable Website / Browser Icon -->
+    <g id="website-icon">
+      <rect x="0" y="0" width="74" height="66" rx="8" fill="none" stroke="#138A36" stroke-width="3.5" />
+      <circle cx="8" cy="8" r="1.8" fill="#138A36" />
+      <circle cx="14" cy="8" r="1.8" fill="#138A36" />
+      <circle cx="20" cy="8" r="1.8" fill="#138A36" />
+      <!-- Globe icon inside window -->
+      <g transform="translate(14, 13)">
+        <circle cx="23" cy="23" r="21" fill="none" stroke="#138A36" stroke-width="3" />
+        <path d="M 7 17 C 13 14, 18 19, 23 15 C 27 12, 33 16, 38 18 C 34 27, 27 34, 17 38 C 15 31, 19 26, 17 21 Z" fill="#138A36" />
+        <path d="M 23 2 C 29 7, 34 8, 38 12 C 40 16, 43 23, 41 29 C 38 27, 36 21, 31 22 C 26 23, 27 13, 23 2 Z" fill="#138A36" />
+      </g>
+    </g>
+
+    <!-- Reusable Users Box Component -->
+    <g id="users-component">
+      <rect x="0" y="0" width="80" height="170" rx="10" fill="none" stroke="#888888" stroke-width="1.8" stroke-dasharray="5 5" />
+      
+      <!-- Desktop PC -->
+      <rect x="17" y="24" width="46" height="32" rx="3" fill="#138A36" />
+      <rect x="20" y="27" width="40" height="26" rx="2" fill="#ffffff" />
+      <rect x="36" y="56" width="8" height="7" fill="#138A36" />
+      <rect x="27" y="63" width="26" height="3" rx="1.5" fill="#138A36" />
+      <!-- PC Tower -->
+      <rect x="49" y="16" width="14" height="40" rx="2.5" fill="#138A36" />
+      <line x1="53" y1="22" x2="59" y2="22" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" />
+      <circle cx="56" cy="48" r="1.8" fill="#ffffff" />
+
+      <!-- Mobile Phone -->
+      <rect x="27" y="98" width="26" height="46" rx="4" fill="#138A36" />
+      <rect x="30" y="103" width="20" height="34" rx="2" fill="#ffffff" />
+      <circle cx="40" cy="140.5" r="1.5" fill="#ffffff" />
+
+      <text x="40" y="200" font-family="system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#222222" text-anchor="middle">Users</text>
+    </g>
+  </defs>
+
+  <style>
+    .diagram-title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: bold; fill: #138A36; text-anchor: middle; }
+    .label { font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: bold; fill: #222222; text-anchor: middle; }
+    .sub-label { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: bold; fill: #222222; text-anchor: middle; }
+    .conn-line { fill: none; stroke: #2b2b2b; stroke-width: 1.8; stroke-linejoin: round; }
+  </style>
+
+  <!-- ========================================== -->
+  <!-- LEFT PANEL: FAILOVER ARCHITECTURE          -->
+  <!-- ========================================== -->
+  <g transform="translate(20, 20)">
+    <!-- Diagram Title -->
+    <text x="290" y="30" class="diagram-title">Failover</text>
+
+    <!-- Users -->
+    <use href="#users-component" x="20" y="120" />
+
+    <!-- Users -> Website Connector -->
+    <line x1="100" y1="205" x2="200" y2="205" class="conn-line" marker-end="url(#arrow)" />
+
+    <!-- Website -->
+    <g transform="translate(210, 172)">
+      <use href="#website-icon" x="0" y="0" />
+      <text x="37" y="93" class="label">Website</text>
+    </g>
+
+    <!-- Website -> Fork to Servers -->
+    <!-- Primary branch -->
+    <path d="M 284 205 L 320 205 L 420 105" class="conn-line" marker-end="url(#arrow)" />
+    <!-- Standby branch -->
+    <path d="M 320 205 L 420 310" class="conn-line" marker-end="url(#arrow)" />
+
+    <!-- Primary Server -->
+    <g transform="translate(435, 75)">
+      <use href="#server-icon" x="0" y="0" />
+      <text x="38" y="80" class="sub-label">Primary</text>
+      <text x="38" y="100" class="sub-label">Server</text>
+    </g>
+
+    <!-- Standby Server -->
+    <g transform="translate(435, 280)">
+      <use href="#server-icon" x="0" y="0" />
+      <text x="38" y="80" class="sub-label">Standby</text>
+      <text x="38" y="100" class="sub-label">Server</text>
+    </g>
+
+    <!-- Failover Inactive link (dashed red line + X icon) -->
+    <g transform="translate(473, 185)">
+      <line x1="0" y1="-3" x2="0" y2="12" stroke="#d32f2f" stroke-width="2" stroke-dasharray="3 3" />
+      <line x1="0" y1="42" x2="0" y2="82" stroke="#d32f2f" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#arrow-red)" />
+      
+      <!-- Red Cross Badge -->
+      <circle cx="0" cy="27" r="14" fill="#d32f2f" />
+      <line x1="-5.5" y1="21.5" x2="5.5" y2="32.5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+      <line x1="5.5" y1="21.5" x2="-5.5" y2="32.5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- CENTER DIVIDER                             -->
+  <!-- ========================================== -->
+  <line x1="625" y1="40" x2="625" y2="460" stroke="#d0d0d0" stroke-width="1.5" stroke-dasharray="6 6" />
+
+  <!-- ========================================== -->
+  <!-- RIGHT PANEL: LOAD BALANCER ARCHITECTURE    -->
+  <!-- ========================================== -->
+  <g transform="translate(650, 20)">
+    <!-- Diagram Title -->
+    <text x="330" y="30" class="diagram-title">Load Balancer</text>
+
+    <!-- Users -->
+    <use href="#users-component" x="20" y="120" />
+
+    <!-- Users -> Website Connector -->
+    <line x1="100" y1="205" x2="160" y2="205" class="conn-line" marker-end="url(#arrow)" />
+
+    <!-- Website -->
+    <g transform="translate(170, 172)">
+      <use href="#website-icon" x="0" y="0" />
+      <text x="37" y="93" class="label">Website</text>
+    </g>
+
+    <!-- Website -> Load Balancer Connector -->
+    <line x1="244" y1="205" x2="295" y2="205" class="conn-line" marker-end="url(#arrow)" />
+
+    <!-- Load Balancer Icon -->
+    <g transform="translate(305, 170)">
+      <!-- Top Globe/Mesh icon -->
+      <circle cx="33" cy="18" r="14" fill="none" stroke="#138A36" stroke-width="2.5" />
+      <ellipse cx="33" cy="18" rx="7" ry="14" fill="none" stroke="#138A36" stroke-width="2" />
+      <line x1="19" y1="18" x2="47" y2="18" stroke="#138A36" stroke-width="2" />
+      <line x1="22" y1="10" x2="44" y2="10" stroke="#138A36" stroke-width="1.8" />
+      <line x1="22" y1="26" x2="44" y2="26" stroke="#138A36" stroke-width="1.8" />
+
+      <!-- Balancer Rack/Bars -->
+      <rect x="6" y="31" width="54" height="10" rx="3" fill="#138A36" />
+      <rect x="0" y="44" width="66" height="8" rx="3" fill="#138A36" />
+      
+      <!-- Node Connectors -->
+      <line x1="13" y1="52" x2="13" y2="62" stroke="#138A36" stroke-width="4" />
+      <line x1="33" y1="52" x2="33" y2="62" stroke="#138A36" stroke-width="4" />
+      <line x1="53" y1="52" x2="53" y2="62" stroke="#138A36" stroke-width="4" />
+
+      <!-- Nodes -->
+      <rect x="6" y="60" width="14" height="14" rx="3" fill="#138A36" />
+      <rect x="26" y="60" width="14" height="14" rx="3" fill="#138A36" />
+      <rect x="46" y="60" width="14" height="14" rx="3" fill="#138A36" />
+
+      <text x="33" y="93" class="label">Load</text>
+      <text x="33" y="115" class="label">Balancer</text>
+    </g>
+
+    <!-- Load Balancer -> 3 Servers Connectors -->
+    <!-- Server 1 branch -->
+    <path d="M 382 205 L 420 205 L 485 105" class="conn-line" marker-end="url(#arrow)" />
+    <!-- Server 2 branch -->
+    <path d="M 382 205 L 485 205" class="conn-line" marker-end="url(#arrow)" />
+    <!-- Server 3 branch -->
+    <path d="M 382 205 L 420 205 L 485 305" class="conn-line" marker-end="url(#arrow)" />
+
+    <!-- Server 1 -->
+    <g transform="translate(500, 75)">
+      <use href="#server-icon" x="0" y="0" />
+      <text x="38" y="78" class="label">Server 1</text>
+    </g>
+
+    <!-- Server 2 -->
+    <g transform="translate(500, 175)">
+      <use href="#server-icon" x="0" y="0" />
+      <text x="38" y="78" class="label">Server 2</text>
+    </g>
+
+    <!-- Server 3 -->
+    <g transform="translate(500, 275)">
+      <use href="#server-icon" x="0" y="0" />
+      <text x="38" y="78" class="label">Server 3</text>
+    </g>
+  </g>
+</svg>

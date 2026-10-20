@@ -47,9 +47,7 @@
 
 ### Failover vs. Load Balancing
 
-![failover-vs-lb-gfg](./ha-lb.assets/failover-vs-lb-gfg.webp)
-
-Credit: [Load Balancing Vs Failover](https://www.geeksforgeeks.org/system-design/load-balancing-vs-failover/)
+![failover-vs-lb](./ha-lb.assets/failover-vs-lb.svg)
 
 ---
 
@@ -233,9 +231,7 @@ Credit: [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-rever
 
 ### SSL/TLS Termination
 
-![ssl-termination-diagram](./ha-lb.assets/ssl-termination-diagram.png)
-
-Credit: [SSL Termination Definition](https://www.vmware.com/topics/ssl-termination)
+![ssl-termination-diagram](./ha-lb.assets/ssl-termination-diagram.svg)
 
 ---
 
@@ -332,17 +328,33 @@ Credit: [SSL Termination Definition](https://www.vmware.com/topics/ssl-terminati
 
 ---
 
-### Round Robin and Weights
+### Round Robin
 
-- **Round robin**
-  - Selects backends in sequence.
-  - Suitable for similar servers and similar requests.
-- **Weighted round robin**
-  - Gives some backends a larger traffic share.
-  - Useful when backend capacity differs.
+- Selects backends in sequence.
+- Suitable for similar servers and similar requests.
+
+![round-robin-diagram](./ha-lb.assets/round-robin-diagram.webp)
+
+Credit: [Round Robin Load Balancing](https://traefik.io/glossary/round-robin-load-balancing)
+
+---
+
+### Weighted Round Robin
+
+- Gives some backends a larger traffic share.
+- Useful when backend capacity differs.
+
 - A weight expresses intended relative distribution.
 - It does not directly measure CPU, memory pressure, or response cost.
 - Failed or ineligible backends are excluded from normal selection.
+
+---
+
+### Weighted Round Robin
+
+![weighted-round-robin-diagram](./ha-lb.assets/weighted-round-robin-diagram.webp)
+
+Credit: [Round Robin Load Balancing](https://traefik.io/glossary/round-robin-load-balancing)
 
 ---
 
@@ -460,6 +472,26 @@ Credit: [SSL Termination Definition](https://www.vmware.com/topics/ssl-terminati
 
 ---
 
+### DNS Load Balancing
+
+- It distributes traffic by having the DNS server return different server IP addresses for the same domain name.
+
+- The DNS server cycles through an IP pool using predefined routing algorithms.
+
+- It commonly uses methods such as Round-Robin, weighted distribution, or geographic proximity to decide which server IP to return.
+
+- It enhances application availability, prevents single points of failure, and balances incoming user loads without requiring physical routing hardware at the entry point.
+
+---
+
+### DNS Load Balancing Process
+
+![dns-load-balancing-process](./ha-lb.assets/dns-load-balancing-process.webp)
+
+Credit: https://pinggy.io/blog/dns_load_balancing/
+
+---
+
 ### Key Takeaways
 
 - **Load balancing** distributes client traffic across multiple available backend servers.
@@ -504,7 +536,8 @@ Credit: [SSL Termination Definition](https://www.vmware.com/topics/ssl-terminati
 ### Resources
 
 - [High Availability vs. Fault Tolerance](https://www.spiceworks.com/networking/high-availability-fault-tolerance-comparison/)
-- [Load Balancing Vs Failover](https://www.geeksforgeeks.org/system-design/load-balancing-vs-failover/)
+- [Load Balancing vs Failover](https://www.geeksforgeeks.org/system-design/load-balancing-vs-failover/)
+- [DNS Load Balancing Definition](https://www.vmware.com/topics/dns-load-balancing)
 - [How Elastic Load Balancing works](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)
 - [What is Load Balancing?](https://aws.amazon.com/what-is/load-balancing/)
 - [Proxy vs Reverse Proxy](https://levelup.gitconnected.com/proxy-vs-reverse-proxy-whats-the-difference-472644cc8324)

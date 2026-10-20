@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" width="100%" height="100%">
+  <defs>
+    <!-- Pattern for server perforated vent dots -->
+    <pattern id="vent-dots" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1" fill="#cfd6dd" />
+    </pattern>
+
+    <!-- Bi-directional Horizontal Thick Arrow -->
+    <g id="double-arrow">
+      <path d="M 0 16 L 16 0 L 16 10 L 74 10 L 74 0 L 90 16 L 74 32 L 74 22 L 16 22 L 16 32 Z" fill="#46515d" />
+    </g>
+
+    <!-- Rack Server Unit (Used for Web Servers stack) -->
+    <g id="server-rack-unit">
+      <!-- Outer beveled chassis -->
+      <path d="M 6 0 L 144 0 L 150 6 L 150 42 L 144 48 L 6 48 L 0 42 L 0 6 Z" fill="#ffffff" stroke="#46515d" stroke-width="3" stroke-linejoin="round" />
+      
+      <!-- Vent mesh area -->
+      <rect x="16" y="8" width="100" height="14" fill="url(#vent-dots)" />
+      
+      <!-- Left indented handle/latch slot -->
+      <path d="M 12 36 L 12 28 L 102 28 L 110 36 Z" fill="#e2e7ec" stroke="#46515d" stroke-width="2" stroke-linejoin="round" />
+      
+      <!-- Horizontal divider line -->
+      <line x1="120" y1="20" x2="136" y2="20" stroke="#cfd6dd" stroke-width="2" stroke-linecap="round" />
+      
+      <!-- Power button / Status LED rings -->
+      <circle cx="128" cy="27" r="11" fill="#ffffff" stroke="#46515d" stroke-width="2.5" />
+      <circle cx="128" cy="27" r="5.5" fill="#46515d" />
+    </g>
+  </defs>
+
+  <style>
+    .header-text {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      fill: #111111;
+      letter-spacing: 0.3px;
+    }
+    .label-text {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      fill: #111111;
+      letter-spacing: 0.2px;
+    }
+  </style>
+
+  <!-- ================= TOP HEADERS ================= -->
+  <!-- Left Header -->
+  <text x="175" y="48" text-anchor="middle" class="header-text">Application Clients / End Users</text>
+
+  <!-- Middle Header (Updated to SSL/TLS) -->
+  <text x="495" y="38" text-anchor="middle" class="header-text">Secure Sockets</text>
+  <text x="495" y="60" text-anchor="middle" class="header-text">Layer (SSL/TLS)</text>
+
+  <!-- Right Header -->
+  <text x="815" y="48" text-anchor="middle" class="header-text">Web Servers</text>
+
+  <!-- ================= 1. CLIENT BROWSER ================= -->
+  <g transform="translate(100, 130)">
+    <!-- Browser Window Frame -->
+    <rect x="0" y="0" width="130" height="96" rx="2" fill="#ffffff" stroke="#46515d" stroke-width="3.5" />
+    
+    <!-- Title bar line -->
+    <line x1="0" y1="16" x2="130" y2="16" stroke="#46515d" stroke-width="2" />
+    
+    <!-- Window action buttons -->
+    <circle cx="8" cy="8" r="2" fill="#46515d" />
+    <circle cx="15" cy="8" r="2" fill="#46515d" />
+    <circle cx="22" cy="8" r="2" fill="#46515d" />
+
+    <!-- 3D Cube Graphic inside browser -->
+    <g transform="translate(42, 26)">
+      <!-- Top face -->
+      <polygon points="23,0 45,11 23,22 1,11" fill="#e8ecef" />
+      <!-- Left face -->
+      <polygon points="1,11 23,22 23,48 1,37" fill="#cfd6dd" />
+      <!-- Right face -->
+      <polygon points="23,22 45,11 45,37 23,48" fill="#9ba8b5" />
+    </g>
+
+    <!-- Subtle corner pattern in browser bottom right -->
+    <circle cx="120" cy="82" r="1.5" fill="#cfd6dd" />
+    <circle cx="114" cy="88" r="1.5" fill="#cfd6dd" />
+    <circle cx="120" cy="88" r="1.5" fill="#cfd6dd" />
+  </g>
+
+  <!-- ================= 2. HTTPS ARROW & LABEL ================= -->
+  <g transform="translate(268, 162)">
+    <use href="#double-arrow" />
+    <text x="45" y="55" text-anchor="middle" class="label-text">HTTPS</text>
+  </g>
+
+  <!-- ================= 3. LOAD BALANCER ================= -->
+  <g transform="translate(390, 164)">
+    <!-- Chassis -->
+    <path d="M 6 0 L 164 0 L 170 5 L 170 29 L 164 34 L 6 34 L 0 29 L 0 5 Z" fill="#ffffff" stroke="#46515d" stroke-width="3" stroke-linejoin="round" />
+    
+    <!-- Left 6 port indicators -->
+    <g transform="translate(10, 7)">
+      <rect x="0" y="0" width="5" height="5" fill="#46515d" />
+      <rect x="8" y="0" width="5" height="5" fill="#46515d" />
+      <rect x="16" y="0" width="5" height="5" fill="#46515d" />
+      <rect x="0" y="8" width="5" height="5" fill="#46515d" />
+      <rect x="8" y="8" width="5" height="5" fill="#46515d" />
+      <rect x="16" y="8" width="5" height="5" fill="#46515d" />
+    </g>
+    
+    <!-- Vent mesh area -->
+    <rect x="42" y="7" width="50" height="20" fill="url(#vent-dots)" />
+    
+    <!-- Management port slot -->
+    <rect x="98" y="9" width="30" height="12" fill="#ffffff" stroke="#46515d" stroke-width="2" />
+    
+    <!-- Power button / Status LED -->
+    <circle cx="146" cy="17" r="8" fill="#ffffff" stroke="#46515d" stroke-width="2" />
+    <circle cx="146" cy="17" r="4" fill="#46515d" />
+
+    <!-- Subtitle -->
+    <text x="85" y="54" text-anchor="middle" class="label-text">Load Balancer</text>
+  </g>
+
+  <!-- ================= 4. HTTP ARROW & LABEL ================= -->
+  <g transform="translate(590, 162)">
+    <use href="#double-arrow" />
+    <text x="45" y="55" text-anchor="middle" class="label-text">HTTP</text>
+  </g>
+
+  <!-- ================= 5. WEB SERVERS STACK ================= -->
+  <g transform="translate(738, 118)">
+    <!-- Top Server -->
+    <use href="#server-rack-unit" x="0" y="0" />
+    <!-- Middle Server -->
+    <use href="#server-rack-unit" x="0" y="44" />
+    <!-- Bottom Server -->
+    <use href="#server-rack-unit" x="0" y="88" />
+  </g>
+</svg>
