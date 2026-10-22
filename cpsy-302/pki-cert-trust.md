@@ -1,6 +1,6 @@
 ## Advanced Servers
 
-## PKI - Certificates and Trust
+## Digital Certificates and Trust
 
 ---
 
@@ -285,6 +285,26 @@ Credit: [Costco cardholders warned](https://talent24h.okdiario.com/united-states
 - **Support Standardized Automation (ACME & ARI)** 
 
 - **Target Next-Gen Security & Post-Quantum Standards** 
+
+---
+
+### Intermediate CA Compromise
+
+- The private keys of eight eMudhra intermediate CA certificates have been compromised. They chain to roots trusted by the Mozilla, Microsoft, Apple and Chrome root programs and by many downstream trust stores.
+- Try https://dv-g3b-aaa-emudhra.we-have-a-problem.com/ or https://dv-g3b-emudhra.we-have-a-problem.com/ in your browser.
+- Read more on https://emudhra.we-have-a-problem.com/
+
+---
+
+### Revoked Intermediate CA
+
+![revoked-int-ca](./pki-cert-trust.assets/revoked-int-ca.webp)
+
+---
+
+### Remove Compromised CA
+
+![curl-remove-bad-ca](./pki-cert-trust.assets/curl-remove-bad-ca.webp)
 
 ---
 

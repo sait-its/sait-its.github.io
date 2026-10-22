@@ -223,6 +223,13 @@ Credit: [Configuring the Cisco IOS DHCP Relay Agent](https://www.cisco.com/en/US
 
 ---
 
+### From `DHCPv4` HA to `IPv6`
+
+- **The DHCPv4 Paradigm:** Centralized DHCPv4 servers manage lease lifetimes, relay broadcasts, and coordinate redundancy using partner failover mechanisms (such as Windows DHCP Failover or Kea HA).
+- **The IPv6 Difference:** IPv6 shifts away from sole reliance on centralized stateful servers by introducing decentralized auto-configuration mechanisms directly into the network stack.
+
+---
+
 ### Who Supplies Each Setting in `IPv6`
 
 - An IPv6 host can obtain its configuration from several cooperating mechanisms.
