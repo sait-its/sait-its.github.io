@@ -93,11 +93,29 @@ Credit: [DHCP failover overview](https://learn.microsoft.com/en-us/windows-serve
 
 ---
 
+### Split-Brain in DHCP Failover
+
+- Two DHCP failover servers share the same pool of IP addresses and constantly sync who gets what.
+- If the network link between them breaks, both servers stay alive but cannot talk to each other.
+- This disconnect creates a "split-brain" scenario, where each server assumes the other might be dead and tries to run the network alone.
+- Without a safety mechanism, both servers would hand out identical IP addresses to different computers, causing severe IP conflicts.
+
+---
+
+### Maximum Client Lead Time
+
+- **MCLT** prevents "split-brain" by strictly limiting how long any single server can lease an IP without its partner's approval.
+- Brand-new devices only receive a short lease equal to the MCLT until both servers confirm the record.
+- If a split-brain occurs, the surviving server is forced to wait for the MCLT timer to expire before taking over the partner's pool.
+- This waiting period guarantees that any "unknown" leases handed out right before the split have officially expired, making it safe to reassign addresses.
+
+---
+
 ### Hot Standby Reserve Percentage
 
 - The percentage (5% by default) of IP addresses on the active server that are reserved for use on the standby server if the active server doesn't respond.
 - The reserve percentage is used for new DHCP leases.
-- If a client renews with an isolated standby DHCP server, the standby keeps the same IP address but only extends the lease for the Maximum Client Lead Time (MCLT) instead of the full duration.
+- If a client renews with an isolated standby DHCP server, the standby keeps the same IP address but only extends the lease for the **Maximum Client Lead Time** (**MCLT**) instead of the full duration.
 
 ---
 
