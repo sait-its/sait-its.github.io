@@ -560,7 +560,7 @@ sysprep.exe /generalize /oobe /shutdown
 - [SSH Public Key Authentication](https://www.ssh.com/academy/ssh/public-key-authentication)
 - [Key-based authentication in OpenSSH for Windows](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement)
 - https://www.ssh.com/academy/ssh/host-key
-- https://github.com/sait-lab/devops/blob/main/ssh.md
+- [Intro to SSH](https://github.com/sait-lab/learn-ssh/blob/main/ssh.md)
 
 ---
 
