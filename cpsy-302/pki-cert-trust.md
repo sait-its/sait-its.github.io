@@ -83,6 +83,14 @@
 
 ---
 
+### Why Certificates Are Necessary
+
+- **Mitigating Man-in-the-Middle (MitM) Attacks:** Distributing public keys directly over untrusted channels exposes users to tampering and impersonation.   
+- **Delegated Verification:** Digital certificates cryptographically bind an entity's identity to their public key via a Certificate Authority’s (CA) signature.   
+- **Rule of Thumb:** If you can obtain a trusted public key directly out-of-band, a CA is not required; otherwise, a trusted CA acts as the verification proxy.
+
+---
+
 ### What PKI Provides
 
 - **Encryption** protects confidentiality
@@ -94,7 +102,7 @@
 
 ---
 
-### Reading a Certificate
+### Validating a Certificate
 
 - Important fields include:
 
@@ -109,6 +117,7 @@
   - **Public key:** The subject’s public key
 
   - **Extensions:** Names, purposes, constraints, and locations
+- [Microsoft’s Schannel guidance](https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-ssp-overview) includes chain, time, revocation, usage, trust, and server-identity checks.
 
 ---
 
@@ -230,36 +239,6 @@
 
 ---
 
-### Root, Subordinate, and Issuing CAs
-
-- The **Root CA** is the trust anchor
-- A **Subordinate CA** is certified by another CA
-- An **Issuing CA** issues certificates to users, computers, and services
-- A subordinate CA can also be an issuing CA
-- Separating CA roles limits exposure of the root
-
----
-
-### Why Use Two Tiers
-
-- **Tier 1: Root CA**
-
-  - Protects the top-level signing key
-
-  - Certifies the Issuing CA
-
-  - Is used only for limited operations
-
-- **Tier 2: Issuing CA**
-
-  - Remains available to the domain
-
-  - Processes normal certificate requests
-
-  - Issues and revokes operational certificates
-
----
-
 ### Private CA
 
 - When you deploy **Active Directory Certificate Services** (ADCS), it serves as an organization’s internal, private Public Key Infrastructure (PKI).
@@ -288,23 +267,54 @@ Credit: [Costco cardholders warned](https://talent24h.okdiario.com/united-states
 
 ---
 
-### Intermediate CA Compromise
+### Root, Subordinate, and Issuing CAs
 
-- The private keys of eight eMudhra intermediate CA certificates have been compromised. They chain to roots trusted by the Mozilla, Microsoft, Apple and Chrome root programs and by many downstream trust stores.
-- Try https://dv-g3b-aaa-emudhra.we-have-a-problem.com/ or https://dv-g3b-emudhra.we-have-a-problem.com/ in your browser.
-- Read more on https://emudhra.we-have-a-problem.com/
-
----
-
-### Revoked Intermediate CA
-
-![revoked-int-ca](./pki-cert-trust.assets/revoked-int-ca.webp)
+- The **Root CA** is the trust anchor
+- A **Subordinate CA** is certified by another CA
+- An **Issuing CA** issues certificates to users, computers, and services
+- A subordinate CA can also be an issuing CA
+- Separating CA roles limits exposure of the root
 
 ---
 
-### Remove Compromised CA
+### Two-Tier Hierarchy
 
-![curl-remove-bad-ca](./pki-cert-trust.assets/curl-remove-bad-ca.webp)
+- By pairing an offline root CA with online subordinate CAs, the widely recommended two-tier hierarchy provides an optimal, cost-effective balance of security, scalability, and manageability for most organizations.
+
+![two-tier-hierarchy-ca](./pki-cert-trust.assets/two-tier-hierarchy-ca.jpeg)
+
+Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786436(v=ws.11))
+
+---
+
+### Three-Tier Hierarchy
+
+- A root CA tier (offline), an issuing CAs tier (usually online), and an intermediate tier placed between them.
+- If you need to revoke a number of CAs due to a key compromise, you can perform it at the second tier level, leaving other branches available.
+
+![three-tier-hierarchy-ca](./pki-cert-trust.assets/three-tier-hierarchy-ca.jpeg)
+
+Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786436(v=ws.11))
+
+---
+
+### Why Use Two Tiers
+
+- **Tier 1: Root CA**
+
+  - Protects the top-level signing key
+
+  - Certifies the Issuing CA
+
+  - Is used only for limited operations
+
+- **Tier 2: Issuing CA**
+
+  - Remains available to the domain
+
+  - Processes normal certificate requests
+
+  - Issues and revokes operational certificates
 
 ---
 
@@ -315,28 +325,6 @@ Credit: [Costco cardholders warned](https://talent24h.okdiario.com/united-states
 - Uses controlled administrative approval
 - Issues very few certificates
 - Can remain disconnected during normal operations
-
----
-
-### ADCS - Enterprise Issuing CA
-
-- Is integrated with Active Directory
-- Can use certificate templates
-- Can use AD identities and groups
-- Supports automated enterprise enrollment
-- Must remain available for normal certificate services
-
-- Note: Only Enterprise CAs issue certificates from AD-integrated certificate templates.
-
----
-
-### Two-Tier Hierarchy
-
-- By pairing an offline root CA with online subordinate CAs, the widely recommended two-tier hierarchy provides an optimal, cost-effective balance of security, scalability, and manageability for most organizations.
-
-![two-tier-hierarchy-ca](./pki-cert-trust.assets/two-tier-hierarchy-ca.jpeg)
-
-Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/)
 
 ---
 
@@ -370,23 +358,15 @@ Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-u
 
 ---
 
-### How a Client Validates a Certificate
+### ADCS - Enterprise Issuing CA
 
-- The client asks:
+- Is integrated with Active Directory
+- Can use certificate templates
+- Can use AD identities and groups
+- Supports automated enterprise enrollment
+- Must remain available for normal certificate services
 
-  - Is the certificate currently valid?
-
-  - Is every signature in the chain valid?
-
-  - Can the chain reach a trusted root?
-
-  - Is the certificate permitted for this use?
-
-  - Has any certificate been revoked?
-
-  - Does the identity match the expected service?
-
-- [Microsoft’s Schannel guidance](https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-ssp-overview) includes chain, time, revocation, usage, trust, and server-identity checks.
+- Note: Only Enterprise CAs issue certificates from AD-integrated certificate templates.
 
 ---
 
@@ -459,19 +439,23 @@ Credit: [Securing PKI: Planning a CA Hierarchy](https://learn.microsoft.com/en-u
 
 ---
 
-### Why Certificates Are Necessary
+### Intermediate CA Compromise
 
-- **Mitigating Man-in-the-Middle (MitM) Attacks:** Distributing public keys directly over untrusted channels exposes users to tampering and impersonation.   
-- **Delegated Verification:** Digital certificates cryptographically bind an entity's identity to their public key via a Certificate Authority’s (CA) signature.   
-- **Rule of Thumb:** If you can obtain a trusted public key directly out-of-band, a CA is not required; otherwise, a trusted CA acts as the verification proxy.
+- The private keys of eight eMudhra intermediate CA certificates have been compromised. They chain to roots trusted by the Mozilla, Microsoft, Apple and Chrome root programs and by many downstream trust stores.
+- Try https://dv-g3b-aaa-emudhra.we-have-a-problem.com/ or https://dv-g3b-emudhra.we-have-a-problem.com/ in your browser.
+- Read more on https://emudhra.we-have-a-problem.com/
 
 ---
 
-### Proprietary vs. Open PKI Standards
+### Revoked Intermediate CA
 
-- **Avoid "Security through Obscurity":** In-house, proprietary encryption or authentication schemes are inherently risky; single organizations cannot match the global peer-review of standard cryptography.   
-- **Open Standards ≠ Leaked Secrets:** Use publicly audited, standardized PKI protocols while keeping implementation credentials and private internal network details confidential.   
-- **Resilience:** If standard protocols are exposed, security remains intact; if proprietary "secret" schemes leak, security completely collapses.
+![revoked-int-ca](./pki-cert-trust.assets/revoked-int-ca.webp)
+
+---
+
+### Remove Compromised CA
+
+![curl-remove-bad-ca](./pki-cert-trust.assets/curl-remove-bad-ca.webp)
 
 ---
 
