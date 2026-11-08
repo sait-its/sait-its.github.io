@@ -1,6 +1,6 @@
 ## Advanced Servers
 
-## Hybrid Identity with Microsoft Entra ID
+### Hybrid Identity with Microsoft Entra ID
 
 ---
 
