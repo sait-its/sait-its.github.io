@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Seven-phase Active Directory Certificate Services deployment workflow">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#36698b"/></marker>
+<g id="ico-server" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"><rect x="4" y="2" width="40" height="48" rx="4" fill="#e6edf3"/><path d="M12 15h24M12 29h24M12 43h24"/><circle cx="16" cy="10" r="2" fill="#22a66b"/><circle cx="16" cy="24" r="2" fill="#22a66b"/><circle cx="16" cy="38" r="2" fill="#22a66b"/></g>
+<g id="ico-directory" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="24" cy="8" r="6" fill="#c9e7ff"/><circle cx="9" cy="42" r="6" fill="#c9e7ff"/><circle cx="39" cy="42" r="6" fill="#c9e7ff"/><path d="M21 14 12 36M27 14 36 36M15 42h18"/></g>
+<g id="ico-globe" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="24" cy="24" r="21" fill="#e5f3ff"/><ellipse cx="24" cy="24" rx="9" ry="21"/><path d="M3 24h42M7 13h34M7 35h34"/></g>
+<g id="ico-cert" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 3h26l8 9v34H8z" fill="#fff"/><path d="M34 3v10h8M15 20h20M15 27h12"/><circle cx="30" cy="35" r="7" fill="#ffdf8b" stroke="#df9b20"/><path d="m26 40-3 9 7-3 7 3-3-9" stroke="#df9b20" fill="#ffca65"/></g>
+<g id="ico-shield" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M24 3 43 11v13c0 13-9 20-19 25C14 44 5 37 5 24V11z" fill="#d9f4e6"/><path d="m14 25 7 7 14-16" stroke="#16945b" stroke-width="4"/></g>
+<g id="ico-lock" fill="none" stroke="currentColor" stroke-width="2.7"><rect x="8" y="21" width="32" height="25" rx="4" fill="#ffecdd"/><path d="M15 21v-7a9 9 0 0 1 18 0v7"/><circle cx="24" cy="32" r="3" fill="currentColor"/></g>
+<g id="ico-gpo" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 3h25l8 9v34H8z" fill="#fff"/><path d="M33 3v10h8M15 20h19M15 27h19M15 34h12"/><circle cx="36" cy="38" r="9" fill="#e4d5fb"/><path d="M36 32v12M30 38h12"/></g>
+<g id="ico-folder" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 13h17l6 7h19v24H3z" fill="#ffe0a0"/><path d="M3 13V7h17l6 6"/></g>
+<g id="ico-laptop" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="7" y="4" width="35" height="29" rx="2" fill="#bfe4ff"/><path d="M3 39h43l-4 6H7z" fill="#dce5ec"/><path d="M12 28h25"/></g>
+<g id="ico-renew" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><path d="M9 19a17 17 0 0 1 30-6l3 6M39 29a17 17 0 0 1-30 6l-3-6"/><path d="m41 8 1 11-11-1M7 40 6 29l11 1"/></g>
+<g id="ico-key" fill="none" stroke="currentColor" stroke-width="2.8"><circle cx="15" cy="17" r="11" fill="#ffe39d"/><path d="M24 25 45 46m-9-9 5-5m-1 9 5-5"/></g>
+</defs>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#162637}.heading{fill:white;font-weight:700;font-size:21px}.body{font-size:17px}.small{font-size:15px}.tiny{font-size:13px}.strong{font-weight:700}.num{font-weight:800;font-size:25px}.pill{font-weight:700;font-size:14px}.footer{font-size:15px;font-weight:700;fill:white}</style>
+<rect x="10" y="10" width="380" height="415" rx="11" fill="#eaf5fd" stroke="#075b99" stroke-width="1.4"/>
+<rect x="10" y="10" width="380" height="67" rx="10" fill="#075b99" stroke="none" stroke-width="1"/>
+<rect x="25" y="22" width="43" height="43" rx="22" fill="#ffffff" stroke="none" stroke-width="1"/>
+<text x="46" y="53" class="num" text-anchor="middle">1</text>
+<text x="82" y="39" class="heading">PKI Foundation &amp;</text>
+<text x="82" y="62" class="heading">Revocation Services</text>
+<rect x="410" y="10" width="380" height="415" rx="11" fill="#ebf8f0" stroke="#087a4a" stroke-width="1.4"/>
+<rect x="410" y="10" width="380" height="67" rx="10" fill="#087a4a" stroke="none" stroke-width="1"/>
+<rect x="425" y="22" width="43" height="43" rx="22" fill="#ffffff" stroke="none" stroke-width="1"/>
+<text x="446" y="53" class="num" text-anchor="middle">2</text>
+<text x="482" y="39" class="heading">Certificate Template</text>
+<text x="482" y="62" class="heading">Customization</text>
+<rect x="810" y="10" width="380" height="415" rx="11" fill="#fff3e9" stroke="#df5810" stroke-width="1.4"/>
+<rect x="810" y="10" width="380" height="67" rx="10" fill="#df5810" stroke="none" stroke-width="1"/>
+<rect x="825" y="22" width="43" height="43" rx="22" fill="#ffffff" stroke="none" stroke-width="1"/>
+<text x="846" y="53" class="num" text-anchor="middle">3</text>
+<text x="882" y="39" class="heading">Template Permissions</text>
+<text x="882" y="62" class="heading">&amp; Least Privilege</text>
+<rect x="1210" y="10" width="380" height="415" rx="11" fill="#f3edff" stroke="#5a249e" stroke-width="1.4"/>
+<rect x="1210" y="10" width="380" height="67" rx="10" fill="#5a249e" stroke="none" stroke-width="1"/>
+<rect x="1225" y="22" width="43" height="43" rx="22" fill="#ffffff" stroke="none" stroke-width="1"/>
+<text x="1246" y="53" class="num" text-anchor="middle">4</text>
+<text x="1282" y="39" class="heading">Group Policy &amp;</text>
+<text x="1282" y="62" class="heading">Auto-Enrollment</text>
+<text x="30" y="106" class="body">• Enterprise CA integrates with AD DS</text>
+<text x="30" y="129" class="body">  for templates and enrollment.</text>
+<text x="30" y="152" class="body">• Publish HTTP CRLs before expiry.</text>
+<text x="30" y="175" class="body">• Keep offline Root CA CRLs</text>
+<text x="30" y="198" class="body">  accessible to clients.</text>
+<use href="#ico-directory" transform="translate(76 215) scale(0.94)" style="color:#245c80"/><use href="#ico-server" transform="translate(276 211) scale(1.0)" style="color:#245c80"/><use href="#ico-cert" transform="translate(480 209) scale(0.96)" style="color:#18784b"/><use href="#ico-cert" transform="translate(686 209) scale(0.96)" style="color:#18784b"/><use href="#ico-shield" transform="translate(963 215) scale(1.06)" style="color:#b34c13"/><use href="#ico-gpo" transform="translate(1273 194) scale(0.92)" style="color:#6538a0"/><use href="#ico-folder" transform="translate(1480 194) scale(0.96)" style="color:#6538a0"/>
+<rect x="32" y="272" width="337" height="29" rx="7" fill="#e3f0fa" stroke="none" stroke-width="1"/>
+<text x="42" y="292" class="pill">AD DS  ↔  Enterprise Issuing CA</text>
+<path d="M200 309 L200 340" fill="none" stroke="#36698b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="45" y="345" width="310" height="57" rx="8" fill="#fff" stroke="#8bb6d1" stroke-width="1"/>
+<use href="#ico-globe" transform="translate(303 352) scale(0.72)" style="color:#245c80"/>
+<text x="62" y="367" class="small">HTTP CRL distribution point</text>
+<text x="62" y="386" class="small">Root + Issuing CA revocation data</text>
+<text x="430" y="106" class="body">• Duplicate built-in templates.</text>
+<text x="430" y="129" class="body">• RSA ≥ 2048 / SHA-256 signature</text>
+<text x="430" y="152" class="body">  (or approved modern alternatives).</text>
+<text x="430" y="175" class="body">• EKU: Server Authentication.</text>
+<text x="430" y="198" class="body">• Control how DNS SANs are set.</text>
+<rect x="431" y="251" width="155" height="73" rx="8" fill="#fff" stroke="#80b49a" stroke-width="1"/>
+<text x="447" y="278" class="strong">Built-in</text>
+<text x="447" y="299" class="strong">Web Server</text>
+<path d="M590 287 L633 287" fill="none" stroke="#36698b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="641" y="251" width="144" height="73" rx="8" fill="#fff" stroke="#80b49a" stroke-width="1"/>
+<text x="653" y="278" class="strong">Custom</text>
+<text x="653" y="299" class="strong">IIS Template</text>
+<rect x="430" y="347" width="355" height="29" rx="7" fill="#d8f0e3" stroke="none" stroke-width="1"/>
+<text x="440" y="367" class="pill">SAN: AD-derived or controlled request</text>
+<text x="830" y="106" class="body">• Grant Read + Enroll + Autoenroll</text>
+<text x="830" y="129" class="body">  to authorized server groups.</text>
+<text x="830" y="152" class="body">• Remove broad Enroll / Autoenroll</text>
+<text x="830" y="175" class="body">  rights; not all Read permissions.</text>
+<text x="830" y="198" class="body">• Preserve CA access as required.</text>
+<rect x="833" y="262" width="347" height="29" rx="7" fill="#d8f0e3" stroke="none" stroke-width="1"/>
+<text x="843" y="282" class="pill">AUTHORIZED: IIS Servers group</text>
+<rect x="833" y="305" width="347" height="29" rx="7" fill="#ffe0d5" stroke="none" stroke-width="1"/>
+<text x="843" y="325" class="pill">RESTRICT: broad enrollment rights</text>
+<rect x="831" y="354" width="350" height="46" rx="7" fill="#fff" stroke="#efb59a" stroke-width="1"/>
+<text x="844" y="382" class="strong">Read ≠ permission to enroll</text>
+<text x="1230" y="106" class="body">• Link computer GPO to target OU.</text>
+<text x="1230" y="129" class="body">• Enable certificate auto-enrollment.</text>
+<text x="1230" y="152" class="body">• Enable renewal and template updates.</text>
+<text x="1230" y="175" class="body">• Template ACLs determine eligibility.</text>
+<rect x="1230" y="243" width="149" height="64" rx="8" fill="#fff" stroke="#aa8bd5" stroke-width="1"/>
+<text x="1245" y="269" class="strong">Computer</text>
+<text x="1245" y="290" class="strong">GPO</text>
+<path d="M1384 276 L1442 276" fill="none" stroke="#36698b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1449" y="243" width="136" height="64" rx="8" fill="#fff" stroke="#aa8bd5" stroke-width="1"/>
+<text x="1460" y="269" class="strong">Web Servers</text>
+<text x="1460" y="290" class="strong">OU</text>
+<rect x="1231" y="346" width="352" height="29" rx="7" fill="#e6d9fa" stroke="none" stroke-width="1"/>
+<text x="1241" y="366" class="pill">GPO enables; ACLs authorize</text>
+<rect x="10" y="438" width="515" height="405" rx="11" fill="#eaf5fd" stroke="#075b99" stroke-width="1.4"/>
+<rect x="10" y="438" width="515" height="67" rx="10" fill="#075b99" stroke="none" stroke-width="1"/>
+<rect x="25" y="450" width="43" height="43" rx="22" fill="#ffffff" stroke="none" stroke-width="1"/>
+<text x="46" y="481" class="num" text-anchor="middle">5</text>
+<text x="82" y="467" class="heading">Publication &amp;</text>
+<text x="82" y="490" class="heading">Auto-Enrollment</text>
+<rect x="537" y="438" width="515" height="405" rx="11" fill="#ebf8f0" stroke="#087a4a" stroke-width="1.4"/>
+<rect x="537" y="438" width="515" height="67" rx="10" fill="#087a4a" stroke="none" stroke-width="1"/>
+<rect x="552" y="450" width="43" height="43" rx="22" fill="#ffffff" stroke="none" stroke-width="1"/>
+<text x="573" y="481" class="num" text-anchor="middle">6</text>
+<text x="609" y="467" class="heading">IIS HTTPS Binding &amp;</text>
+<text x="609" y="490" class="heading">TLS Configuration</text>
+<rect x="1064" y="438" width="526" height="405" rx="11" fill="#f3edff" stroke="#5a249e" stroke-width="1.4"/>
+<rect x="1064" y="438" width="526" height="67" rx="10" fill="#5a249e" stroke="none" stroke-width="1"/>
+<rect x="1079" y="450" width="43" height="43" rx="22" fill="#ffffff" stroke="none" stroke-width="1"/>
+<text x="1100" y="481" class="num" text-anchor="middle">7</text>
+<text x="1136" y="467" class="heading">Validation &amp;</text>
+<text x="1136" y="490" class="heading">Lifecycle Management</text>
+<text x="30" y="534" class="body">• Publish custom template on Issuing CA.</text>
+<text x="30" y="558" class="body">• Eligible computer discovers template.</text>
+<text x="30" y="582" class="body">• Client generates key pair and request.</text>
+<text x="30" y="606" class="body">• CA validates policy and issues cert.</text>
+<text x="30" y="630" class="body">• Certificate installed in Local Machine.</text>
+<use href="#ico-directory" transform="translate(74 645) scale(0.64)" style="color:#245c80"/><use href="#ico-laptop" transform="translate(252 645) scale(0.68)" style="color:#245c80"/><use href="#ico-server" transform="translate(440 645) scale(0.64)" style="color:#245c80"/><use href="#ico-cert" transform="translate(630 648) scale(0.68)" style="color:#18784b"/><use href="#ico-server" transform="translate(916 645) scale(0.72)" style="color:#18784b"/><use href="#ico-laptop" transform="translate(1140 644) scale(0.68)" style="color:#6538a0"/><use href="#ico-renew" transform="translate(1432 642) scale(0.7)" style="color:#6538a0"/>
+<rect x="32" y="682" width="132" height="67" rx="8" fill="#fff" stroke="#8bb6d1" stroke-width="1"/>
+<text x="46" y="708" class="strong">AD DS</text>
+<text x="46" y="730" class="strong">Template</text>
+<path d="M167 714 L214 714" fill="none" stroke="#36698b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="220" y="682" width="134" height="67" rx="8" fill="#fff" stroke="#8bb6d1" stroke-width="1"/>
+<text x="231" y="708" class="strong">Web Server</text>
+<text x="231" y="730" class="strong">Auto-enroll</text>
+<path d="M357 714 L403 714" fill="none" stroke="#36698b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="409" y="682" width="98" height="67" rx="8" fill="#fff" stroke="#8bb6d1" stroke-width="1"/>
+<text x="424" y="708" class="strong">Issuing</text>
+<text x="424" y="730" class="strong">CA</text>
+<rect x="31" y="778" width="475" height="29" rx="7" fill="#e3f0fa" stroke="none" stroke-width="1"/>
+<use href="#ico-key" transform="translate(447 780) scale(0.52)" style="color:#245c80"/>
+<text x="41" y="798" class="pill">Private key stays on requesting computer</text>
+<text x="557" y="534" class="body">• Validate DNS SAN, EKU, chain,</text>
+<text x="557" y="558" class="body">  validity, revocation and private key.</text>
+<text x="557" y="582" class="body">• Bind issued cert to IIS HTTPS :443.</text>
+<text x="557" y="606" class="body">• Configure SNI when appropriate.</text>
+<text x="557" y="630" class="body">• Enrollment ≠ service binding.</text>
+<rect x="568" y="696" width="196" height="72" rx="8" fill="#fff" stroke="#80b49a" stroke-width="1"/>
+<text x="581" y="723" class="strong">Local Machine</text>
+<text x="581" y="745" class="strong">Certificate Store</text>
+<path d="M770 732 L823 732" fill="none" stroke="#36698b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="830" y="696" width="194" height="72" rx="8" fill="#fff" stroke="#80b49a" stroke-width="1"/>
+<text x="843" y="723" class="strong">IIS HTTPS :443</text>
+<text x="843" y="745" class="strong">SNI (if needed)</text>
+<rect x="567" y="788" width="455" height="29" rx="7" fill="#e3f0fa" stroke="none" stroke-width="1"/>
+<text x="577" y="808" class="pill">Use the correct active certificate</text>
+<text x="1084" y="534" class="body">• Verify trust chain, hostname SAN,</text>
+<text x="1084" y="558" class="body">  validity and revocation status.</text>
+<text x="1084" y="582" class="body">• Monitor expiry and auto-renewal.</text>
+<text x="1084" y="606" class="body">• Ensure IIS uses renewed certificate.</text>
+<text x="1084" y="630" class="body">• Rebinding is a separate operation.</text>
+<rect x="1085" y="685" width="215" height="75" rx="8" fill="#fff" stroke="#b39ada" stroke-width="1"/>
+<text x="1100" y="712" class="strong">Auto-enrollment</text>
+<text x="1100" y="734" class="strong">renews certificate</text>
+<path d="M1307 723 L1360 723" fill="none" stroke="#36698b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1366" y="685" width="205" height="75" rx="8" fill="#fff" stroke="#b39ada" stroke-width="1"/>
+<text x="1380" y="712" class="strong">Update IIS binding</text>
+<text x="1380" y="734" class="strong">when necessary</text>
+<rect x="1086" y="789" width="478" height="29" rx="7" fill="#e6d9fa" stroke="none" stroke-width="1"/>
+<text x="1096" y="809" class="pill">Validate live HTTPS after renewal</text>
+<rect x="10" y="859" width="1580" height="32" rx="5" fill="#214d72" stroke="none" stroke-width="1"/>
+<text x="800" y="880" class="footer" text-anchor="middle">PKI FOUNDATION  →  TEMPLATE &amp; POLICY  →  AUTO-ENROLLMENT  →  IIS DEPLOYMENT  →  LIFECYCLE</text>
+</svg>

@@ -6,7 +6,7 @@
 
 ### Certificate Deployment Workflow
 
-![pki-cert-deploy-workflow](./cert-deployment.assets/pki-cert-deploy-workflow.webp)
+![pki-cert-deploy-workflow](./cert-deployment.assets/pki-cert-deploy-workflow.svg)
 
 ---
 
@@ -123,19 +123,17 @@
 
 ### Requirements for Auto-Enrollment
 
-- For computer auto-enrollment, the computer normally needs:
+- Permission to read the template
 
-  - Permission to read the template
+- Permission to enrol using the template
 
-  - Permission to enrol using the template
+- Permission to auto-enroll
 
-  - Permission to auto-enroll
+- Membership in the correct AD security group
 
-  - Membership in the correct AD security group
+- Access to a CA that publishes the template
 
-  - Access to a CA that publishes the template
-
-- If one gate is missing, auto-enrollment cannot complete as intended.
+- An applicable computer GPO that enables certificate auto-enrollment
 
 ---
 
@@ -181,7 +179,7 @@
 
 ---
 
-### Group Policy’s Role
+### Group Policy's Role
 
 - Group Policy tells Windows:
 
@@ -197,71 +195,18 @@
 
 - Group Policy activates the client-side auto-enrollment behaviour; it does not replace template permissions.
 
----
-
-### Two Policies Must Agree
-
-- Group Policy starts the process. The template decides whether the request is allowed.
-
-- Auto-enrollment requires both sides:
-
-- **Group Policy**: Tells the client to perform auto-enrollment
-
-- **Certificate template**:
-
-  - Defines eligibility and permissions
-
-  - Defines the certificate that may be issued
+- GPO enables; template permissions authorize.
 
 ---
 
-### Auto-Enrollment Lifecycle
-
-- Auto-enrollment can help manage:
-
-  - Initial certificate enrollment
-
-  - Certificate renewal
-
-  - Pending certificate requests
-
-  - Certificates affected by template updates
-
-  - Removal or replacement of unsuitable certificates
-
-- This reduces repetitive manual work but still depends on correctly designed templates and permissions.
-
----
-
-### Certificate Purpose
-
-- A certificate should have a clearly defined job
-- Its purpose is recorded in certificate extensions
-- Applications check whether the purpose is acceptable
-- A valid certificate may still be unsuitable for an application
-- Use only the purposes required for the intended service
-
----
-
-### Enhanced Key Usage
+### Certificate Purpose and EKU
 
 - EKU means **Enhanced Key Usage**
-- EKU identifies approved certificate purposes
+- EKU identifies the certificate’s permitted purposes
 - **Server Authentication** identifies a server to clients
 - **Client Authentication** identifies a client to a server
-- Applications can reject a certificate with the wrong EKU
-
-- Microsoft documents different EKUs for Server Authentication and Client Authentication and notes that authenticating applications check for the required purpose.
-
----
-
-### Purpose-Specific Templates
-
-- A web server normally needs Server Authentication
-- A client certificate normally needs Client Authentication
-- These purposes should not be combined without a reason
-- Separate templates make policy easier to understand
-- Limited-purpose certificates reduce unintended use
+- Applications can reject certificates with an unsuitable EKU
+- **Note:** A certificate can be valid but unsuitable for the intended service
 
 ---
 
@@ -281,47 +226,21 @@
 
 ---
 
-### Inspect Before Use
+### IIS Certificate Readiness
 
-- Before using an issued certificate, verify:
-
-  - Subject or Subject Alternative Name
-
-  - Issuing CA
-
-  - Validity period
-
-  - Enhanced Key Usage
-
-  - Certificate chain
-
-  - Presence of the matching private key
-
-- **Note:** Seeing a certificate in a store does not prove that it is suitable for IIS.
+- Before binding a certificate to IIS, verify:
+  - **DNS SAN:** Matches the hostname clients will use
+  - **Enhanced Key Usage:** Includes Server Authentication
+  - **Validity:** Is within its validity period
+  - **Certificate chain:** Leads to a root CA trusted by clients
+  - **Private key:** Is present and accessible to the server
+- **Note:** Installing a certificate does not automatically assign it to an IIS website
 
 ---
 
 ### Inspect Before Use
 
 ![inspect-cert-before-use](./cert-deployment.assets/inspect-cert-before-use.webp)
-
----
-
-### IIS Server Certificate
-
-- An appropriate IIS server certificate should:
-
-  - Identify the server’s DNS name
-
-  - Include Server Authentication
-
-  - Be within its validity period
-
-  - Chain to a trusted Root CA
-
-  - Have an accessible matching private key
-
-- IIS cannot successfully use a server certificate when the matching private key is missing or inaccessible. 
 
 ---
 
@@ -343,6 +262,20 @@
 
 ---
 
+### Renewal and IIS Rebinding
+
+- Auto-enrollment can renew a certificate before it expires
+
+- Renewal issues a new certificate
+
+- IIS must use the renewed certificate in its HTTPS binding
+
+- Enable **Automatic Rebind of Renewed Certificate**, or update the binding manually
+
+- Verify that the website presents the renewed certificate
+
+---
+
 ### HTTPS Using TLS
 
 - The client connects to the IIS server
@@ -357,7 +290,7 @@
 
 ### Client Validation
 
-- The client checks:
+- Checks performed by the connecting client:
 
   - Does the certificate identify the requested server?
 
@@ -401,30 +334,66 @@
 
 ---
 
-### Common HTTPS Failures
+### HTTPS Troubleshooting
 
-- HTTPS may fail because:
+<table>
+  <thead>
+    <tr>
+      <th>Symptom</th>
+      <th>Evidence to Inspect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>No certificate appears after auto-enrollment</td>
+      <td>Applied computer GPO, template publication, Read/Enroll/Autoenroll permissions, and auto-enrollment event logs</td>
+    </tr>
+    <tr>
+      <td>Certificate is unavailable for the IIS binding</td>
+      <td>Local Computer certificate store, matching private key, and Server Authentication EKU</td>
+    </tr>
+    <tr>
+      <td>Browser reports a name mismatch</td>
+      <td>Hostname in the URL compared with DNS names in the certificate’s SAN</td>
+    </tr>
+  </tbody>
+</table>
 
-  - The certificate has the wrong DNS identity
+---
 
-  - Server Authentication is missing
+### HTTPS Troubleshooting
 
-  - The matching private key is unavailable
-
-  - The chain cannot reach a trusted root
-
-  - A certificate is expired or revoked
-
-  - Current revocation information cannot be reached
+<table>
+  <thead>
+    <tr>
+      <th>Symptom</th>
+      <th>Evidence to Inspect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Browser reports an untrusted certificate</td>
+      <td>Client’s trusted root store and availability of intermediate CA certificates</td>
+    </tr>
+    <tr>
+      <td>Website still presents an expired certificate after renewal</td>
+      <td>Certificate thumbprint in the active IIS binding and automatic rebinding configuration</td>
+    </tr>
+    <tr>
+      <td>Client reports a revocation-check failure</td>
+      <td>Exact error, certificate CDP URLs, CRL validity, and client access to revocation information</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
 ### Modern Terminology and Practice
 
-- Say **HTTPS using TLS**, not “SSL,”
-- IIS may still use “SSL” in some interface labels
+- Say **HTTPS using TLS**, not "**SSL**"
+- IIS may still use "**SSL**" in some interface labels
 - Do not use SHA-1 for new certificate designs
-- Avoiding RSA keys smaller than 2048 bits
+- Avoid RSA keys smaller than 2048 bits
 - Avoid unnecessary all-purpose certificates
 - Use purpose-specific templates and current cryptography
 
@@ -434,20 +403,19 @@
 
 ### Key Takeaways
 
-- Certificate templates are stored directly in AD and can only be issued by an Enterprise CA.
+- Enterprise CAs issue certificates using AD-integrated certificate templates.
 - Administrators should duplicate built-in templates to customize deployment settings while leaving original templates intact.
-- A newly created template remains completely unusable until an authorized Issuing CA explicitly publishes it.
+- An Enterprise CA must publish the template before it can issue certificates using it.
 - Successful computer auto-enrollment requires granting Read, Enroll, and Autoenroll permissions to appropriate AD security groups.
 
 ---
 
 ### Key Takeaways
 
-- The client generates the key pair locally and keeps the private key while submitting only the public key to the CA.
+- The client submits a certificate request containing its public key and required request information. The private key normally remains on the client.
 - Auto-enrollment requires both client Group Policy and template security permissions to permit the request.
-- Every certificate must include the specific Enhanced Key Usage required by the service, such as Server Authentication for web servers.
 - HTTPS bindings fail if the server cannot access the certificate's matching private key.
-- Clients validate web certificates by confirming the name in the Subject Alternative Name matches the URL and the revocation list is reachable.
+- Clients evaluate revocation according to application policy. Unavailable revocation information can cause validation failures.
 
 ---
 
